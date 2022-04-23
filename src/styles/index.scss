@@ -23,6 +23,12 @@ $easing: cubic-bezier(0.075, 0.82, 0.165, 1);
 	}
 }
 
+@mixin landscape {
+	@media (max-width: 1024px) and (orientation: landscape) {
+		@content;
+	}
+}
+
 *,
 *::before,
 *::after {
@@ -223,6 +229,10 @@ body:before {
 	@include desktop {
 		padding-top: 10vh;
 	}
+
+	@include landscape {
+		padding-top: 8rem;
+	}
 }
 
 h1 {
@@ -235,6 +245,10 @@ h1 {
 		margin-bottom: 0;
 		margin-left: -0.7%;
 	}
+
+	@include landscape {
+		margin-bottom: 0;
+	}
 }
 
 h2 {
@@ -243,8 +257,10 @@ h2 {
 	margin-left: -1%;
 
 	@include desktop {
-		font-size: 11.8vw;
-		line-height: 1.2;
+		max-width: 80%;
+	}
+
+	@include landscape {
 		max-width: 80%;
 	}
 
@@ -260,7 +276,13 @@ h2 {
 
 	@include desktop {
 		font-size: 11vw;
+		line-height: 1.1;
 		margin-top: 1rem;
+	}
+
+	@include landscape {
+		font-size: 10vw;
+		line-height: 1.1;
 	}
 
 	@include ultra {
@@ -281,6 +303,12 @@ h2 {
 		@include desktop {
 			width: 20rem;
 			margin-left: 55vw;
+			margin-top: -8%;
+		}
+
+		@include landscape {
+			width: 15rem;
+			margin-left: 65vw;
 			margin-top: -8%;
 		}
 	}
