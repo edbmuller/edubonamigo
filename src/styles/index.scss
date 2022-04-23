@@ -1,5 +1,316 @@
+// TODO: Bring fonts inside the project folder
+// TODO: No arquivo base deixar apenas as configurações da animação inicial e first content paint
+// TODO: menu gsap animation add filter:blur(15px) to sections
+
+$easing: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+// Mobile First Media Query
+@mixin tablet {
+	@media (min-width: 481px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: 1025px) {
+		@content;
+	}
+}
+
+@mixin ultra {
+	@media (min-width: 1925px) {
+		@content;
+	}
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	text-rendering: optimizeLegibility;
+	-webkit-tap-highlight-color: transparent;
+}
+
+html {
+	font-size: 10px;
+	font-family: Century Gothic, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	line-height: 1.3;
+	letter-spacing: 0.1rem;
+	overflow-x: hidden;
+}
+
 body {
-  background-color: black;
-  
-  color:  white;
+	width: 100%;
+	min-height: 100vh;
+	position: relative;
+}
+
+/* Grainy texture animation by Geoff Graham https://css-tricks.com/snippets/css/animated-grainy-texture/ */
+body:before {
+	animation: grain 10s steps(10) infinite;
+	background-image: url('../imgs/noise.png');
+	content: '';
+	height: 300%;
+	left: -50%;
+	opacity: 0.5;
+	position: fixed;
+	top: -100%;
+	width: 300%;
+	z-index: -1;
+}
+
+@keyframes grain {
+	0%,
+	100% {
+		transform: translate(0, 0);
+	}
+
+	10% {
+		transform: translate(-5%, -9%);
+	}
+
+	20% {
+		transform: translate(-13%, 5%);
+	}
+
+	30% {
+		transform: translate(7%, -20%);
+	}
+
+	40% {
+		transform: translate(-5%, 20%);
+	}
+
+	50% {
+		transform: translate(-13%, 9%);
+	}
+
+	60% {
+		transform: translate(13%, 0%);
+	}
+
+	70% {
+		transform: translate(0%, 13%);
+	}
+
+	80% {
+		transform: translate(3%, 25%);
+	}
+
+	90% {
+		transform: translate(-9%, 9%);
+	}
+}
+
+.header {
+	width: 90%;
+	position: fixed;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 5vh;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	z-index: 10;
+
+	&__title {
+		font-size: 1.3rem;
+		display: none;
+
+		@include tablet {
+			font-size: 1.4rem;
+		}
+
+		&.--active {
+			display: block;
+		}
+	}
+
+	.header__line {
+		height: 1px;
+		width: 120%;
+		position: absolute;
+		left: 0;
+		bottom: -0.8rem;
+
+		@include tablet {
+			bottom: -1.3rem;
+		}
+	}
+}
+
+.nav {
+	margin: auto 0;
+
+	&__dots {
+		display: flex;
+		padding-top: 10%;
+	}
+
+	&__dot {
+		width: 0.8rem;
+		height: 0.8rem;
+		margin-left: 0.6rem;
+		border-radius: 50%;
+		border: 1px solid var(--light-color);
+		overflow: hidden;
+		position: relative;
+
+		@include tablet {
+			margin-left: 0.8rem;
+		}
+	}
+
+	&.--active .nav__dot {
+		background-color: var(--light-color);
+	}
+
+	.menu {
+		position: absolute;
+		right: 0;
+		top: calc(100% + 2rem);
+		display: none;
+		flex-direction: column;
+		align-items: flex-end;
+
+		@include desktop {
+			top: calc(100% + 3rem);
+		}
+
+		li {
+			margin-bottom: 1.4rem;
+		}
+
+		&__link {
+			font-size: 6vw;
+			font-style: italic;
+			text-decoration: none;
+			font-family: Century Gothic;
+
+			&.--active {
+				text-transform: uppercase;
+				font-weight: bold;
+			}
+
+			@include tablet {
+				font-size: 3vw;
+			}
+
+			@include desktop {
+				font-size: 1.5vw;
+			}
+		}
+	}
+
+	&.--active .menu {
+		display: flex;
+	}
+}
+
+.section {
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	padding-top: 5vh;
+
+	@include tablet {
+		padding-top: 14vh;
+	}
+
+	@include desktop {
+		padding-top: 10vh;
+	}
+}
+
+h1 {
+	font-size: 21.5vw;
+	margin-bottom: 3rem;
+	margin-left: -1.45%;
+	line-height: 1.2;
+
+	@include desktop {
+		margin-bottom: 0;
+		margin-left: -0.7%;
+	}
+}
+
+h2 {
+	font-size: 14vw;
+	line-height: 1.4;
+	margin-left: -1%;
+
+	@include desktop {
+		font-size: 11.8vw;
+		line-height: 1.2;
+		max-width: 80%;
+	}
+
+	@include ultra {
+		max-width: 70%;
+		margin-left: -0.7%;
+	}
+}
+
+h1,
+h2 {
+	font-family: Italiana;
+
+	@include desktop {
+		font-size: 11vw;
+		margin-top: 1rem;
+	}
+
+	@include ultra {
+		font-size: 9vw;
+	}
+}
+
+.section--hero {
+	min-height: 100vh;
+
+	svg {
+		width: 30vw;
+		height: fit-content;
+		margin-left: 50vw;
+		margin-top: 4vh;
+		animation: spin 20s linear infinite;
+
+		@include desktop {
+			width: 20rem;
+			margin-left: 55vw;
+			margin-top: -8%;
+		}
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+.section--about {
+	padding-left: 20vw;
+
+	@include desktop {
+		padding-left: 30vw;
+	}
+
+	.text {
+		font-size: 6vw;
+		margin-bottom: 7vw;
+		line-height: 1.2;
+
+		@include desktop {
+			font-size: 2.5vw;
+			margin-bottom: 2vw;
+		}
+
+		@include ultra {
+			font-size: 1.5vw;
+		}
+	}
 }
