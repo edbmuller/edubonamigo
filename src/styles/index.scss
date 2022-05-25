@@ -410,5 +410,6 @@ h2 {
 		color: var(--text-color);
 		font-size: 9vw;
 		text-decoration: none;
+		will-change: transform;
 	}
 }
