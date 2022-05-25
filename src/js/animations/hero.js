@@ -14,12 +14,7 @@ const DOM = {
 }
 
 // TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
-document.addEventListener('DOMContentLoaded', init)
-
-function init() {
-	stopLoadingInitIntro()
-	initScrollSvg()
-}
+document.addEventListener('DOMContentLoaded', stopLoadingInitIntro())
 
 function stopLoadingInitIntro() {
 	let state = Flip.getState(DOM.dotsArr)
@@ -76,30 +71,4 @@ const initIntro = () => {
 			},
 			'0'
 		)
-}
-
-function initScrollSvg() {
-	// ScrollTrigger({
-	// 	trigger: sectionHero
-	// })
-	DOM.sectionHero.addEventListener('mousemove', moveSvgScroll)
-}
-
-const moveSvgScroll = (e) => {
-	// mouse position
-	const { offsetX, offsetY } = e
-	const { clientWidth, clientHeight } = DOM.sectionHero
-
-	console.log(offsetX, offsetY)
-
-	const xPos = (offsetX / clientWidth - 0.5) * 32
-	const yPos = (offsetY / clientHeight - 0.5) * 40
-
-	console.log(xPos, yPos)
-
-	gsap.to(scrollSVG, {
-		duration: 1.2,
-		x: xPos,
-		y: yPos
-	})
 }
