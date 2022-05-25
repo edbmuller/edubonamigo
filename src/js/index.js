@@ -5,3 +5,4 @@ import '../styles/index.scss'
 console.log('Macete: → ↑ ← ↓ e d !')
 
 import './animations/hero'
+import './animations/magneticElement'
