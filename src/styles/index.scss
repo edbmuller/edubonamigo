@@ -289,6 +289,7 @@ h1 {
 	margin-bottom: 3rem;
 	margin-left: -1.45%;
 	line-height: 1.2;
+	cursor: default;
 
 	@include desktop {
 		margin-bottom: 0;
@@ -402,7 +403,7 @@ h2 {
 	height: 100vh;
 	display: flex;
 	align-items: center;
-	justify-content: flex-start;
+	justify-content: flex-end;
 
 	.hello {
 		margin-top: 20vh;

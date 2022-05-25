@@ -25,6 +25,7 @@
     "gsap": "^3.10.4",
     "parcel": "^2.4.1",
     "parcel-validator-stylelint": "^1.0.1",
+    "smooth-scrollbar": "^8.7.4",
     "stylelint": "^14.7.1",
     "stylelint-prettier": "^2.0.0"
   }
