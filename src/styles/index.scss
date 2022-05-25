@@ -55,12 +55,13 @@ body {
 
 /* Grainy texture animation by Geoff Graham https://css-tricks.com/snippets/css/animated-grainy-texture/ */
 body:before {
+	will-change: background-image;
 	animation: grain 10s steps(10) infinite;
 	background-image: url('../imgs/noise.png');
 	content: '';
 	height: 300%;
 	left: -50%;
-	opacity: 0.5;
+	opacity: 0.4;
 	position: fixed;
 	top: -100%;
 	width: 300%;
@@ -123,15 +124,11 @@ body:before {
 	z-index: 10;
 
 	&__title {
-		font-size: 1.3rem;
-		display: none;
+		font-size: 1.6rem;
+		visibility: hidden;
 
 		@include tablet {
 			font-size: 1.4rem;
-		}
-
-		&.--active {
-			display: block;
 		}
 	}
 
@@ -141,6 +138,7 @@ body:before {
 		position: absolute;
 		left: 0;
 		bottom: -0.8rem;
+		transform: translateX(110%);
 
 		@include tablet {
 			bottom: -1.3rem;
@@ -150,10 +148,11 @@ body:before {
 
 .nav {
 	margin: auto 0;
+	opacity: 0;
+	animation: fade-in 0.4s $easing 0.3s forwards;
 
 	&__dots {
 		display: flex;
-		padding-top: 10%;
 	}
 
 	&__dot {
@@ -165,8 +164,43 @@ body:before {
 		overflow: hidden;
 		position: relative;
 
+		&:first-child {
+			margin-left: 0;
+		}
+
 		@include tablet {
 			margin-left: 0.8rem;
+		}
+	}
+
+	&__dots.--loading {
+		padding-top: 0;
+		animation: loading 1.5s infinite linear;
+		width: 4rem;
+		height: 4rem;
+
+		.nav__dot:first-child {
+			transform: translate(28%, 288%);
+			margin-left: 0;
+		}
+
+		.nav__dot:nth-child(2) {
+			transform: translate(12%, 0%);
+		}
+
+		.nav__dot:last-child {
+			transform: translate(-2%, 288%);
+		}
+	}
+
+	@keyframes loading {
+		0% {
+			transform: rotate(0deg);
+			transform-origin: center;
+		}
+		100% {
+			transform: rotate(360deg);
+			transform-origin: center;
 		}
 	}
 
@@ -216,6 +250,18 @@ body:before {
 	}
 }
 
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+		transform: scale(0.4);
+	}
+
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
 .section {
 	display: flex;
 	flex-flow: column;
@@ -234,7 +280,10 @@ body:before {
 		padding-top: 8rem;
 	}
 }
-
+.title-wrapper {
+	overflow: hidden;
+	padding-bottom: 0.5vw;
+}
 h1 {
 	font-size: 21.5vw;
 	margin-bottom: 3rem;
@@ -275,13 +324,13 @@ h2 {
 	font-family: Italiana;
 
 	@include desktop {
-		font-size: 11vw;
+		font-size: 9vw;
 		line-height: 1.1;
 		margin-top: 1rem;
 	}
 
 	@include landscape {
-		font-size: 10vw;
+		font-size: 9vw;
 		line-height: 1.1;
 	}
 
@@ -292,24 +341,29 @@ h2 {
 
 .section--hero {
 	min-height: 100vh;
+	position: relative;
 
-	svg {
-		width: 30vw;
+	.svg-wrapper.--scroll {
+		width: 35vw;
 		height: fit-content;
-		margin-left: 50vw;
-		margin-top: 4vh;
-		animation: spin 20s linear infinite;
+		position: absolute;
+		left: 50vw;
+		top: 75%;
 
 		@include desktop {
 			width: 20rem;
-			margin-left: 55vw;
-			margin-top: -8%;
+			left: 65vw;
 		}
 
 		@include landscape {
 			width: 15rem;
-			margin-left: 65vw;
-			margin-top: -8%;
+			left: 65vw;
+		}
+
+		svg {
+			animation: spin 20s infinite linear;
+			width: 100%;
+			height: auto;
 		}
 	}
 }
@@ -321,7 +375,7 @@ h2 {
 }
 
 .section--about {
-	padding-left: 20vw;
+	padding: 20vw 0 20vw 20vw;
 
 	@include desktop {
 		padding-left: 30vw;

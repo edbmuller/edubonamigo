@@ -226,3 +226,7 @@ table {
 	margin: 0 auto;
 	position: relative;
 }
+
+.--loading .section {
+	visibility: hidden;
+}

@@ -1,4 +1,7 @@
 import '../styles/loading.scss'
 import '../styles/index.scss'
 
-console.log('hello world, with parcel!')
+// TODO: ativar algum experimento com webgl quando usar o macete
+console.log('Macete: → ↑ ← ↓ e d !')
+
+import './animations/hero'
