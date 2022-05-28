@@ -12,7 +12,7 @@
 	</head>
 	<body class="theme --dark --loading">
 		<header class="header">
-			<h3 class="header__title theme--color">edubonamigo.code</h3>
+			<h3 class="header__title theme--color --active">edubon.code</h3>
 			<h3 class="header__title theme--color">sobre</h3>
 			<h3 class="header__title theme--color">projetos</h3>
 			<h3 class="header__title theme--color">contato</h3>
@@ -37,17 +37,25 @@
 
 			<div class="header__line theme--background"></div>
 		</header>
-		<div id="scrollbar-wrapper">
-			<div class="container">
+		<div id="viewport" class="scroller">
+			<main class="container">
 				<section class="section section--hero">
 					<div class="title-wrapper">
-						<h1 class="theme--color">Eduardo Bonamigo</h1>
+						<h1 class="theme--color --hide-show">Eduardo</h1>
 					</div>
 					<div class="title-wrapper">
-						<h1 class="theme--color">Desenvolvedor</h1>
+						<h1 class="theme--color --hide-show">Bonamigo</h1>
 					</div>
-					<div class="title-wrapper"><h1>Front-End</h1></div>
-					<div class="svg-wrapper --scroll">
+					<div class="title-wrapper">
+						<h1 class="theme--color --hide-show">Eduardo Bonamigo</h1>
+					</div>
+					<div class="title-wrapper">
+						<h1 class="theme--color --hide-show">Desenvolvedor</h1>
+					</div>
+					<div class="title-wrapper">
+						<h1 class="theme--color --hide-show">Front-End</h1>
+					</div>
+					<div class="svg-wrapper --scroll --hide-show">
 						<svg
 							class="theme--fill"
 							xmlns="http://www.w3.org/2000/svg"
@@ -159,26 +167,22 @@
 					</div>
 				</section>
 				<section class="section section--about">
-					<p class="text">
-						Curabitur vitae porta augue, id pretium dui. In vestibulum ipsum
-						vitae justo hendrerit maximus. Maecenas vel magna odio.
+					<p class="text --hide-show">
+						have 3+ years of experience working with code for web, currently
+						based in Porto Alegre, BR.
 					</p>
-					<p class="text">
-						Duis eget egestas felis. Integer ipsum eros, dignissim vel lorem et,
-						auctor bibendum magna.
+					<p class="text --hide-show">
+						enjoy creating beautiful websites with creative motions and
+						interactions.
 					</p>
 				</section>
 
 				<section class="section section--contact">
 					<a href="mailto:edbmuller@gmail.com" class="hello">Say Hello!</a>
 				</section>
-
-				<!-- <div class="scrollbar-track scrollbar-track-y">
-					<div class="scrollbar-thumb scrollbar-thumb-y"></div>
-				</div> -->
-			</div>
+			</main>
 		</div>
-		<!-- .smooth-scrollbar-wrapper -->
+		<!-- .scroller -->
 	</body>
 	<script type="module" src="js/index.js" defer></script>
 </html>

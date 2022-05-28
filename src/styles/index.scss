@@ -50,6 +50,7 @@ html {
 body {
 	width: 100%;
 	min-height: 100vh;
+	overflow: hidden;
 	position: relative;
 }
 
@@ -123,18 +124,27 @@ body:before {
 	flex-wrap: wrap;
 	z-index: 10;
 
+	&__title.--active {
+		display: block;
+	}
+
 	&__title {
 		font-size: 1.6rem;
 		visibility: hidden;
+		display: none;
 
 		@include tablet {
 			font-size: 1.4rem;
+		}
+
+		@include desktop {
+			font-size: 1.5rem;
 		}
 	}
 
 	.header__line {
 		height: 1px;
-		width: 120%;
+		width: 110%;
 		position: absolute;
 		left: 0;
 		bottom: -0.8rem;
@@ -266,27 +276,39 @@ body:before {
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
-	padding-top: 5vh;
-
-	@include tablet {
-		padding-top: 14vh;
-	}
+	padding-bottom: 10vh;
 
 	@include desktop {
 		padding-top: 10vh;
+		padding-bottom: 0;
 	}
 
 	@include landscape {
 		padding-top: 8rem;
+		padding-bottom: 0;
 	}
 }
 .title-wrapper {
 	overflow: hidden;
 	padding-bottom: 0.5vw;
+
+	&:nth-child(3) {
+		display: none;
+	}
+
+	@include desktop {
+		&:nth-child(1),
+		&:nth-child(2) {
+			display: none;
+		}
+
+		&:nth-child(3) {
+			display: block;
+		}
+	}
 }
 h1 {
-	font-size: 21.5vw;
-	margin-bottom: 3rem;
+	font-size: 14.5vw;
 	margin-left: -1.45%;
 	line-height: 1.2;
 	cursor: default;
@@ -294,6 +316,7 @@ h1 {
 	@include desktop {
 		margin-bottom: 0;
 		margin-left: -0.7%;
+		font-size: 21.5vw;
 	}
 
 	@include landscape {
@@ -345,20 +368,22 @@ h2 {
 	position: relative;
 
 	.svg-wrapper.--scroll {
-		width: 35vw;
+		width: 20vw;
 		height: fit-content;
 		position: absolute;
 		left: 50vw;
-		top: 75%;
+		top: 80%;
 
 		@include desktop {
 			width: 20rem;
 			left: 65vw;
+			top: 75%;
 		}
 
 		@include landscape {
 			width: 15rem;
 			left: 65vw;
+			top: 75%;
 		}
 
 		svg {
@@ -406,6 +431,7 @@ h2 {
 	justify-content: flex-end;
 
 	.hello {
+		opacity: 0;
 		margin-top: 20vh;
 		font-family: var(--serif-font-family);
 		color: var(--text-color);

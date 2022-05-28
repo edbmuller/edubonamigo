@@ -4,6 +4,6 @@ import '../styles/index.scss'
 // TODO: ativar algum experimento com webgl quando usar o macete
 console.log('Macete: → ↑ ← ↓ e d !')
 
-import './smooth-scrollbar'
+// TODO: Trigger after imagesLoaded
 import './animations/hero'
 import './animations/magneticElement'
