@@ -19,20 +19,26 @@ const mouseDistanceFromElementX = (mouseX) =>
 const getPercentageOfValue = (percentage, valueNumber) =>
 	((percentage / 100) * valueNumber).toFixed(0)
 
+let started = 0
 // Make an element follow the mouse, based on element position
 DOM.areaAroundTarget.addEventListener('mousemove', (e) => {
 	let distanceY = getPercentageOfValue(20, mouseDistanceFromElementY(e.pageY))
 	let distanceX = getPercentageOfValue(20, mouseDistanceFromElementX(e.pageX))
 
+	if (started === 0) {
+		gsap.to(DOM.target, { autoAlpha: 1, duration: 0.7 })
+		started = 1
+	}
+
 	gsap.to(DOM.target, {
 		x: `${distanceX}px`,
-		duration: 0.4,
+		duration: 1,
 		ease: 'linear'
 	})
 
 	gsap.to(DOM.target, {
 		y: `${distanceY}px`,
-		duration: 0.4,
+		duration: 1,
 		ease: 'linear'
 	})
 })
