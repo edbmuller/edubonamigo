@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 DOM = {
 	scroller: document.querySelector('.scroller'),
+	fadeElements: document.querySelectorAll('.--fade'),
 	scrollSVG: document.querySelector('.svg-wrapper')
 }
 
@@ -33,16 +34,17 @@ const hideShowContent = () => {
 	DOM.contentArr.forEach((element) => {
 		console.log(element)
 
-		gsap.to(element, {
-			duration: 0.5,
+const fadeInOut = () => {
+	DOM.fadeElements.forEach((element) => {
+		gsap.from(element, {
 			autoAlpha: 0,
-			ease: 'power3.out',
+			duration: 0.3,
+			ease: 'power4.out',
 			scrollTrigger: {
 				trigger: element,
-				start: 'top 15%',
-				end: 'bottom 15%',
-				toggleActions: 'play pause resume reset',
-				scrub: true,
+				start: '0 90%',
+				end: '0 5%',
+				toggleActions: 'play reverse play reverse',
 				markers: true
 			}
 		})
@@ -108,5 +110,8 @@ const fixGsapMarkers = () => {
 export default function init() {
 	initScrollbar()
 	spinScrollSVG()
+	fadeInOut()
+
+	// Only necessary to correct marker position - not needed in production
 	fixGsapMarkers()
 }
