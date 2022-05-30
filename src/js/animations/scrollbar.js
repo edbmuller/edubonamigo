@@ -5,8 +5,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 DOM = {
 	scroller: document.querySelector('.scroller'),
-	contentArr: document.querySelectorAll('.--hide-show'),
-	scrollSVG: document.querySelector('.--scroll')
+	scrollSVG: document.querySelector('.svg-wrapper')
 }
 
 let scrollbar
@@ -50,7 +49,21 @@ const hideShowContent = () => {
 	})
 }
 
-const spinScrollSVG = () => {}
+const spinScrollSVG = () => {
+	gsap.to(DOM.scrollSVG, {
+		rotation: 360,
+		y: '-200px',
+		ease: 'none',
+		duration: 1,
+		scrollTrigger: {
+			trigger: DOM.sectionHero,
+			start: 'top top',
+			end: 'bottom top',
+			scrub: true
+			// markers: true
+		}
+	})
+}
 
 /* ADD SKEW SECTION */
 const skewContent = () => {
@@ -94,7 +107,6 @@ const fixGsapMarkers = () => {
 
 export default function init() {
 	initScrollbar()
-	hideShowContent()
-	skewContent()
+	spinScrollSVG()
 	fixGsapMarkers()
 }
