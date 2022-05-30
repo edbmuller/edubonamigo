@@ -17,7 +17,9 @@ const DOM = {
 	contentArr: gsap.utils.toArray('.--hide-show')
 }
 
-function stopLoadingInitIntro() {
+function stopLoadingAndInitIntro() {
+	scrollbar()
+
 	let state = Flip.getState(DOM.dotsArr)
 	DOM.dotsWrapper.style.animation = 'unset'
 	Flip.from(state, {
@@ -67,8 +69,7 @@ const initIntro = () => {
 				onStart: () => {
 					DOM.body.classList.remove('--loading')
 					DOM.scrollSVG.classList.add('--spin')
-				},
-				onComplete: () => scrollbar()
+				}
 			},
 			'0'
 		)
