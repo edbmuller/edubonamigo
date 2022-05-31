@@ -5,6 +5,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 DOM = {
 	scroller: document.querySelector('.scroller'),
+	headerSubtitles: gsap.utils.toArray('.header__title:not(:first-child)'),
+	headerDots: gsap.utils.toArray('.nav__dot'),
+	sections: gsap.utils.toArray('.section'),
+	sectionHero: document.querySelector('.section--hero'),
 	fadeElements: document.querySelectorAll('.--fade'),
 	scrollSVG: document.querySelector('.svg-wrapper')
 }
@@ -30,9 +34,31 @@ const initScrollbar = () => {
 	ScrollTrigger.defaults({ scroller: '.scroller' })
 }
 
-const hideShowContent = () => {
-	DOM.contentArr.forEach((element) => {
-		console.log(element)
+const toggleHeaderSubtitleAndDots = () => {
+	let configs = {
+		duration: 0.4,
+		ease: 'power4.out'
+	}
+
+	DOM.headerSubtitles.forEach((element, index) => {
+		ScrollTrigger.create({
+			trigger: DOM.sections[index + 1],
+			start: 'top 40%',
+			end: 'bottom 40%',
+			// markers: true,
+			onEnter: () => {
+				gsap.to(element, { y: '-100%', ...configs })
+				DOM.headerDots[index].classList.add('theme--background')
+			},
+			onLeave: () => gsap.to(element, { y: '-210%', ...configs }),
+			onEnterBack: () => gsap.to(element, { y: '-100%', ...configs }),
+			onLeaveBack: () => {
+				gsap.to(element, { y: '0%', ...configs })
+				DOM.headerDots[index].classList.remove('theme--background')
+			}
+		})
+	})
+}
 
 const fadeInOut = () => {
 	DOM.fadeElements.forEach((element) => {
@@ -44,8 +70,8 @@ const fadeInOut = () => {
 				trigger: element,
 				start: '0 90%',
 				end: '0 5%',
-				toggleActions: 'play reverse play reverse',
-				markers: true
+				toggleActions: 'play reverse play reverse'
+				// markers: true
 			}
 		})
 	})
@@ -97,7 +123,6 @@ const skewContent = () => {
 }
 
 const fixGsapMarkers = () => {
-	// Only necessary to correct marker position - not needed in production
 	if (document.querySelector('.gsap-marker-scroller-start')) {
 		const markers = gsap.utils.toArray('[class *= "gsap-marker"]')
 
@@ -109,6 +134,7 @@ const fixGsapMarkers = () => {
 
 export default function init() {
 	initScrollbar()
+	toggleHeaderSubtitleAndDots()
 	spinScrollSVG()
 	fadeInOut()
 

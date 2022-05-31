@@ -124,14 +124,16 @@ body:before {
 	flex-wrap: wrap;
 	z-index: 10;
 
-	&__title.--active {
-		display: block;
+	&__title-wrapper {
+		position: relative;
+		height: fit-content;
+		overflow: hidden;
 	}
 
 	&__title {
+		position: absolute;
+		top: 100%;
 		font-size: 1.6rem;
-		visibility: hidden;
-		display: none;
 
 		@include tablet {
 			font-size: 1.4rem;
@@ -276,7 +278,7 @@ body:before {
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
-	padding-bottom: 10vh;
+	// padding-bottom: 10vh;
 
 	@include desktop {
 		padding-top: 10vh;
@@ -421,6 +423,10 @@ h2 {
 			font-size: 1.5vw;
 		}
 	}
+}
+
+.section--projects {
+	height: 100vh;
 }
 
 .section--contact {
