@@ -131,8 +131,10 @@ body:before {
 	}
 
 	&__title {
+		line-height: 1.2;
+		cursor: pointer;
 		position: absolute;
-		top: 100%;
+		top: 110%;
 		font-size: 1.6rem;
 
 		@include tablet {

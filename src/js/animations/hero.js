@@ -65,7 +65,7 @@ const initIntro = () => {
 		.to(
 			DOM.headerTitlesArr[0],
 			{
-				y: '-100%',
+				y: '-110%',
 				autoAlpha: 1,
 				// stagger: 0.05,
 				onStart: () => {

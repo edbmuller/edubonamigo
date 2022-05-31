@@ -5,6 +5,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 DOM = {
 	scroller: document.querySelector('.scroller'),
+	headerTitles: gsap.utils.toArray('.header__title'),
 	headerSubtitles: gsap.utils.toArray('.header__title:not(:first-child)'),
 	headerDots: gsap.utils.toArray('.nav__dot'),
 	sections: gsap.utils.toArray('.section'),
@@ -47,15 +48,27 @@ const toggleHeaderSubtitleAndDots = () => {
 			end: 'bottom 40%',
 			// markers: true,
 			onEnter: () => {
-				gsap.to(element, { y: '-100%', ...configs })
+				gsap.to(element, { y: '-110%', ...configs })
 				DOM.headerDots[index].classList.add('theme--background')
 			},
-			onLeave: () => gsap.to(element, { y: '-210%', ...configs }),
-			onEnterBack: () => gsap.to(element, { y: '-100%', ...configs }),
+			onLeave: () => gsap.to(element, { y: '-220%', ...configs }),
+			onEnterBack: () => gsap.to(element, { y: '-110%', ...configs }),
 			onLeaveBack: () => {
 				gsap.to(element, { y: '0%', ...configs })
 				DOM.headerDots[index].classList.remove('theme--background')
 			}
+		})
+	})
+}
+
+const linkToSection = () => {
+	DOM.headerTitles.forEach((element, index) => {
+		element.addEventListener('click', (e) => {
+			e.preventDefault()
+			scrollbar.scrollIntoView(DOM.sections[index], {
+				damping: 0.07,
+				offsetTop: 100
+			})
 		})
 	})
 }
@@ -135,6 +148,7 @@ const fixGsapMarkers = () => {
 export default function init() {
 	initScrollbar()
 	toggleHeaderSubtitleAndDots()
+	linkToSection()
 	spinScrollSVG()
 	fadeInOut()
 
