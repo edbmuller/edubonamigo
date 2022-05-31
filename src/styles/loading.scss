@@ -141,87 +141,44 @@ table {
 }
 
 .theme {
+	// switch between dark and light theme
+	&.--dark {
+		--primary-color: var(--dark-color);
+		--secondary-color: var(--light-color);
+	}
+	&.--light {
+		--primary-color: var(--light-color);
+		--secondary-color: var(--dark-color);
+	}
+
+	::selection {
+		background: var(--secondary-color);
+		color: var(--primary-color);
+	}
+
+	// theme-specific styles
+	background: var(--primary-color);
+	color: var(--secondary-color);
 	transition: background 0.3s cubic-bezier(0.3, 1, 0.7, 1),
 		color 0.3s cubic-bezier(0.3, 1, 0.7, 1);
 
 	&--border {
+		border-color: var(--secondary-color);
 		transition: border-color 0.3s cubic-bezier(0.3, 1, 0.7, 1);
 	}
 
 	&--background {
-		transition: background 0.3s cubic-bezier(0.3, 1, 0.7, 1);
-	}
-
-	&--background--reverse {
+		background: var(--secondary-color);
 		transition: background 0.3s cubic-bezier(0.3, 1, 0.7, 1);
 	}
 
 	&--color {
+		color: var(--secondary-color);
 		transition: color 0.3s cubic-bezier(0.3, 1, 0.7, 1);
 	}
 
-	&.--dark {
-		background: var(--dark-color);
-		color: var(--light-color);
-	}
-
-	&.--dark ::selection {
-		background: var(--light-color);
-		color: var(--dark-color);
-	}
-
-	&.--dark .theme--border {
-		border-color: var(--light-color);
-	}
-
-	&.--dark .theme--background {
-		background: var(--light-color);
-	}
-
-	&.--dark .theme--background--reverse {
-		background: var(--light-color);
-	}
-
-	&.--dark .theme--color {
-		color: var(--light-color);
-	}
-
-	&.--dark .theme--fill path {
-		fill: var(--light-color);
-	}
-
-	&.--light ::selection {
-		background: var(--second-color);
-	}
-
-	&.--light {
-		background: var(--light-color);
-		color: var(--dark-color);
-	}
-
-	&.--light ::selection {
-		background: var(--dark-color);
-		color: var(--light-color);
-	}
-
-	&.--light .theme--border {
-		border-color: var(--dark-color);
-	}
-
-	&.--light .theme--background {
-		background: var(--dark-color);
-	}
-
-	&.--light .theme--background--reverse {
-		background: var(--light-color);
-	}
-
-	&.--light .theme--color {
-		color: var(--dark-color);
-	}
-
-	&.--light .theme--fill path {
-		fill: var(--dark-color);
+	&--fill path {
+		fill: var(--secondary-color);
 	}
 }
 
