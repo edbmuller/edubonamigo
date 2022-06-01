@@ -15,6 +15,7 @@ DOM = {
 }
 
 class MobilePlugin extends ScrollbarPlugin {
+	// Fix scroll speed on mobile
 	static pluginName = 'mobile'
 	static defaultOptions = {
 		speed: 0.5
