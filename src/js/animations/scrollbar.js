@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import Scrollbar from 'smooth-scrollbar'
+import Scrollbar, { ScrollbarPlugin } from 'smooth-scrollbar'
 gsap.registerPlugin(ScrollTrigger)
 
 DOM = {
@@ -14,12 +14,38 @@ DOM = {
 	scrollSVG: document.querySelector('.svg-wrapper')
 }
 
+class MobilePlugin extends ScrollbarPlugin {
+	static pluginName = 'mobile'
+	static defaultOptions = {
+		speed: 0.5
+	}
+
+	transformDelta(delta, fromEvent) {
+		if (fromEvent.type !== 'touchend') {
+			return delta
+		}
+
+		return {
+			x: delta.x * this.options.speed,
+			y: delta.y * this.options.speed
+		}
+	}
+}
+
+Scrollbar.use(MobilePlugin)
+
 let scrollbar
 
 const initScrollbar = () => {
 	scrollbar = Scrollbar.init(DOM.scroller, {
 		delegateTo: document,
-		alwaysShowTracks: true
+		alwaysShowTracks: true,
+		plugins: {
+			mobile: {
+				// this is optional
+				speed: 0.5
+			}
+		}
 	})
 
 	ScrollTrigger.scrollerProxy('.scroller', {
