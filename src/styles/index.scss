@@ -112,6 +112,22 @@ body:before {
 	}
 }
 
+.scrollbar-thumb {
+	right: 0 !important;
+	left: unset !important;
+	width: 3px !important;
+	opacity: 0.2 !important;
+}
+
+@include desktop {
+	.scrollbar-thumb {
+		left: 0 !important;
+		right: unset !important;
+		width: 8px !important;
+		opacity: 1 !important;
+	}
+}
+
 .header {
 	width: 90%;
 	position: fixed;
