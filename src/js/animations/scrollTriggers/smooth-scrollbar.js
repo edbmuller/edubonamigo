@@ -48,7 +48,7 @@ export function linkToSection() {
 	})
 }
 
-const fixGsapMarkers = () => {
+export function fixGsapMarkers() {
 	// Only necessary to correct marker position - not needed in production
 	if (document.querySelector('.gsap-marker-scroller-start')) {
 		const markers = gsap.utils.toArray('[class *= "gsap-marker"]')
