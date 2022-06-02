@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
-import scrollbar from './scrollbar'
+import initScrollTriggers from './scrollTriggers'
 
 gsap.registerPlugin(Flip)
 
@@ -19,7 +19,7 @@ const DOM = {
 }
 
 function stopLoadingAndInitIntro() {
-	scrollbar()
+	initScrollTriggers()
 
 	let state = Flip.getState(DOM.dotsArr)
 	DOM.dotsWrapper.style.animation = 'unset'

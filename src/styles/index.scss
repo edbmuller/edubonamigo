@@ -386,6 +386,11 @@ h2 {
 .section--hero {
 	min-height: 100vh;
 	position: relative;
+	padding-bottom: 10vh;
+
+	@include desktop {
+		padding-bottom: 0;
+	}
 
 	.svg-wrapper.--scroll {
 		width: 20vw;
