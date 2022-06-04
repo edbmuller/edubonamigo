@@ -1,6 +1,0 @@
-node_modules/
-dist/
-**/*.js
-**/**/*.js
-README.md
-webpack.config.js
