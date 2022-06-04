@@ -10,8 +10,8 @@
 	"homepage": "edubonamigo.dev",
 	"source": "src/index.html",
 	"scripts": {
-		"start": "parcel",
-		"build": "parcel build"
+		"start": "parcel --public-url ./",
+		"build": "parcel build --public-url ./"
 	},
 	"devDependencies": {
 		"@parcel/config-default": "^2.4.1",
