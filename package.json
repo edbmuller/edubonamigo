@@ -1,32 +1,33 @@
 {
-  "name": "edubonamigo",
-  "packageManager": "yarn@3.2.0",
-  "version": "1.0.0",
-  "main": "src/index.js",
-  "author": "Eduardo Bonamigo Müller",
-  "license": "ISC",
-  "repository": {
-    "url": "git+https://github.com/edbmuller/edubonamigo.git"
-  },
-  "homepage": "edubonamigo.dev",
-  "source": "src/index.html",
-  "scripts": {
-    "start": "parcel",
-    "build": "parcel build"
-  },
-  "devDependencies": {
-    "@parcel/config-default": "^2.4.1",
-    "@parcel/transformer-sass": "^2.4.1",
-    "eslint": "^8.13.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-import-resolver-parcel2": "^1.0.1",
-    "eslint-plugin-import": "^2.26.0",
-    "gsap": "^3.10.4",
-    "parcel": "^2.4.1",
-    "parcel-validator-stylelint": "^1.0.1",
-    "smooth-scrollbar": "^8.7.4",
-    "stylelint": "^14.7.1",
-    "stylelint-prettier": "^2.0.0"
-  }
+	"name": "edubonamigo",
+	"packageManager": "yarn@3.2.0",
+	"version": "1.0.0",
+	"author": "Eduardo Bonamigo Müller",
+	"license": "ISC",
+	"repository": {
+		"url": "git+https://github.com/edbmuller/edubonamigo.git"
+	},
+	"homepage": "edubonamigo.dev",
+	"source": "src/index.html",
+	"scripts": {
+		"start": "parcel",
+		"build": "parcel build"
+	},
+	"devDependencies": {
+		"@parcel/config-default": "^2.4.1",
+		"@parcel/transformer-sass": "^2.4.1",
+		"eslint": "^8.13.0",
+		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-import-resolver-parcel2": "^1.0.1",
+		"eslint-plugin-import": "^2.26.0",
+		"parcel": "^2.4.1",
+		"parcel-validator-stylelint": "^1.0.1",
+		"stylelint": "^14.7.1",
+		"stylelint-prettier": "^2.0.0"
+	},
+	"dependencies": {
+		"gsap": "^3.10.4",
+		"smooth-scrollbar": "^8.7.4"
+	}
 }
