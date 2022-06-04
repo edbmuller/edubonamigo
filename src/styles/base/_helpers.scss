@@ -1,0 +1,26 @@
+$easing: cubic-bezier(0.3, 1, 0.7, 1);
+
+// Mobile First Media Query
+@mixin tablet {
+	@media (min-width: 481px) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: 1025px) {
+		@content;
+	}
+}
+
+@mixin ultra {
+	@media (min-width: 1925px) {
+		@content;
+	}
+}
+
+@mixin landscape {
+	@media (max-width: 1024px) and (orientation: landscape) {
+		@content;
+	}
+}

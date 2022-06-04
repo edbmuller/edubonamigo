@@ -40,7 +40,7 @@ function stopLoadingAndInitIntro() {
 
 const setHeaderWrapperSize = () => {
 	let height = DOM.headerTitlesArr[0].getBoundingClientRect().height
-	let width = DOM.headerTitlesArr[0].getBoundingClientRect().width + 10
+	let width = DOM.headerTitlesArr[0].getBoundingClientRect().width * 1.2
 	DOM.headerTitleWrapper.style.height = `${height}px`
 	DOM.headerTitleWrapper.style.width = `${width * 2}px`
 	DOM.headerTitlesArr.forEach((el, index) => {
@@ -55,7 +55,7 @@ const initIntro = () => {
 
 	const introTl = gsap.timeline({
 		defaults: {
-			duration: 0.6
+			duration: 0.5
 		},
 		ease: 'power2.in'
 	})

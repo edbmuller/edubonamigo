@@ -1,0 +1,51 @@
+$easing: cubic-bezier(0.3, 1, 0.7, 1);
+
+:root {
+	--dark-color: #0f1c13;
+	--light-color: #fcfaf9;
+	--accent-color: #99621e; // with mix-blend-mode: difference;
+
+	--default-font-family: 'Century Gothic', sans-serif;
+	--serif-font-family: 'Italiana', serif;
+}
+
+.theme {
+	// switch between dark and light theme
+	&.--dark {
+		--primary-color: var(--dark-color);
+		--secondary-color: var(--light-color);
+	}
+	&.--light {
+		--primary-color: var(--light-color);
+		--secondary-color: var(--dark-color);
+	}
+
+	::selection {
+		background-color: var(--secondary-color);
+		color: var(--primary-color);
+	}
+
+	// theme-specific styles
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+	transition: background-color 0.3s $easing, color 0.3s $easing;
+
+	&--border {
+		border-color: var(--secondary-color);
+		transition: border-color 0.3s $easing;
+	}
+
+	&--background {
+		background-color: var(--secondary-color);
+		transition: background-color 0.3s $easing;
+	}
+
+	&--color {
+		color: var(--secondary-color);
+		transition: color 0.3s $easing;
+	}
+
+	&--fill path {
+		fill: var(--secondary-color);
+	}
+}
