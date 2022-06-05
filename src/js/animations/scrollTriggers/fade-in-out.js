@@ -6,9 +6,10 @@ gsap.registerPlugin(ScrollTrigger)
 const DOM = {
 	elementsFadeOut: [
 		...gsap.utils.toArray('.title-wrapper'),
+		...gsap.utils.toArray('.project'),
 		...gsap.utils.toArray('.text')
 	],
-	elementsFadeIn: gsap.utils.toArray('.--fade')
+	elementsFadeIn: gsap.utils.toArray('.--fade-in')
 }
 
 export function fadeOut() {
@@ -23,7 +24,7 @@ export function fadeOut() {
 				end: '50% 5%',
 				scrub: true,
 				toggleActions: 'play reverse play reverse',
-				id: 'fadeOutUp'
+				id: 'fadeOut'
 			}
 		})
 	})
@@ -37,11 +38,11 @@ export function fadeIn() {
 			scrollTrigger: {
 				// markers: true,
 				trigger: element,
-				start: 'top 75%',
-				end: 'bottom 60%',
+				start: 'top 85%',
+				end: 'bottom 70%',
 				scrub: true,
 				toggleActions: 'play reverse play reverse',
-				id: 'fadeInUp'
+				id: 'fadeIn'
 			}
 		})
 	})
