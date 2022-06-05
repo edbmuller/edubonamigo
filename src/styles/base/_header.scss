@@ -1,7 +1,7 @@
 @import 'helpers';
 
 .header {
-	width: 90%;
+	width: 94%;
 	position: fixed;
 	left: 50%;
 	transform: translateX(-50%);
@@ -24,6 +24,7 @@
 		position: absolute;
 		top: 110%;
 		font-size: 1.6rem;
+		white-space: nowrap;
 
 		@include tablet {
 			font-size: 1.4rem;
