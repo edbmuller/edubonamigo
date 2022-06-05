@@ -16,16 +16,6 @@ $easing: cubic-bezier(0.075, 0.82, 0.165, 1);
 	flex-flow: column;
 	justify-content: center;
 	// padding-bottom: 10vh;
-
-	@include desktop {
-		padding-top: 10vh;
-		padding-bottom: 0;
-	}
-
-	@include landscape {
-		padding-top: 8rem;
-		padding-bottom: 0;
-	}
 }
 
 .scrollbar-track {

@@ -1,3 +1,107 @@
 .section--projects {
-	height: 100vh;
+	padding: 15vh 0;
+
+	@include desktop {
+		padding: 15vw 0;
+	}
+}
+
+.project {
+	margin-bottom: 15vh;
+
+	&:nth-child(1) h2 {
+		font-size: 21vw;
+	}
+
+	&:nth-child(2) h2 {
+		font-size: 18vw;
+	}
+
+	&:nth-child(3) h2 {
+		font-size: 16.7vw;
+	}
+
+	h2 {
+		font-size: 16vw;
+		cursor: default;
+		font-family: var(--serif-font-family);
+
+		@include desktop {
+			font-size: 9vw;
+			line-height: 1.1;
+			margin-bottom: 0;
+			margin-left: -0.7%;
+			margin-top: 1rem;
+		}
+
+		@include landscape {
+			font-size: 9vw;
+			line-height: 1.1;
+			margin-bottom: 0;
+		}
+	}
+
+	.marquee {
+		position: relative;
+		overflow: hidden;
+		// transform: translateY(-60%);
+		--offset: 20vw;
+		--move-initial: calc(-25% + var(--offset));
+		--move-final: calc(-50% + var(--offset));
+		margin-bottom: 5vh;
+	}
+
+	.marquee__inner {
+		width: fit-content;
+		display: flex;
+		position: relative;
+		transform: translate3d(var(--move-initial), 0, 0);
+		animation: marquee 10s linear infinite;
+		animation-play-state: paused;
+		transition: opacity 0.2s $easing;
+		will-change: transform;
+	}
+
+	.marquee span {
+		font-family: var(--sans-font-family);
+		text-transform: uppercase;
+		font-size: 1.2rem;
+		padding: 0 1.5rem;
+		position: relative;
+
+		@include desktop {
+			font-size: 1.6rem;
+			padding: 0 4rem;
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			right: 0;
+			transform: translateX(50%);
+			width: 5px;
+			height: 1px;
+			background-color: var(--secondary-color);
+		}
+	}
+
+	.project.--active .marquee__inner {
+		// opacity: 1;
+		animation-play-state: running;
+	}
+
+	@keyframes marquee {
+		0% {
+			transform: translate3d(var(--move-initial), 0, 0);
+		}
+
+		100% {
+			transform: translate3d(var(--move-final), 0, 0);
+		}
+	}
+
+	#slider {
+		width: 100%;
+	}
 }

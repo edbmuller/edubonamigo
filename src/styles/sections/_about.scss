@@ -1,5 +1,9 @@
 .section--about {
-	padding: 10vw 0 0 20vw;
+	padding: 10vw 0 10vh 15vw;
+
+	@include desktop {
+		padding-bottom: 10vw;
+	}
 
 	@include desktop {
 		padding-left: 30vw;
