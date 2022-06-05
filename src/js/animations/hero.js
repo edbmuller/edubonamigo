@@ -45,7 +45,7 @@ const setHeaderWrapperSize = () => {
 	DOM.headerTitleWrapper.style.width = `${width * 2}px`
 	DOM.headerTitlesArr.forEach((el, index) => {
 		if (index !== 0) {
-			el.style.left = `${width + 15}px`
+			el.style.left = `${width}px`
 		}
 	})
 }
