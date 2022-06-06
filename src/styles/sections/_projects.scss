@@ -9,6 +9,10 @@
 .project {
 	margin-bottom: 15vh;
 
+	@include desktop {
+		margin-bottom: 0;
+	}
+
 	&:nth-child(1) h2 {
 		font-size: 21vw;
 	}
@@ -21,23 +25,28 @@
 		font-size: 16.7vw;
 	}
 
+	@include desktop {
+		& .--fade-in h2 {
+			font-size: 15vh;
+			line-height: 1;
+		}
+	}
+
+	@include landscape {
+		& h2.--fade-in {
+			font-size: 9vw;
+			line-height: 1.1;
+			margin-bottom: 0;
+		}
+	}
+
 	h2 {
-		font-size: 16vw;
-		cursor: default;
+		cursor: pointer;
 		font-family: var(--serif-font-family);
+		width: fit-content;
 
 		@include desktop {
-			font-size: 9vw;
-			line-height: 1.1;
-			margin-bottom: 0;
-			margin-left: -0.7%;
-			margin-top: 1rem;
-		}
-
-		@include landscape {
-			font-size: 9vw;
-			line-height: 1.1;
-			margin-bottom: 0;
+			opacity: 0.2;
 		}
 	}
 
@@ -49,6 +58,14 @@
 		--move-initial: calc(-25% + var(--offset));
 		--move-final: calc(-50% + var(--offset));
 		margin-bottom: 5vh;
+
+		@include desktop {
+			width: 34.4vw;
+		}
+
+		@include desktop {
+			margin-bottom: 4vh;
+		}
 	}
 
 	.marquee__inner {
@@ -60,6 +77,7 @@
 		animation-play-state: paused;
 		transition: opacity 0.2s $easing;
 		will-change: transform;
+		opacity: 0;
 	}
 
 	.marquee span {
@@ -86,11 +104,6 @@
 		}
 	}
 
-	.project.--active .marquee__inner {
-		// opacity: 1;
-		animation-play-state: running;
-	}
-
 	@keyframes marquee {
 		0% {
 			transform: translate3d(var(--move-initial), 0, 0);
@@ -103,5 +116,46 @@
 
 	#slider {
 		width: 100%;
+
+		@include desktop {
+			display: none;
+		}
+	}
+
+	&.--active {
+		display: block;
+
+		@include desktop {
+			h2 {
+				opacity: 1;
+				z-index: 10;
+			}
+		}
+
+		.marquee__inner {
+			opacity: 1;
+			animation-play-state: running;
+		}
+	}
+}
+
+.slider-desktop {
+	background-image: url('../imgs/projects/tlscp1.png');
+	display: none;
+	position: fixed;
+	top: 15vh;
+	right: 5vh;
+	width: 60vw;
+	height: auto;
+	aspect-ratio: 3/2;
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 1s $easing;
+
+	&.--active {
+		@include desktop {
+			display: block;
+			opacity: 1;
+		}
 	}
 }

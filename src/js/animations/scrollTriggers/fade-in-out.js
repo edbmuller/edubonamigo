@@ -9,7 +9,9 @@ const DOM = {
 		...gsap.utils.toArray('.project'),
 		...gsap.utils.toArray('.text')
 	],
-	elementsFadeIn: gsap.utils.toArray('.--fade-in')
+	elementsFadeIn: /Mobi|Android/i.test(navigator.userAgent)
+		? gsap.utils.toArray('.--fade-in')
+		: gsap.utils.toArray('.--fade-in:not(h2)')
 }
 
 export function fadeOut() {

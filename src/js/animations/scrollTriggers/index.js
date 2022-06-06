@@ -6,7 +6,9 @@ import {
 import toggleHeaderSubtitleAndDots from './toggle-header-subtitle-and-dots'
 import spinScrollSVG from './spin-scroll-svg'
 import { fadeIn, fadeOut } from './fade-in-out'
-import showMarquee from './show-marquee'
+// project triggers
+import marqueeOnMobile from './marquee-mobile'
+import activeProjectDesktop from './project-desktop'
 
 export default function initScrollTriggers() {
 	SmoothScrollbar()
@@ -16,7 +18,11 @@ export default function initScrollTriggers() {
 	fadeIn()
 	fadeOut()
 
-	showMarquee()
+	if (/Mobi|Android/i.test(navigator.userAgent)) {
+		marqueeOnMobile()
+	} else {
+		activeProjectDesktop()
+	}
 
 	fixGsapMarkers()
 }
