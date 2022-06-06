@@ -7,4 +7,4 @@ console.log('Macete: → ↑ ← ↓ e d !')
 // TODO: Trigger after imagesLoaded
 import './animations/hero'
 import './animations/projects'
-import './animations/magneticElement'
+// import './animations/magneticElement'
