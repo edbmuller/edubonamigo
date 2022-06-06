@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
-import initScrollTriggers from './scrollTriggers'
+import initScrollTriggers from '../scrollTriggers'
 
 gsap.registerPlugin(Flip)
 
