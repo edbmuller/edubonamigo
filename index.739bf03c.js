@@ -518,16 +518,17 @@ var _loadingScss = require("../styles/loading.scss");
 var _indexScss = require("../styles/index.scss");
 // TODO: Trigger after imagesLoaded
 var _hero = require("./animations/hero");
+var _projects = require("./animations/projects");
 var _magneticElement = require("./animations/magneticElement");
 // TODO: ativar algum experimento com webgl quando usar o macete
 console.log('Macete: → ↑ ← ↓ e d !');
 
-},{"../styles/loading.scss":"3cXWm","../styles/index.scss":"aSOSS","./animations/hero":"9Zfg2","./animations/magneticElement":"8rQdV"}],"3cXWm":[function() {},{}],"aSOSS":[function() {},{}],"9Zfg2":[function(require,module,exports) {
+},{"../styles/loading.scss":"3cXWm","../styles/index.scss":"aSOSS","./animations/hero":"9Zfg2","./animations/magneticElement":"8rQdV","./animations/projects":"2M8Vt"}],"3cXWm":[function() {},{}],"aSOSS":[function() {},{}],"9Zfg2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _flip = require("gsap/Flip");
-var _scrollTriggers = require("./scrollTriggers");
+var _scrollTriggers = require("../scrollTriggers");
 var _scrollTriggersDefault = parcelHelpers.interopDefault(_scrollTriggers);
 _gsapDefault.default.registerPlugin(_flip.Flip);
 const DOM = {
@@ -562,18 +563,18 @@ function stopLoadingAndInitIntro() {
 }
 const setHeaderWrapperSize = ()=>{
     let height = DOM.headerTitlesArr[0].getBoundingClientRect().height;
-    let width = DOM.headerTitlesArr[0].getBoundingClientRect().width + 10;
+    let width = DOM.headerTitlesArr[0].getBoundingClientRect().width * 1.2;
     DOM.headerTitleWrapper.style.height = `${height}px`;
     DOM.headerTitleWrapper.style.width = `${width * 2}px`;
     DOM.headerTitlesArr.forEach((el, index)=>{
-        if (index !== 0) el.style.left = `${width + 15}px`;
+        if (index !== 0) el.style.left = `${width}px`;
     });
 };
 const initIntro = ()=>{
     setHeaderWrapperSize();
     const introTl = _gsapDefault.default.timeline({
         defaults: {
-            duration: 0.6
+            duration: 0.5
         },
         ease: 'power2.in'
     });
@@ -603,7 +604,7 @@ const initIntro = ()=>{
 // TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
 document.addEventListener('DOMContentLoaded', stopLoadingAndInitIntro());
 
-},{"gsap":"fPSuC","gsap/Flip":"iKp6p","./scrollTriggers":"530og","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/Flip":"iKp6p","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../scrollTriggers":"eQCYt"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS
@@ -5666,7 +5667,7 @@ function getGlobalMatrix(element, inverse, adjustGOffset, includeScrollInFixed) 
     return inverse ? m.inverse() : m;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"530og":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eQCYt":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _smoothScrollbar = require("./smooth-scrollbar");
@@ -5675,6 +5676,11 @@ var _toggleHeaderSubtitleAndDotsDefault = parcelHelpers.interopDefault(_toggleHe
 var _spinScrollSvg = require("./spin-scroll-svg");
 var _spinScrollSvgDefault = parcelHelpers.interopDefault(_spinScrollSvg);
 var _fadeInOut = require("./fade-in-out");
+// project triggers
+var _marqueeMobile = require("./marquee-mobile");
+var _marqueeMobileDefault = parcelHelpers.interopDefault(_marqueeMobile);
+var _projectDesktop = require("./project-desktop");
+var _projectDesktopDefault = parcelHelpers.interopDefault(_projectDesktop);
 function initScrollTriggers() {
     _smoothScrollbar.SmoothScrollbar();
     _toggleHeaderSubtitleAndDotsDefault.default();
@@ -5682,11 +5688,13 @@ function initScrollTriggers() {
     _spinScrollSvgDefault.default();
     _fadeInOut.fadeIn();
     _fadeInOut.fadeOut();
+    if (/Mobi|Android/i.test(navigator.userAgent)) _marqueeMobileDefault.default();
+    else _projectDesktopDefault.default();
     _smoothScrollbar.fixGsapMarkers();
 }
 exports.default = initScrollTriggers;
 
-},{"./smooth-scrollbar":"83yYg","./toggle-header-subtitle-and-dots":"dBjsh","./spin-scroll-svg":"3PfmQ","./fade-in-out":"ebE2Q","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"83yYg":[function(require,module,exports) {
+},{"./smooth-scrollbar":"kk1cX","./toggle-header-subtitle-and-dots":"byeT3","./spin-scroll-svg":"7EOqe","./fade-in-out":"7Sl85","./marquee-mobile":"a0dPu","./project-desktop":"3mPRR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kk1cX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "SmoothScrollbar", ()=>SmoothScrollbar
@@ -5752,7 +5760,7 @@ function fixGsapMarkers() {
     }
 }
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","smooth-scrollbar":"7azJf","./fix-speed-mobile":"opwht","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wnFk":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","smooth-scrollbar":"7azJf","./fix-speed-mobile":"iZdF9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wnFk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ScrollTrigger", ()=>ScrollTrigger
@@ -10412,7 +10420,7 @@ function detachStyle() {
     isStyleAttached = false;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"opwht":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iZdF9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _smoothScrollbar = require("smooth-scrollbar");
@@ -10432,7 +10440,7 @@ class MobilePlugin extends _smoothScrollbar.ScrollbarPlugin {
 }
 exports.default = MobilePlugin;
 
-},{"smooth-scrollbar":"7azJf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dBjsh":[function(require,module,exports) {
+},{"smooth-scrollbar":"7azJf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"byeT3":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
@@ -10448,31 +10456,31 @@ function toggleHeaderSubtitleAndDots() {
         duration: 0.4,
         ease: 'power4.out'
     };
-    DOM.headerSubtitles.forEach((element, index)=>{
+    DOM.headerSubtitles.forEach((subtitle, index)=>{
         _scrollTrigger.ScrollTrigger.create({
-            trigger: DOM.sections[index + 1],
-            start: 'top 40%',
-            end: 'bottom 40%',
             // markers: true,
+            trigger: DOM.sections[index + 1],
+            start: 'top 25%',
+            end: 'bottom 25%',
             onEnter: ()=>{
-                _gsapDefault.default.to(element, {
+                _gsapDefault.default.to(subtitle, {
                     y: '-110%',
                     ...configs
                 });
                 DOM.headerDots[index].classList.add('theme--background');
             },
-            onLeave: ()=>_gsapDefault.default.to(element, {
+            onLeave: ()=>_gsapDefault.default.to(subtitle, {
                     y: '-220%',
                     ...configs
                 })
             ,
-            onEnterBack: ()=>_gsapDefault.default.to(element, {
+            onEnterBack: ()=>_gsapDefault.default.to(subtitle, {
                     y: '-110%',
                     ...configs
                 })
             ,
             onLeaveBack: ()=>{
-                _gsapDefault.default.to(element, {
+                _gsapDefault.default.to(subtitle, {
                     y: '0%',
                     ...configs
                 });
@@ -10483,7 +10491,7 @@ function toggleHeaderSubtitleAndDots() {
 }
 exports.default = toggleHeaderSubtitleAndDots;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3PfmQ":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7EOqe":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
@@ -10511,7 +10519,7 @@ function spinScrollSVG() {
 }
 exports.default = spinScrollSVG;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ebE2Q":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Sl85":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "fadeOut", ()=>fadeOut
@@ -10525,9 +10533,10 @@ _gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
 const DOM = {
     elementsFadeOut: [
         ..._gsapDefault.default.utils.toArray('.title-wrapper'),
+        ..._gsapDefault.default.utils.toArray('.project'),
         ..._gsapDefault.default.utils.toArray('.text')
     ],
-    elementsFadeIn: _gsapDefault.default.utils.toArray('.--fade')
+    elementsFadeIn: /Mobi|Android/i.test(navigator.userAgent) ? _gsapDefault.default.utils.toArray('.--fade-in') : _gsapDefault.default.utils.toArray('.--fade-in:not(h2)')
 };
 function fadeOut() {
     DOM.elementsFadeOut.forEach((element)=>{
@@ -10541,7 +10550,7 @@ function fadeOut() {
                 end: '50% 5%',
                 scrub: true,
                 toggleActions: 'play reverse play reverse',
-                id: 'fadeOutUp'
+                id: 'fadeOut'
             }
         });
     });
@@ -10554,15 +10563,88 @@ function fadeIn() {
             scrollTrigger: {
                 // markers: true,
                 trigger: element,
-                start: 'top 75%',
-                end: 'bottom 60%',
+                start: 'top 85%',
+                end: 'bottom 70%',
                 scrub: true,
                 toggleActions: 'play reverse play reverse',
-                id: 'fadeInUp'
+                id: 'fadeIn'
             }
         });
     });
 }
+
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a0dPu":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+var _scrollTrigger = require("gsap/ScrollTrigger");
+_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
+const DOM = {
+    marquees: _gsapDefault.default.utils.toArray('.marquee__inner'),
+    projects: _gsapDefault.default.utils.toArray('.project')
+};
+function marqueeOnMobile() {
+    if (/Mobi|Android/i.test(navigator.userAgent)) DOM.marquees.forEach((marquee, index)=>{
+        _scrollTrigger.ScrollTrigger.create({
+            trigger: marquee,
+            start: 'top 80%',
+            end: 'top 10%',
+            id: 'marquee',
+            onEnter: ()=>DOM.projects[index].classList.add('--active')
+            ,
+            onLeave: ()=>DOM.projects[index].classList.remove('--active')
+            ,
+            onEnterBack: ()=>DOM.projects[index].classList.add('--active')
+            ,
+            onLeaveBack: ()=>DOM.projects[index].classList.remove('--active')
+        });
+    });
+}
+exports.default = marqueeOnMobile;
+
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3mPRR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+var _scrollTrigger = require("gsap/ScrollTrigger");
+_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
+const DOM = {
+    firstProject: document.querySelector('.project:first-child'),
+    lastProject: document.querySelector('.project:last-child'),
+    slider: document.querySelector('.slider-desktop'),
+    get: (selector)=>document.querySelector(selector)
+    ,
+    active: undefined
+};
+function activeProjectDesktop() {
+    _scrollTrigger.ScrollTrigger.create({
+        trigger: DOM.firstProject,
+        start: 'top 60%',
+        endTrigger: DOM.lastProject,
+        end: 'top 10%',
+        id: 'project',
+        onEnter: ()=>activeProject()
+        ,
+        onEnterBack: ()=>activeProject()
+        ,
+        onLeave: ()=>desactiveProject()
+        ,
+        onLeaveBack: ()=>desactiveProject()
+    });
+}
+exports.default = activeProjectDesktop;
+const activeProject = ()=>{
+    DOM.firstProject.classList.add('--active');
+    DOM.slider.classList.add('--active');
+    DOM.slider.removeAttribute('style');
+};
+const desactiveProject = ()=>{
+    DOM.get('.project.--active').classList.remove('--active');
+    DOM.slider.classList.remove('--active');
+    DOM.slider.removeAttribute('style');
+};
 
 },{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8rQdV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -10605,6 +10687,27 @@ DOM.areaAroundTarget.addEventListener('mousemove', (e)=>{
         ease: 'linear'
     });
 });
+
+},{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2M8Vt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+const DOM = {
+    projectTitles: document.querySelectorAll('.project h2'),
+    get: (selector)=>document.querySelector(selector)
+};
+DOM.projectTitles.forEach((title)=>title.addEventListener('click', toggleProject)
+);
+function toggleProject(e) {
+    let project = e.currentTarget.parentNode.parentNode;
+    if (!isActive(project)) {
+        DOM.get('.project.--active').classList.remove('--active');
+        project.classList.add('--active');
+    }
+}
+function isActive(element) {
+    return element.classList.contains('--active');
+}
 
 },{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["l4AUa","ebWYT"], "ebWYT", "parcelRequirea9cf")
 
