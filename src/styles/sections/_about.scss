@@ -1,11 +1,11 @@
 .section--about {
 	padding: 10vw 0 10vh 15vw;
 
-	@include desktop {
+	@include laptop {
 		padding-bottom: 10vw;
 	}
 
-	@include desktop {
+	@include laptop {
 		padding-left: 30vw;
 	}
 
@@ -18,7 +18,7 @@
 			font-size: 4vw;
 		}
 
-		@include desktop {
+		@include laptop {
 			font-size: 2.3vw;
 			line-height: 1.2;
 			margin-bottom: 2vw;

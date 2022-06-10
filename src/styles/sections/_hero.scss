@@ -5,7 +5,7 @@
 	position: relative;
 	padding-bottom: 10vh;
 
-	@include desktop {
+	@include laptop {
 		padding-bottom: 0;
 	}
 
@@ -37,7 +37,7 @@
 		cursor: default;
 		font-family: var(--serif-font-family);
 
-		@include desktop {
+		@include laptop {
 			font-size: 9vw;
 			line-height: 1.1;
 			margin-bottom: 0;
@@ -62,7 +62,7 @@
 		left: 50vw;
 		top: 80%;
 
-		@include desktop {
+		@include laptop {
 			width: 20rem;
 			left: 65vw;
 			top: 75%;
@@ -96,7 +96,7 @@
 		display: none;
 	}
 
-	@include desktop {
+	@include laptop {
 		&:nth-child(1),
 		&:nth-child(2) {
 			display: none;

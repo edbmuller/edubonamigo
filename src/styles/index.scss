@@ -46,7 +46,7 @@ $easing: cubic-bezier(0.075, 0.82, 0.165, 1);
 	background-color: var(--secondary-color) !important;
 }
 
-@include desktop {
+@include laptop {
 	.scrollbar-thumb {
 		left: 0 !important;
 		right: unset !important;

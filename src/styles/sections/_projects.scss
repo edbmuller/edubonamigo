@@ -1,7 +1,7 @@
 .section--projects {
 	padding: 15vh 0;
 
-	@include desktop {
+	@include laptop {
 		padding: 15vw 0;
 	}
 }
@@ -9,7 +9,7 @@
 .project {
 	margin-bottom: 15vh;
 
-	@include desktop {
+	@include laptop {
 		margin-bottom: 0;
 	}
 
@@ -25,9 +25,9 @@
 		font-size: 16.7vw;
 	}
 
-	@include desktop {
+	@include laptop {
 		& .--fade-in h2 {
-			font-size: 15vh;
+			font-size: 14vh;
 			line-height: 1;
 		}
 	}
@@ -40,12 +40,17 @@
 		}
 	}
 
+	&__title {
+		display: flex;
+		justify-content: flex-end;
+	}
+
 	h2 {
 		cursor: pointer;
 		font-family: var(--serif-font-family);
 		width: fit-content;
 
-		@include desktop {
+		@include laptop {
 			opacity: 0.2;
 		}
 	}
@@ -59,12 +64,13 @@
 		--move-final: calc(-50% + var(--offset));
 		margin-bottom: 5vh;
 
-		@include desktop {
+		@include laptop {
 			width: 34vw;
 		}
 
-		@include desktop {
+		@include laptop {
 			margin-bottom: 4vh;
+			margin-left: auto;
 		}
 	}
 
@@ -87,7 +93,7 @@
 		padding: 0 1.5rem;
 		position: relative;
 
-		@include desktop {
+		@include laptop {
 			font-size: 1.6rem;
 			padding: 0 4rem;
 		}
@@ -117,7 +123,7 @@
 	#slider {
 		width: 100%;
 
-		@include desktop {
+		@include laptop {
 			display: none;
 		}
 	}
@@ -125,7 +131,7 @@
 	&.--active {
 		display: block;
 
-		@include desktop {
+		@include laptop {
 			h2 {
 				opacity: 1;
 				z-index: 10;
@@ -140,24 +146,54 @@
 }
 
 .slider {
-	background-image: url('../imgs/projects/tlscp1.png');
 	display: none;
+	pointer-events: none;
 	position: fixed;
-	top: 15vh;
-	right: 3vw;
-	width: 60vw;
-	height: auto;
+	bottom: 1vh;
+	left: 3vw;
+	width: auto;
+	height: 75vh;
 	aspect-ratio: 3/2;
 	z-index: -1;
 	opacity: 0;
-	transition: opacity 1s $easing;
+	transition: opacity 0.2s $easing;
 
-	.image {
+	@include laptop {
+		display: block;
+	}
+
+	&__img--wrapper {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	&__img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+
+	&__img--mask {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: top left;
 	}
 
 	&.--active {
-		@include desktop {
-			display: block;
+		@include laptop {
+			pointer-events: visible;
 			opacity: 1;
 		}
 	}
