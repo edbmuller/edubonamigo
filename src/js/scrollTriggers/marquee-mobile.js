@@ -9,18 +9,19 @@ const DOM = {
 }
 
 export default function marqueeOnMobile() {
-	if (/Mobi|Android/i.test(navigator.userAgent)) {
-		DOM.marquees.forEach((marquee, index) => {
-			ScrollTrigger.create({
-				trigger: marquee,
-				start: 'top 80%',
-				end: 'top 10%',
-				id: 'marquee',
-				onEnter: () => DOM.projects[index].classList.add('--active'),
-				onLeave: () => DOM.projects[index].classList.remove('--active'),
-				onEnterBack: () => DOM.projects[index].classList.add('--active'),
-				onLeaveBack: () => DOM.projects[index].classList.remove('--active')
-			})
+	DOM.marquees.forEach((marquee, index) => {
+		ScrollTrigger.create({
+			trigger: marquee,
+			start: 'top 80%',
+			end: 'top 10%',
+			id: 'marquee',
+			onEnter: () => activeMarquee(DOM.projects[index]),
+			onLeave: () => desactiveMarquee(DOM.projects[index]),
+			onEnterBack: () => activeMarquee(DOM.projects[index]),
+			onLeaveBack: () => desactiveMarquee(DOM.projects[index])
 		})
-	}
+	})
 }
+
+const activeMarquee = (project) => project.classList.add('--active')
+const desactiveMarquee = (project) => project.classList.remove('--active')

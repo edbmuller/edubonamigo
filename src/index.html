@@ -13,16 +13,16 @@
 	<body class="theme --dark --loading">
 		<header class="header">
 			<div class="header__title-wrapper">
-				<h3 class="header__title theme--color">edubon.code</h3>
+				<h3 class="header__title theme--color">edubon.work</h3>
 				<h3 class="header__title theme--color">sobre</h3>
-				<h3 class="header__title theme--color">selected work</h3>
+				<h3 class="header__title theme--color">selected</h3>
 				<h3 class="header__title theme--color">contact</h3>
 			</div>
 
 			<nav class="nav">
 				<ul class="menu">
 					<li><a class="menu__link theme--color" href="#">sobre</a></li>
-					<li><a class="menu__link theme--color" href="#">selected work</a></li>
+					<li><a class="menu__link theme--color" href="#">selected</a></li>
 					<li><a class="menu__link theme--color" href="#">contato</a></li>
 					<br /><br /><br />
 					<li class="menu__link theme--color --active">pt-br</li>
@@ -186,8 +186,8 @@
 				</section>
 
 				<section class="section section--projects">
-					<div class="project">
-						<div class="--fade-in">
+					<div class="project" data-id="tlscp">
+						<div class="project__title --fade-in">
 							<h2>Telescópio</h2>
 						</div>
 						<div class="marquee">
@@ -226,8 +226,8 @@
 						/>
 					</div>
 
-					<div class="project">
-						<div class="--fade-in">
+					<div class="project" data-id="audio-porto">
+						<div class="project__title --fade-in">
 							<h2>Áudio Porto</h2>
 						</div>
 						<div class="marquee">
@@ -269,39 +269,39 @@
 						/>
 					</div>
 
-					<div class="project">
-						<div class="--fade-in">
+					<div class="project" data-id="gsap-demos">
+						<div class="project__title --fade-in">
 							<h2>GSAP Demos</h2>
 						</div>
 						<div class="marquee">
 							<div class="marquee__inner">
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 								<span>SASS</span>
 								<span>GSAP</span>
-								<span>Percel</span>
+								<span>Parcel</span>
 								<!--  -->
 							</div>
 						</div>
@@ -320,8 +320,16 @@
 			</main>
 		</div>
 		<!-- .scroller -->
-		<div class="slider-wrapper">
-			<div class="slider-desktop" alt="" />
+		<div class="slider">
+			<div class="slider__img--wrapper">
+				<div class="slider__img" alt="">
+					<div class="slider__img--mask">
+						<img id="tlscp" src="./imgs/projects/tlscp1.png" alt="" />
+						<img id="audio-porto" src="./imgs/projects/tlscp1.png" alt="" />
+						<img id="gsap-demos" src="./imgs/projects/gsap.png" alt="" />
+					</div>
+				</div>
+			</div>
 		</div>
 	</body>
 	<script type="module" src="js/index.js" defer></script>

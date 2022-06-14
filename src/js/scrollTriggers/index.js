@@ -1,6 +1,7 @@
 import {
-	SmoothScrollbar,
+	smoothScrollbar,
 	linkToSection,
+	scrollToSection,
 	fixGsapMarkers
 } from './smooth-scrollbar'
 import toggleHeaderSubtitleAndDots from './toggle-header-subtitle-and-dots'
@@ -8,12 +9,13 @@ import spinScrollSVG from './spin-scroll-svg'
 import { fadeIn, fadeOut } from './fade-in-out'
 // project triggers
 import marqueeOnMobile from './marquee-mobile'
-import activeProjectDesktop from './project-desktop'
+import { activeProjectDesktop } from './project-desktop'
 
 export default function initScrollTriggers() {
-	SmoothScrollbar()
+	smoothScrollbar()
 	toggleHeaderSubtitleAndDots()
 	linkToSection()
+	// scrollToSection()
 	spinScrollSVG()
 	fadeIn()
 	fadeOut()
@@ -26,3 +28,5 @@ export default function initScrollTriggers() {
 
 	fixGsapMarkers()
 }
+
+// TODO: remove fixGsapMarkers for production

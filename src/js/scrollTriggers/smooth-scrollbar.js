@@ -15,7 +15,7 @@ const DOM = {
 
 let scrollbar
 
-export function SmoothScrollbar() {
+export function smoothScrollbar() {
 	scrollbar = new Scrollbar(DOM.scroller, {
 		delegateTo: document,
 		alwaysShowTracks: true
@@ -36,6 +36,8 @@ export function SmoothScrollbar() {
 	fixGsapMarkers()
 }
 
+// Functions on this folder are the ones that need to interact with the scrollbar object
+
 export function linkToSection() {
 	DOM.headerTitles.forEach((element, index) => {
 		element.addEventListener('click', (e) => {
@@ -44,6 +46,20 @@ export function linkToSection() {
 				damping: 0.07,
 				offsetTop: 100
 			})
+		})
+	})
+}
+
+export function scrollToSection() {
+	DOM.sections.forEach((section, index) => {
+		ScrollTrigger.create({
+			// markers: true,
+			trigger: section,
+			start: 'bottom 40%',
+			end: 'bottom center',
+			onEnter: () => {
+				scrollbar.scrollTo(0, DOM.sections[index + 1].offsetTop - 100, 500)
+			}
 		})
 	})
 }
