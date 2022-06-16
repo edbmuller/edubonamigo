@@ -17,14 +17,18 @@ const DOM = {
 	active: undefined
 }
 
-let tl
+let tlEnter, tlOut
+let tlDefaults = {
+	paused: true,
+	duration: 0.2,
+	ease: 'power2.out'
+}
 
 export function activeProjectDesktop() {
-	gsap.set(DOM.sliderImg, { xPercent: -101 })
-	gsap.set(DOM.sliderImgMask, { xPercent: 100, scale: 1.3 })
 	setMarqueeWidth()
 
-	createSliderIntro()
+	createSliderEnter()
+	createSliderOut()
 
 	gsap.to(DOM.sliderWrapper, {
 		duration: 1,
@@ -39,26 +43,25 @@ export function activeProjectDesktop() {
 			scrub: true,
 			onEnter: () => {
 				activeProject('first')
-				tl.play()
-			},
-			onEnterBack: () => {
-				activeProject()
-				tl.play()
-			},
-			onLeave: () => {
-				desactiveProject()
-				tl.reverse()
+				tlEnter.play()
 			},
 			onLeaveBack: () => {
 				desactiveProject()
-				tl.reverse()
+				tlEnter.reverse()
+			},
+			onLeave: () => {
+				desactiveProject()
+				tlOut.play()
+			},
+			onEnterBack: () => {
+				activeProject()
+				tlOut.reverse()
 			}
 		}
 	})
 }
 
 const setMarqueeWidth = () => {
-	console.log('setMarqueeWidth')
 	DOM.marquees.forEach((marquee) =>
 		gsap.set(marquee, { width: calcMarqueeWidth })
 	)
@@ -76,15 +79,18 @@ const calcMarqueeWidth = () => {
 	}
 }
 
-const createSliderIntro = () => {
-	tl = gsap
-		.timeline({
-			paused: true,
-			duration: 0.3,
-			ease: 'power2.out'
-		})
-		.to(DOM.sliderImg, { xPercent: 0 }, 0)
-		.to(DOM.sliderImgMask, { xPercent: 0, scale: 1 }, 0)
+const createSliderEnter = () => {
+	tlEnter = gsap
+		.timeline({ ...tlDefaults })
+		.to(DOM.sliderImg, { y: 0 }, 0)
+		.to(DOM.sliderImgMask, { y: 0, scale: 1 }, 0)
+}
+
+const createSliderOut = () => {
+	tlOut = gsap
+		.timeline({ ...tlDefaults })
+		.to(DOM.sliderImg, { yPercent: -100 }, 0)
+		.to(DOM.sliderImgMask, { yPercent: 100, scale: 1 }, 0)
 }
 
 const activeProject = (first) => {
