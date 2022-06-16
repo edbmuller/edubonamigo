@@ -10,8 +10,9 @@ const DOM = {
 	dotsWrapper: document.querySelector('.nav__dots'),
 	dotsArr: gsap.utils.toArray('.nav__dot'),
 	headerLine: document.querySelector('.header__line'),
-	headerTitleWrapper: document.querySelector('.header__title-wrapper'),
+	headerWrapper: document.querySelector('.header__wrapper'),
 	headerTitlesArr: gsap.utils.toArray('.header__title'),
+	headerLang: document.querySelector('.header__lang'),
 	heroTitlesArr: gsap.utils.toArray('.section--hero h1'),
 	scrollSVG: document.querySelector('.svg-wrapper.--scroll'),
 	sectionHero: document.querySelector('.section--hero'),
@@ -41,8 +42,8 @@ function stopLoadingAndInitIntro() {
 const setHeaderWrapperSize = () => {
 	let height = DOM.headerTitlesArr[0].getBoundingClientRect().height
 	let width = DOM.headerTitlesArr[0].getBoundingClientRect().width * 1.2
-	DOM.headerTitleWrapper.style.height = `${height}px`
-	DOM.headerTitleWrapper.style.width = `${width * 2}px`
+	DOM.headerWrapper.style.height = `${height}px`
+	DOM.headerWrapper.style.width = `${width * 1.5}px`
 	DOM.headerTitlesArr.forEach((el, index) => {
 		if (index !== 0) {
 			el.style.left = `${width}px`
@@ -63,7 +64,7 @@ const initIntro = () => {
 	introTl
 		.to(DOM.headerLine, { x: '0' })
 		.to(
-			DOM.headerTitlesArr[0],
+			[DOM.headerLang, DOM.headerTitlesArr[0]],
 			{
 				y: '-110%',
 				autoAlpha: 1,

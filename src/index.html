@@ -12,25 +12,19 @@
 	</head>
 	<body class="theme --dark --loading">
 		<header class="header">
-			<div class="header__title-wrapper">
-				<h3 class="header__title theme--color">edbonamigo.work</h3>
-				<h3 class="header__title theme--color">sobre</h3>
-				<h3 class="header__title theme--color">selected</h3>
-				<h3 class="header__title theme--color">contact</h3>
+			<div class="header__wrapper">
+				<h2 class="header__title theme--color">edbonamigo.work</h2>
+				<h2 class="header__title theme--color">sobre</h2>
+				<h2 class="header__title theme--color">selected</h2>
+				<h2 class="header__title theme--color">contact</h2>
+			</div>
+
+			<div class="header__wrapper">
+				<a class="header__lang theme--color" href="us.html">en</a>
 			</div>
 
 			<nav class="nav">
-				<ul class="menu">
-					<li><a class="menu__link theme--color" href="#">sobre</a></li>
-					<li><a class="menu__link theme--color" href="#">selected</a></li>
-					<li><a class="menu__link theme--color" href="#">contato</a></li>
-					<br /><br /><br />
-					<li class="menu__link theme--color --active">pt-br</li>
-					<li><a class="menu__link theme--color" href="#">us</a></li>
-					<br /><br /><br />
-					<li><a class="menu__link theme--color" href="#">cv</a></li>
-				</ul>
-				<div class="nav__dots --loading">
+				<div class="nav__dots --loading" alt="Link to next section">
 					<div class="nav__dot theme--border"></div>
 					<div class="nav__dot theme--border"></div>
 					<div class="nav__dot theme--border"></div>
@@ -171,9 +165,9 @@
 				<section class="section section--about">
 					<div class="--fade-in">
 						<p class="text">
-							Have 3+ years of experience working with code for web. Detail
-							oriented, enjoy working on beautiful websites with creative
-							motions and interactions.
+							Eduardo is a Brazilian developer with 3+ years of experience
+							working with code for web. Detail oriented, enjoy working on
+							beautiful websites with creative motions and interactions.
 						</p>
 					</div>
 					<div class="--fade-in">
@@ -188,7 +182,7 @@
 				<section class="section section--projects">
 					<div class="project" data-id="tlscp">
 						<div class="project__title --fade-in">
-							<h2>Telescópio</h2>
+							<h3>Telescópio</h3>
 						</div>
 						<div class="marquee">
 							<div class="marquee__inner">
@@ -228,7 +222,7 @@
 
 					<div class="project" data-id="audio-porto">
 						<div class="project__title --fade-in">
-							<h2>Áudio Porto</h2>
+							<h3>Áudio Porto</h3>
 						</div>
 						<div class="marquee">
 							<div class="marquee__inner">
@@ -271,7 +265,7 @@
 
 					<div class="project" data-id="gsap-demos">
 						<div class="project__title --fade-in">
-							<h2>GSAP Demos</h2>
+							<h3>GSAP Demos</h3>
 						</div>
 						<div class="marquee">
 							<div class="marquee__inner">
@@ -315,7 +309,13 @@
 				</section>
 
 				<section class="section section--contact">
-					<!-- <a href="mailto:edbmuller@gmail.com" class="hello">Say Hello!</a> -->
+					<div class="contact --fade-in">
+						<div class="contact__mask">
+							<a href="mailto:edbmuller@gmail.com" class="hello"
+								>Get in touch!</a
+							>
+						</div>
+					</div>
 				</section>
 			</main>
 		</div>

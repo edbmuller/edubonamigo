@@ -13,15 +13,15 @@
 		margin-bottom: 0;
 	}
 
-	&:nth-child(1) h2 {
+	&:nth-child(1) h3 {
 		font-size: 21vw;
 	}
 
-	&:nth-child(2) h2 {
+	&:nth-child(2) h3 {
 		font-size: 18vw;
 	}
 
-	&:nth-child(3) h2 {
+	&:nth-child(3) h3 {
 		font-size: 16.7vw;
 	}
 
@@ -33,7 +33,7 @@
 			justify-content: flex-start;
 		}
 
-		h2 {
+		h3 {
 			cursor: pointer;
 			font-family: var(--serif-font-family);
 			width: fit-content;
@@ -43,7 +43,7 @@
 			}
 		}
 
-		&.--fade-in h2 {
+		&.--fade-in h3 {
 			@include landscape {
 				font-size: 8vw;
 				line-height: 1.1;
@@ -144,7 +144,7 @@
 		display: block;
 
 		@include laptop {
-			h2 {
+			h3 {
 				opacity: 1;
 				z-index: 10;
 			}

@@ -1,16 +1,21 @@
 .section--contact {
 	height: 100vh;
-	display: flex;
 	align-items: center;
-	justify-content: flex-end;
+	// justify-content: flex-start !important;
+
+	.contact {
+		// margin-top: 10vh;
+	}
 
 	.hello {
-		opacity: 0;
-		margin-top: 20vh;
 		font-family: var(--serif-font-family);
 		color: var(--text-color);
-		font-size: 9vw;
+		font-size: 15vw;
 		text-decoration: none;
 		will-change: transform;
+
+		@include desktop {
+			font-size: 12vw;
+		}
 	}
 }

@@ -1,7 +1,5 @@
-import gsap from 'gsap'
-
 const DOM = {
-	projectTitles: document.querySelectorAll('.project h2'),
+	projectTitles: document.querySelectorAll('.project h3'),
 	get: (selector) => document.querySelector(selector)
 }
 

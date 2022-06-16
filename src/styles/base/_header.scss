@@ -12,19 +12,26 @@
 	flex-wrap: wrap;
 	z-index: 10;
 
-	&__title-wrapper {
+	&__wrapper {
 		position: relative;
 		height: fit-content;
 		overflow: hidden;
+
+		&:nth-child(2) {
+			position: absolute;
+			right: 11vw;
+			bottom: 0;
+		}
 	}
 
-	&__title {
-		line-height: 1.2;
+	&__title,
+	&__lang {
 		cursor: pointer;
 		position: absolute;
 		top: 110%;
-		font-size: 1.2rem;
 		white-space: nowrap;
+		line-height: 1.2;
+		font-size: 1.3rem;
 
 		@include tablet {
 			font-size: 1.4rem;
@@ -33,6 +40,11 @@
 		@include laptop {
 			font-size: 1.6rem;
 		}
+	}
+
+	&__lang {
+		right: 11vw;
+		text-decoration: none;
 	}
 
 	.header__line {
@@ -53,9 +65,12 @@
 	margin: auto 0;
 	opacity: 0;
 	animation: fade-in 0.4s $easing 0.3s forwards;
+	display: flex;
+	align-items: baseline;
 
 	&__dots {
 		display: flex;
+		margin-bottom: 4px;
 	}
 
 	&__dot {
