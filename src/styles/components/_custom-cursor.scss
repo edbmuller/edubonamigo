@@ -1,0 +1,54 @@
+@import '../base/helpers';
+
+.theme.--light .custom-cursor {
+	mix-blend-mode: exclusion;
+}
+
+.custom-cursor {
+	z-index: 99;
+	pointer-events: none;
+	position: fixed;
+	border-radius: 50%;
+	opacity: 0;
+	width: 5rem;
+	height: 5rem;
+	left: -2.6rem;
+	top: -2.6rem;
+	border: 2px solid var(--secondary-color);
+
+	&.--active {
+		opacity: 0;
+	}
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%);
+		width: 1px;
+		height: 1px;
+		border-radius: 50%;
+		background-color: var(--secondary-color);
+		transition: transform 0.2s $easing;
+	}
+
+	&.--active:before {
+		content: '';
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%) scale(12);
+		width: 5px;
+		height: 5px;
+		transition-duration: 0.4s;
+	}
+
+	&.--active.--medium:before {
+		transform: translate(-50%) scale(30);
+	}
+
+	&.--active.--large:before {
+		transform: translate(-50%) scale(45);
+	}
+}

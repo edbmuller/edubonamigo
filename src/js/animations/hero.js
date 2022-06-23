@@ -2,17 +2,20 @@ import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
 
+import initCustomCursor from './custom-cursor'
+
 gsap.registerPlugin(Flip)
 
 const DOM = {
 	body: document.body,
 	scrollbarWrapper: document.querySelector('#scrollbar-wrapper'),
-	dotsWrapper: document.querySelector('.nav__dots'),
-	dotsArr: gsap.utils.toArray('.nav__dot'),
-	headerLine: document.querySelector('.header__line'),
+	dotsWrapper: document.querySelector('.dots'),
+	dotsArr: gsap.utils.toArray('.dot'),
 	headerWrapper: document.querySelector('.header__wrapper'),
 	headerTitlesArr: gsap.utils.toArray('.header__title'),
 	headerLang: document.querySelector('.header__lang'),
+	headerTheme: document.querySelector('.header__theme'),
+	headerLine: document.querySelector('.header__line'),
 	heroTitlesArr: gsap.utils.toArray('.section--hero h1'),
 	scrollSVG: document.querySelector('.svg-wrapper.--scroll'),
 	sectionHero: document.querySelector('.section--hero'),
@@ -35,24 +38,15 @@ function stopLoadingAndInitIntro() {
 		duration: 1,
 		ease: 'power3.inOut',
 		scale: true,
-		onComplete: () => initIntro()
-	})
-}
-
-const setHeaderWrapperSize = () => {
-	let height = DOM.headerTitlesArr[0].getBoundingClientRect().height
-	let width = DOM.headerTitlesArr[0].getBoundingClientRect().width * 1.2
-	DOM.headerWrapper.style.height = `${height}px`
-	DOM.headerWrapper.style.width = `${width * 1.5}px`
-	DOM.headerTitlesArr.forEach((el, index) => {
-		if (index !== 0) {
-			el.style.left = `${width}px`
+		onComplete: () => {
+			initIntro()
+			initCustomCursor()
 		}
 	})
 }
 
 const initIntro = () => {
-	setHeaderWrapperSize()
+	// setHeaderWrapperSize()
 
 	const introTl = gsap.timeline({
 		defaults: {
@@ -64,17 +58,17 @@ const initIntro = () => {
 	introTl
 		.to(DOM.headerLine, { x: '0' })
 		.to(
-			[DOM.headerLang, DOM.headerTitlesArr[0]],
+			[DOM.headerTheme, DOM.headerLang, DOM.headerTitlesArr[0]],
 			{
-				y: '-110%',
+				y: '0',
 				autoAlpha: 1,
-				// stagger: 0.05,
+				stagger: 0.2,
 				onStart: () => {
 					DOM.body.classList.remove('--loading')
 					DOM.scrollSVG.classList.add('--spin')
 				}
 			},
-			'-=0.2'
+			'-=0.6'
 		)
 		.from(
 			[DOM.scrollSVG, DOM.heroTitlesArr],

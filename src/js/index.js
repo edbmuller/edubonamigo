@@ -5,6 +5,8 @@ import '../styles/index.scss'
 console.log('Macete: → ↑ ← ↓ e d !')
 
 // TODO: Trigger after imagesLoaded
+import './animations/toggle-theme'
+// import './animations/custom-cursor'
 import './animations/hero'
 import './animations/projects'
 // import './animations/magneticElement'

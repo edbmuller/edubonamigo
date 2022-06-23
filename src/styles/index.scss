@@ -3,7 +3,10 @@
 // TODO: menu gsap animation add filter:blur(15px) to sections
 
 @import './base/helpers';
-@import './base/header';
+
+@import './components/header';
+@import './components/custom-cursor';
+
 @import './sections/hero';
 @import './sections/about';
 @import './sections/projects';

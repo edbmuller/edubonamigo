@@ -8,12 +8,14 @@
 	src: url('../fonts/century-gothic.ttf');
 }
 
-$easing: cubic-bezier(0.3, 1, 0.7, 1);
-
 :root {
-	--dark-color: #0f1c13;
-	--light-color: #fcfaf9;
-	--accent-color: #99621e; // with mix-blend-mode: difference;
+	--dark: #0f1c13;
+	--dark-accent: #af5233; // with mix-blend-mode: difference;
+	--light: #fcfaf9;
+	--light-accent: #fcfaf9;
+
+	--dark-blend: soft-light;
+	--light-blend: exclusion;
 
 	--default-font-family: 'Century Gothic', sans-serif;
 	--serif-font-family: 'Italiana', serif;
@@ -22,12 +24,16 @@ $easing: cubic-bezier(0.3, 1, 0.7, 1);
 .theme {
 	// switch between dark and light theme
 	&.--dark {
-		--primary-color: var(--dark-color);
-		--secondary-color: var(--light-color);
+		--primary-color: var(--dark);
+		--secondary-color: var(--light);
+		--accent-color: var(--dark-accent);
+		--blend-mode: var(--dark-blend);
 	}
 	&.--light {
-		--primary-color: var(--light-color);
-		--secondary-color: var(--dark-color);
+		--primary-color: var(--light);
+		--secondary-color: var(--dark);
+		--accent-color: var(--light-accent);
+		--blend-mode: var(--light-blend);
 	}
 
 	::selection {
@@ -35,27 +41,36 @@ $easing: cubic-bezier(0.3, 1, 0.7, 1);
 		color: var(--primary-color);
 	}
 
+	$theme-duration: 0.6s;
+	$easing: ease-in-out;
+	$defaults: $theme-duration $easing;
+
 	// theme-specific styles
 	background-color: var(--primary-color);
 	color: var(--secondary-color);
-	transition: background-color 0.3s $easing, color 0.3s $easing;
+	transition: background-color $defaults, color $defaults;
 
 	&--border {
 		border-color: var(--secondary-color);
-		transition: border-color 0.3s $easing;
+		transition: border-color $defaults;
 	}
 
 	&--background {
 		background-color: var(--secondary-color);
-		transition: background-color 0.3s $easing;
+		transition: background-color $defaults;
 	}
 
 	&--color {
 		color: var(--secondary-color);
-		transition: color 0.3s $easing;
+		transition: color $defaults;
 	}
 
 	&--fill path {
 		fill: var(--secondary-color);
+		transition: fill $defaults;
+	}
+
+	&--cursor {
+		mix-blend-mode: var(--blend-mode);
 	}
 }

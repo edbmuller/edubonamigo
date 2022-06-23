@@ -13,8 +13,7 @@ const DOM = {
 	sliderWrapper: document.querySelector('.slider__img--wrapper'),
 	sliderImg: document.querySelector('.slider__img'),
 	sliderImgMask: document.querySelector('.slider__img--mask'),
-	get: (selector) => document.querySelector(selector),
-	active: undefined
+	get: (selector) => document.querySelector(selector)
 }
 
 let tlEnter, tlOut
@@ -26,13 +25,12 @@ let tlDefaults = {
 
 export function activeProjectDesktop() {
 	setMarqueeWidth()
-
 	createSliderEnter()
 	createSliderOut()
 
 	gsap.to(DOM.sliderWrapper, {
 		duration: 1,
-		y: '-18vh',
+		y: '-15vh',
 		ease: 'none',
 		scrollTrigger: {
 			trigger: DOM.firstProject,

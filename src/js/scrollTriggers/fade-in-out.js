@@ -14,7 +14,7 @@ const DOM = {
 		: gsap.utils.toArray('.--fade-in:not(h2)')
 }
 
-export function fadeOut() {
+const fadeOut = () => {
 	DOM.elementsFadeOut.forEach((element) => {
 		gsap.to(element, {
 			autoAlpha: 0,
@@ -32,7 +32,7 @@ export function fadeOut() {
 	})
 }
 
-export function fadeIn() {
+const fadeIn = () => {
 	DOM.elementsFadeIn.forEach((element) => {
 		gsap.to(element, {
 			autoAlpha: 1,
@@ -48,4 +48,9 @@ export function fadeIn() {
 			}
 		})
 	})
+}
+
+export default function fadeInOut() {
+	fadeIn()
+	fadeOut()
 }
