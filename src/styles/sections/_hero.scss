@@ -54,39 +54,6 @@
 			margin-bottom: 0;
 		}
 	}
-
-	.svg-wrapper.--scroll {
-		width: 25vw;
-		height: fit-content;
-		position: absolute;
-		left: 50vw;
-		top: 80%;
-
-		@include laptop {
-			width: 20rem;
-			left: 65vw;
-			top: 75%;
-		}
-
-		@include landscape {
-			width: 15rem;
-			left: 65vw;
-			top: 75%;
-		}
-
-		svg {
-			animation: spin 35s infinite linear;
-			width: 100%;
-			height: auto;
-			pointer-events: none;
-		}
-	}
-}
-
-@keyframes spin {
-	100% {
-		transform: rotate(-360deg);
-	}
 }
 
 .title-wrapper {

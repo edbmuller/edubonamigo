@@ -17,7 +17,6 @@ const DOM = {
 	headerTheme: document.querySelector('.header__theme'),
 	headerLine: document.querySelector('.header__line'),
 	heroTitlesArr: gsap.utils.toArray('.section--hero h1'),
-	scrollSVG: document.querySelector('.svg-wrapper.--scroll'),
 	sectionHero: document.querySelector('.section--hero'),
 	contentArr: gsap.utils.toArray('.--hide-show')
 }

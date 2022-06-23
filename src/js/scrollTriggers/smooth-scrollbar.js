@@ -11,7 +11,7 @@ const DOM = {
 	scroller: document.querySelector('.scroller'),
 	headerTitles: gsap.utils.toArray('.header__wrapper h2'),
 	sections: gsap.utils.toArray('.section'),
-	svgScroll: gsap.utils.toArray('.svg-wrapper')
+	scrollIcon: gsap.utils.toArray('.scroll-icon')
 }
 
 let scrollbar
@@ -58,8 +58,8 @@ const subtitleAnchors = () => {
 	})
 }
 
-const svgScrollAnchors = () => {
-	DOM.svgScroll.forEach((element, index) => {
+const scrollIconAnchors = () => {
+	DOM.scrollIcon.forEach((element, index) => {
 		listenerAnchorToSection(element, index + 1)
 	})
 }
@@ -78,5 +78,5 @@ const fixGsapMarkers = () => {
 export default function initSmoothScrollbar() {
 	smoothScrollbar()
 	subtitleAnchors()
-	svgScrollAnchors()
+	scrollIconAnchors()
 }

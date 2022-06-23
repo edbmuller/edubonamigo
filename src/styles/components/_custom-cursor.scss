@@ -15,6 +15,15 @@
 	left: -2.6rem;
 	top: -2.6rem;
 	border: 2px solid var(--secondary-color);
+	display: none;
+
+	@include laptop {
+		display: block;
+	}
+
+	@include desktop {
+		display: block;
+	}
 
 	&.--active {
 		opacity: 0;

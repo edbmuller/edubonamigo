@@ -5,7 +5,7 @@ const DOM = {
 	cursorDisabled: true,
 	subtitles: document.querySelectorAll('h2'),
 	menuItems: document.querySelectorAll('.menu__item'),
-	scrolls: document.querySelectorAll('.--scroll'),
+	scrolls: document.querySelectorAll('.scroll-icon'),
 	projects: document.querySelectorAll('h3'),
 	contact: document.querySelectorAll('.hello')
 }
@@ -30,45 +30,47 @@ const activeCursor = () => {
 }
 
 export default function initCursor() {
-	window.addEventListener('mousemove', activeCursor)
-	window.addEventListener('mousemove', moveCursor)
+	if (DOM.cursor) {
+		window.addEventListener('mousemove', activeCursor)
+		window.addEventListener('mousemove', moveCursor)
 
-	let smallTriggers = [...DOM.subtitles, ...DOM.menuItems]
-	let mediumTriggers = [...DOM.projects]
-	let largeTriggers = [...DOM.contact]
+		let smallTriggers = [...DOM.subtitles, ...DOM.menuItems]
+		let mediumTriggers = [...DOM.projects]
+		let largeTriggers = [...DOM.contact]
 
-	smallTriggers.forEach((target) => {
-		target.addEventListener('mouseenter', () =>
-			DOM.cursor.classList.add('--active')
-		)
-	})
-	smallTriggers.forEach((target) => {
-		target.addEventListener('mouseout', () =>
-			DOM.cursor.classList.remove('--active')
-		)
-	})
-
-	mediumTriggers.forEach((item) => {
-		item.addEventListener('mouseenter', () =>
-			DOM.cursor.classList.add('--active', '--medium')
-		)
-	})
-	mediumTriggers.forEach((item) => {
-		item.addEventListener('mouseout', () =>
-			DOM.cursor.classList.remove('--active', '--medium')
-		)
-	})
-
-	DOM.scrolls.forEach((item) => {
-		item.addEventListener('mouseenter', () => {
-			DOM.cursor.classList.add('--active', '--large')
+		smallTriggers.forEach((target) => {
+			target.addEventListener('mouseenter', () =>
+				DOM.cursor.classList.add('--active')
+			)
 		})
-	})
-	DOM.scrolls.forEach((item) => {
-		item.addEventListener('mouseout', () =>
-			DOM.cursor.classList.remove('--active', '--large')
-		)
-	})
+		smallTriggers.forEach((target) => {
+			target.addEventListener('mouseout', () =>
+				DOM.cursor.classList.remove('--active')
+			)
+		})
+
+		mediumTriggers.forEach((item) => {
+			item.addEventListener('mouseenter', () =>
+				DOM.cursor.classList.add('--active', '--medium')
+			)
+		})
+		mediumTriggers.forEach((item) => {
+			item.addEventListener('mouseout', () =>
+				DOM.cursor.classList.remove('--active', '--medium')
+			)
+		})
+
+		DOM.scrolls.forEach((item) => {
+			item.addEventListener('mouseenter', () => {
+				DOM.cursor.classList.add('--active', '--large')
+			})
+		})
+		DOM.scrolls.forEach((item) => {
+			item.addEventListener('mouseout', () =>
+				DOM.cursor.classList.remove('--active', '--large')
+			)
+		})
+	}
 }
 
 // DOM.menuItem.forEach(function (el) {
