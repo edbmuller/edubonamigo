@@ -18,7 +18,8 @@ const DOM = {
 	headerLine: document.querySelector('.header__line'),
 	heroTitlesArr: gsap.utils.toArray('.section--hero h1'),
 	sectionHero: document.querySelector('.section--hero'),
-	contentArr: gsap.utils.toArray('.--hide-show')
+	contentArr: gsap.utils.toArray('.--hide-show'),
+	scrollIcon: gsap.utils.toArray('.scroll-icon')
 }
 
 function stopLoadingAndInitIntro() {
@@ -49,9 +50,10 @@ const initIntro = () => {
 
 	const introTl = gsap.timeline({
 		defaults: {
-			duration: 0.5
+			duration: 0.8
 		},
-		ease: 'power2.in'
+		ease: 'power2.in',
+		onStart: () => DOM.body.classList.remove('--loading')
 	})
 
 	introTl
@@ -60,25 +62,15 @@ const initIntro = () => {
 			[DOM.headerTheme, DOM.headerLang, DOM.headerTitlesArr[0]],
 			{
 				y: '0',
-				autoAlpha: 1,
-				stagger: 0.2,
-				onStart: () => {
-					DOM.body.classList.remove('--loading')
-					DOM.scrollSVG.classList.add('--spin')
-				}
+				stagger: 0.2
 			},
 			'-=0.6'
 		)
 		.from(
-			[DOM.scrollSVG, DOM.heroTitlesArr],
+			[DOM.scrollIcon, DOM.heroTitlesArr],
 			{
 				y: '100%',
-				// autoAlpha: 0,
-				stagger: 0.06,
-				onStart: () => {
-					DOM.body.classList.remove('--loading')
-					DOM.scrollSVG.classList.add('--spin')
-				}
+				stagger: 0.06
 			},
 			'0'
 		)

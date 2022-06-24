@@ -4,12 +4,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const DOM = {
-	scrollSVG: document.querySelector('.svg-wrapper'),
+	scrollIcon: document.querySelector('.scroll-icon'),
 	sectionHero: document.querySelector('.section--hero')
 }
 
-export default function spinScrollSVG() {
-	gsap.to(DOM.scrollSVG, {
+export default function spinScrollIcon() {
+	gsap.to(DOM.scrollIcon, {
 		rotation: 360 / 2,
 		y: '-200px',
 		ease: 'none',
