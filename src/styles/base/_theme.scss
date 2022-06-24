@@ -10,9 +10,7 @@
 
 :root {
 	--dark: #0f1c13;
-	--dark-accent: #af5233; // with mix-blend-mode: difference;
 	--light: #fcfaf9;
-	--light-accent: #fcfaf9;
 
 	--dark-blend: soft-light;
 	--light-blend: exclusion;
@@ -21,18 +19,20 @@
 	--serif-font-family: 'Italiana', serif;
 }
 
+$theme-duration: 0.3s;
+$easing: ease-in-out;
+$defaults: $theme-duration $easing;
+
 .theme {
 	// switch between dark and light theme
 	&.--dark {
 		--primary-color: var(--dark);
 		--secondary-color: var(--light);
-		--accent-color: var(--dark-accent);
 		--blend-mode: var(--dark-blend);
 	}
 	&.--light {
 		--primary-color: var(--light);
 		--secondary-color: var(--dark);
-		--accent-color: var(--light-accent);
 		--blend-mode: var(--light-blend);
 	}
 
@@ -41,11 +41,6 @@
 		color: var(--primary-color);
 	}
 
-	$theme-duration: 0.6s;
-	$easing: ease-in-out;
-	$defaults: $theme-duration $easing;
-
-	// theme-specific styles
 	background-color: var(--primary-color);
 	color: var(--secondary-color);
 	transition: background-color $defaults, color $defaults;
