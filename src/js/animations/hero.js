@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
 
-import initCustomCursor from './custom-cursor'
+import initCursor from './cursor'
 
 gsap.registerPlugin(Flip)
 
@@ -40,7 +40,7 @@ function stopLoadingAndInitIntro() {
 		scale: true,
 		onComplete: () => {
 			initIntro()
-			initCustomCursor()
+			initCursor()
 		}
 	})
 }
@@ -64,7 +64,7 @@ const initIntro = () => {
 				y: '0',
 				stagger: 0.2
 			},
-			'-=0.6'
+			'0'
 		)
 		.from(
 			[DOM.scrollIcon, DOM.heroTitlesArr],
