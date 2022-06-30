@@ -8,7 +8,7 @@ const DOM = {
 }
 
 export default function toggleHeaderSubtitleAndDots() {
-	let configs = {
+	const configs = {
 		duration: 0.3,
 		ease: 'power2.out'
 	}
@@ -17,8 +17,8 @@ export default function toggleHeaderSubtitleAndDots() {
 		ScrollTrigger.create({
 			// markers: true,
 			trigger: DOM.sections[index + 1],
-			start: 'top 25%',
-			end: 'bottom 25%',
+			start: 'top 35%',
+			end: 'bottom 35%',
 			onEnter: () => {
 				gsap.to(subtitle, { y: '0', ...configs })
 				DOM.headerDots[index].classList.add('theme--background')
