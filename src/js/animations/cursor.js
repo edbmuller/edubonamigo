@@ -17,8 +17,8 @@ const showCursor = () => {
 	gsap.to(DOM.cursor, {
 		ease: 'power2.out',
 		duration: 1,
-		delay: 0.3,
-		css: { opacity: 0.7 }
+		opacity: 1,
+		delay: 0.3
 	})
 }
 
@@ -29,23 +29,23 @@ const activeCursor = () => {
 	}
 }
 
-export default function initCursor() {
+export default function initCursor () {
 	if (DOM.cursor) {
 		window.addEventListener('mousemove', activeCursor)
 		window.addEventListener('mousemove', moveCursor)
 
-		let smallTriggers = [...DOM.subtitles, ...DOM.menuItems]
-		let mediumTriggers = [...DOM.projects]
-		let largeTriggers = [...DOM.contact]
+		const smallTriggers = [...DOM.subtitles, ...DOM.menuItems]
+		const mediumTriggers = [...DOM.projects]
+		const largeTriggers = [...DOM.scrolls, ...DOM.contact]
 
 		smallTriggers.forEach((target) => {
 			target.addEventListener('mouseenter', () =>
-				DOM.cursor.classList.add('--active')
+				DOM.cursor.classList.add('--active', '--small')
 			)
 		})
 		smallTriggers.forEach((target) => {
 			target.addEventListener('mouseout', () =>
-				DOM.cursor.classList.remove('--active')
+				DOM.cursor.classList.remove('--active', '--small')
 			)
 		})
 
@@ -60,12 +60,12 @@ export default function initCursor() {
 			)
 		})
 
-		DOM.scrolls.forEach((item) => {
+		largeTriggers.forEach((item) => {
 			item.addEventListener('mouseenter', () => {
 				DOM.cursor.classList.add('--active', '--large')
 			})
 		})
-		DOM.scrolls.forEach((item) => {
+		largeTriggers.forEach((item) => {
 			item.addEventListener('mouseout', () =>
 				DOM.cursor.classList.remove('--active', '--large')
 			)

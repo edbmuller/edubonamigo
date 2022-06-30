@@ -26,11 +26,10 @@
 	}
 
 	&.--active {
-		opacity: 0;
+		opacity: 1;
 	}
 
-	&:before {
-		content: '';
+	&__mask {
 		position: absolute;
 		left: 50%;
 		top: 50%;
@@ -42,22 +41,23 @@
 		transition: transform 0.2s $easing;
 	}
 
-	&.--active:before {
-		content: '';
-		position: absolute;
-		left: 50%;
-		top: 50%;
-		transform: translate(-50%) scale(12);
+	&.--small &__mask,
+	&.--medium &__mask,
+	&.--large &__mask {
 		width: 5px;
 		height: 5px;
 		transition-duration: 0.4s;
 	}
 
-	&.--active.--medium:before {
+	&.--small &__mask {
+		transform: translate(-50%) scale(12);
+	}
+
+	&.--active.--medium &__mask {
 		transform: translate(-50%) scale(30);
 	}
 
-	&.--active.--large:before {
+	&.--active.--large &__mask {
 		transform: translate(-50%) scale(45);
 	}
 }
