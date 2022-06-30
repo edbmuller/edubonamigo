@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 
 const DOM = {
-	target: document.querySelector('.hello'),
+	target: document.querySelector('.contact__mask'),
 	areaAroundTarget: document.querySelector('.section--contact')
 }
 
@@ -22,11 +22,11 @@ const getPercentageOfValue = (percentage, valueNumber) =>
 let started = 0
 // Make an element follow the mouse, based on element position
 DOM.areaAroundTarget.addEventListener('mousemove', (e) => {
-	let distanceY = getPercentageOfValue(20, mouseDistanceFromElementY(e.pageY))
-	let distanceX = getPercentageOfValue(20, mouseDistanceFromElementX(e.pageX))
+	const distanceY = getPercentageOfValue(20, mouseDistanceFromElementY(e.pageY))
+	const distanceX = getPercentageOfValue(20, mouseDistanceFromElementX(e.pageX))
 
 	if (started === 0) {
-		gsap.to(DOM.target, { autoAlpha: 1, duration: 0.7 })
+		gsap.to(DOM.target, { autoAlpha: 1, duration: 0.6 })
 		started = 1
 	}
 

@@ -1,6 +1,7 @@
 .section--contact {
 	height: 100vh;
 	align-items: center;
+	position: relative;
 	// justify-content: flex-start !important;
 
 	.contact {
@@ -10,7 +11,7 @@
 	.hello {
 		font-family: var(--serif-font-family);
 		color: var(--text-color);
-		font-size: 15vw;
+		font-size: 12vw;
 		text-decoration: none;
 		will-change: transform;
 
