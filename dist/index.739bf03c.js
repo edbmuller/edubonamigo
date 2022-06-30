@@ -514,35 +514,39 @@ function hmrAcceptRun(bundle, id) {
 }
 
 },{}],"ebWYT":[function(require,module,exports) {
-var _loadingScss = require("../styles/loading.scss");
-var _indexScss = require("../styles/index.scss");
 // TODO: Trigger after imagesLoaded
+var _toggleTheme = require("./animations/toggle-theme");
+// import "./animations/custom-cursor"
 var _hero = require("./animations/hero");
 var _projects = require("./animations/projects");
 var _magneticElement = require("./animations/magneticElement");
 // TODO: ativar algum experimento com webgl quando usar o macete
 console.log('Macete: → ↑ ← ↓ e d !');
 
-},{"../styles/loading.scss":"3cXWm","../styles/index.scss":"aSOSS","./animations/hero":"9Zfg2","./animations/magneticElement":"8rQdV","./animations/projects":"2M8Vt"}],"3cXWm":[function() {},{}],"aSOSS":[function() {},{}],"9Zfg2":[function(require,module,exports) {
+},{"./animations/hero":"9Zfg2","./animations/projects":"2M8Vt","./animations/toggle-theme":"e2JgW","./animations/magneticElement":"8rQdV"}],"9Zfg2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _flip = require("gsap/Flip");
 var _scrollTriggers = require("../scrollTriggers");
 var _scrollTriggersDefault = parcelHelpers.interopDefault(_scrollTriggers);
+var _cursor = require("./cursor");
+var _cursorDefault = parcelHelpers.interopDefault(_cursor);
 _gsapDefault.default.registerPlugin(_flip.Flip);
 const DOM = {
     body: document.body,
     scrollbarWrapper: document.querySelector('#scrollbar-wrapper'),
-    dotsWrapper: document.querySelector('.nav__dots'),
-    dotsArr: _gsapDefault.default.utils.toArray('.nav__dot'),
-    headerLine: document.querySelector('.header__line'),
-    headerTitleWrapper: document.querySelector('.header__title-wrapper'),
+    dotsWrapper: document.querySelector('.dots'),
+    dotsArr: _gsapDefault.default.utils.toArray('.dot'),
+    headerWrapper: document.querySelector('.header__wrapper'),
     headerTitlesArr: _gsapDefault.default.utils.toArray('.header__title'),
+    headerLang: document.querySelector('.header__lang'),
+    headerTheme: document.querySelector('.header__theme'),
+    headerLine: document.querySelector('.header__line'),
     heroTitlesArr: _gsapDefault.default.utils.toArray('.section--hero h1'),
-    scrollSVG: document.querySelector('.svg-wrapper.--scroll'),
     sectionHero: document.querySelector('.section--hero'),
-    contentArr: _gsapDefault.default.utils.toArray('.--hide-show')
+    contentArr: _gsapDefault.default.utils.toArray('.--hide-show'),
+    scrollIcon: _gsapDefault.default.utils.toArray('.scroll-icon')
 };
 function stopLoadingAndInitIntro() {
     _scrollTriggersDefault.default();
@@ -558,53 +562,42 @@ function stopLoadingAndInitIntro() {
         duration: 1,
         ease: 'power3.inOut',
         scale: true,
-        onComplete: ()=>initIntro()
+        onComplete: ()=>{
+            initIntro();
+            _cursorDefault.default();
+        }
     });
 }
-const setHeaderWrapperSize = ()=>{
-    let height = DOM.headerTitlesArr[0].getBoundingClientRect().height;
-    let width = DOM.headerTitlesArr[0].getBoundingClientRect().width * 1.2;
-    DOM.headerTitleWrapper.style.height = `${height}px`;
-    DOM.headerTitleWrapper.style.width = `${width * 2}px`;
-    DOM.headerTitlesArr.forEach((el, index)=>{
-        if (index !== 0) el.style.left = `${width}px`;
-    });
-};
 const initIntro = ()=>{
-    setHeaderWrapperSize();
+    // setHeaderWrapperSize()
     const introTl = _gsapDefault.default.timeline({
         defaults: {
-            duration: 0.5
+            duration: 0.8
         },
-        ease: 'power2.in'
+        ease: 'power2.in',
+        onStart: ()=>DOM.body.classList.remove('--loading')
     });
     introTl.to(DOM.headerLine, {
         x: '0'
-    }).to(DOM.headerTitlesArr[0], {
-        y: '-110%',
-        autoAlpha: 1,
-        // stagger: 0.05,
-        onStart: ()=>{
-            DOM.body.classList.remove('--loading');
-            DOM.scrollSVG.classList.add('--spin');
-        }
-    }, '-=0.2').from([
-        DOM.scrollSVG,
+    }).to([
+        DOM.headerTheme,
+        DOM.headerLang,
+        DOM.headerTitlesArr[0]
+    ], {
+        y: '0',
+        stagger: 0.2
+    }, '0').from([
+        DOM.scrollIcon,
         DOM.heroTitlesArr
     ], {
         y: '100%',
-        // autoAlpha: 0,
-        stagger: 0.06,
-        onStart: ()=>{
-            DOM.body.classList.remove('--loading');
-            DOM.scrollSVG.classList.add('--spin');
-        }
+        stagger: 0.06
     }, '0');
 };
 // TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
 document.addEventListener('DOMContentLoaded', stopLoadingAndInitIntro());
 
-},{"gsap":"fPSuC","gsap/Flip":"iKp6p","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../scrollTriggers":"eQCYt"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/Flip":"iKp6p","../scrollTriggers":"eQCYt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./cursor":"lfv1X"}],"fPSuC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS
@@ -5671,38 +5664,30 @@ function getGlobalMatrix(element, inverse, adjustGOffset, includeScrollInFixed) 
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _smoothScrollbar = require("./smooth-scrollbar");
+var _smoothScrollbarDefault = parcelHelpers.interopDefault(_smoothScrollbar);
 var _toggleHeaderSubtitleAndDots = require("./toggle-header-subtitle-and-dots");
 var _toggleHeaderSubtitleAndDotsDefault = parcelHelpers.interopDefault(_toggleHeaderSubtitleAndDots);
-var _spinScrollSvg = require("./spin-scroll-svg");
-var _spinScrollSvgDefault = parcelHelpers.interopDefault(_spinScrollSvg);
+var _spinScrollIcon = require("./spin-scroll-icon");
+var _spinScrollIconDefault = parcelHelpers.interopDefault(_spinScrollIcon);
 var _fadeInOut = require("./fade-in-out");
+var _fadeInOutDefault = parcelHelpers.interopDefault(_fadeInOut);
 // project triggers
 var _marqueeMobile = require("./marquee-mobile");
 var _marqueeMobileDefault = parcelHelpers.interopDefault(_marqueeMobile);
 var _projectDesktop = require("./project-desktop");
-var _projectDesktopDefault = parcelHelpers.interopDefault(_projectDesktop);
 function initScrollTriggers() {
-    _smoothScrollbar.SmoothScrollbar();
+    _smoothScrollbarDefault.default();
     _toggleHeaderSubtitleAndDotsDefault.default();
-    _smoothScrollbar.linkToSection();
-    _spinScrollSvgDefault.default();
-    _fadeInOut.fadeIn();
-    _fadeInOut.fadeOut();
+    _spinScrollIconDefault.default();
+    _fadeInOutDefault.default();
     if (/Mobi|Android/i.test(navigator.userAgent)) _marqueeMobileDefault.default();
-    else _projectDesktopDefault.default();
-    _smoothScrollbar.fixGsapMarkers();
-}
+    else _projectDesktop.activeProjectDesktop();
+} // TODO: remove fixGsapMarkers for production
 exports.default = initScrollTriggers;
 
-},{"./smooth-scrollbar":"kk1cX","./toggle-header-subtitle-and-dots":"byeT3","./spin-scroll-svg":"7EOqe","./fade-in-out":"7Sl85","./marquee-mobile":"a0dPu","./project-desktop":"3mPRR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kk1cX":[function(require,module,exports) {
+},{"./smooth-scrollbar":"kk1cX","./toggle-header-subtitle-and-dots":"byeT3","./fade-in-out":"7Sl85","./marquee-mobile":"a0dPu","./project-desktop":"3mPRR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./spin-scroll-icon":"76Bnr"}],"kk1cX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SmoothScrollbar", ()=>SmoothScrollbar
-);
-parcelHelpers.export(exports, "linkToSection", ()=>linkToSection
-);
-parcelHelpers.export(exports, "fixGsapMarkers", ()=>fixGsapMarkers
-);
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _scrollTrigger = require("gsap/ScrollTrigger");
@@ -5714,15 +5699,17 @@ _gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
 _smoothScrollbarDefault.default.use(_fixSpeedMobileDefault.default);
 const DOM = {
     scroller: document.querySelector('.scroller'),
-    headerTitles: _gsapDefault.default.utils.toArray('.header__title'),
-    sections: _gsapDefault.default.utils.toArray('.section')
+    headerTitles: _gsapDefault.default.utils.toArray('.header__wrapper h2'),
+    sections: _gsapDefault.default.utils.toArray('.section'),
+    scrollIcon: _gsapDefault.default.utils.toArray('.scroll-icon')
 };
 let scrollbar;
-function SmoothScrollbar() {
+const smoothScrollbar = ()=>{
     scrollbar = new _smoothScrollbarDefault.default(DOM.scroller, {
         delegateTo: document,
         alwaysShowTracks: true
     });
+    // integrates scrollbar and scrolltrigger
     _scrollTrigger.ScrollTrigger.scrollerProxy('.scroller', {
         scrollTop (value) {
             if (arguments.length) scrollbar.scrollTop = value // setter
@@ -5736,19 +5723,30 @@ function SmoothScrollbar() {
         scroller: '.scroller'
     });
     fixGsapMarkers();
-}
-function linkToSection() {
-    DOM.headerTitles.forEach((element, index)=>{
-        element.addEventListener('click', (e)=>{
-            e.preventDefault();
-            scrollbar.scrollIntoView(DOM.sections[index], {
-                damping: 0.07,
-                offsetTop: 100
-            });
+};
+// Functions above on this folder
+// are the ones that need to
+// interact with the "scrollbar" object variable
+const listenerAnchorToSection = (target, index)=>{
+    target.addEventListener('click', (e)=>{
+        e.preventDefault();
+        scrollbar.scrollIntoView(DOM.sections[index], {
+            damping: 0.07,
+            offsetTop: 100
         });
     });
-}
-function fixGsapMarkers() {
+};
+const subtitleAnchors = ()=>{
+    DOM.headerTitles.forEach((element, index)=>{
+        listenerAnchorToSection(element, index);
+    });
+};
+const scrollIconAnchors = ()=>{
+    DOM.scrollIcon.forEach((element, index)=>{
+        listenerAnchorToSection(element, index + 1);
+    });
+};
+const fixGsapMarkers = ()=>{
     // Only necessary to correct marker position - not needed in production
     if (document.querySelector('.gsap-marker-scroller-start')) {
         const markers = _gsapDefault.default.utils.toArray('[class *= "gsap-marker"]');
@@ -5758,7 +5756,13 @@ function fixGsapMarkers() {
             });
         });
     }
+};
+function initSmoothScrollbar() {
+    smoothScrollbar();
+    subtitleAnchors();
+    scrollIconAnchors();
 }
+exports.default = initSmoothScrollbar;
 
 },{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","smooth-scrollbar":"7azJf","./fix-speed-mobile":"iZdF9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wnFk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -10447,85 +10451,52 @@ var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _scrollTrigger = require("gsap/ScrollTrigger");
 const DOM = {
-    headerSubtitles: _gsapDefault.default.utils.toArray('.header__title:not(:first-child)'),
+    headerSubtitles: _gsapDefault.default.utils.toArray('.header__subtitle'),
     sections: _gsapDefault.default.utils.toArray('.section'),
-    headerDots: _gsapDefault.default.utils.toArray('.nav__dot')
+    headerDots: _gsapDefault.default.utils.toArray('.dot')
 };
 function toggleHeaderSubtitleAndDots() {
-    let configs = {
-        duration: 0.4,
-        ease: 'power4.out'
+    const configs = {
+        duration: 0.3,
+        ease: 'power2.out'
     };
     DOM.headerSubtitles.forEach((subtitle, index)=>{
         _scrollTrigger.ScrollTrigger.create({
             // markers: true,
             trigger: DOM.sections[index + 1],
-            start: 'top 25%',
-            end: 'bottom 25%',
+            start: 'top 35%',
+            end: 'bottom 35%',
             onEnter: ()=>{
                 _gsapDefault.default.to(subtitle, {
-                    y: '-110%',
+                    y: '0',
                     ...configs
                 });
                 DOM.headerDots[index].classList.add('theme--background');
             },
+            onLeaveBack: ()=>{
+                _gsapDefault.default.to(subtitle, {
+                    y: '100%',
+                    ...configs
+                });
+                DOM.headerDots[index].classList.remove('theme--background');
+            },
             onLeave: ()=>_gsapDefault.default.to(subtitle, {
-                    y: '-220%',
+                    y: '-100%',
                     ...configs
                 })
             ,
             onEnterBack: ()=>_gsapDefault.default.to(subtitle, {
-                    y: '-110%',
+                    y: '0',
                     ...configs
                 })
-            ,
-            onLeaveBack: ()=>{
-                _gsapDefault.default.to(subtitle, {
-                    y: '0%',
-                    ...configs
-                });
-                DOM.headerDots[index].classList.remove('theme--background');
-            }
         });
     });
 }
 exports.default = toggleHeaderSubtitleAndDots;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7EOqe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _gsap = require("gsap");
-var _gsapDefault = parcelHelpers.interopDefault(_gsap);
-var _scrollTrigger = require("gsap/ScrollTrigger");
-_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
-const DOM = {
-    scrollSVG: document.querySelector('.svg-wrapper'),
-    sectionHero: document.querySelector('.section--hero')
-};
-function spinScrollSVG() {
-    _gsapDefault.default.to(DOM.scrollSVG, {
-        rotation: 180,
-        y: '-200px',
-        ease: 'none',
-        autoAlpha: 0,
-        duration: 1,
-        scrollTrigger: {
-            trigger: DOM.sectionHero,
-            start: 'top top',
-            end: 'center top',
-            scrub: true
-        }
-    });
-}
-exports.default = spinScrollSVG;
-
 },{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Sl85":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "fadeOut", ()=>fadeOut
-);
-parcelHelpers.export(exports, "fadeIn", ()=>fadeIn
-);
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _scrollTrigger = require("gsap/ScrollTrigger");
@@ -10538,7 +10509,7 @@ const DOM = {
     ],
     elementsFadeIn: /Mobi|Android/i.test(navigator.userAgent) ? _gsapDefault.default.utils.toArray('.--fade-in') : _gsapDefault.default.utils.toArray('.--fade-in:not(h2)')
 };
-function fadeOut() {
+const fadeOut = ()=>{
     DOM.elementsFadeOut.forEach((element)=>{
         _gsapDefault.default.to(element, {
             autoAlpha: 0,
@@ -10554,8 +10525,8 @@ function fadeOut() {
             }
         });
     });
-}
-function fadeIn() {
+};
+const fadeIn = ()=>{
     DOM.elementsFadeIn.forEach((element)=>{
         _gsapDefault.default.to(element, {
             autoAlpha: 1,
@@ -10571,7 +10542,12 @@ function fadeIn() {
             }
         });
     });
+};
+function fadeInOut() {
+    fadeIn();
+    fadeOut();
 }
+exports.default = fadeInOut;
 
 },{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a0dPu":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -10585,25 +10561,172 @@ const DOM = {
     projects: _gsapDefault.default.utils.toArray('.project')
 };
 function marqueeOnMobile() {
-    if (/Mobi|Android/i.test(navigator.userAgent)) DOM.marquees.forEach((marquee, index)=>{
+    DOM.marquees.forEach((marquee, index)=>{
         _scrollTrigger.ScrollTrigger.create({
             trigger: marquee,
             start: 'top 80%',
             end: 'top 10%',
             id: 'marquee',
-            onEnter: ()=>DOM.projects[index].classList.add('--active')
+            onEnter: ()=>activeMarquee(DOM.projects[index])
             ,
-            onLeave: ()=>DOM.projects[index].classList.remove('--active')
+            onLeave: ()=>desactiveMarquee(DOM.projects[index])
             ,
-            onEnterBack: ()=>DOM.projects[index].classList.add('--active')
+            onEnterBack: ()=>activeMarquee(DOM.projects[index])
             ,
-            onLeaveBack: ()=>DOM.projects[index].classList.remove('--active')
+            onLeaveBack: ()=>desactiveMarquee(DOM.projects[index])
         });
     });
 }
 exports.default = marqueeOnMobile;
+const activeMarquee = (project)=>project.classList.add('--active')
+;
+const desactiveMarquee = (project)=>project.classList.remove('--active')
+;
 
 },{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3mPRR":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "activeProjectDesktop", ()=>activeProjectDesktop
+);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+var _scrollTrigger = require("gsap/ScrollTrigger");
+var _projects = require("../animations/projects");
+_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
+const DOM = {
+    container: document.querySelector('.container'),
+    firstProject: document.querySelector('.project:first-child'),
+    lastProject: document.querySelector('.project:last-child'),
+    marquees: document.querySelectorAll('.marquee'),
+    slider: document.querySelector('.slider'),
+    sliderWrapper: document.querySelector('.slider__img--wrapper'),
+    sliderImg: document.querySelector('.slider__img'),
+    sliderImgMask: document.querySelector('.slider__img--mask'),
+    get: (selector)=>document.querySelector(selector)
+};
+let tlEnter, tlOut;
+let tlDefaults = {
+    paused: true,
+    duration: 0.2,
+    ease: 'power2.out'
+};
+function activeProjectDesktop() {
+    setMarqueeWidth();
+    createSliderEnter();
+    createSliderOut();
+    _gsapDefault.default.to(DOM.sliderWrapper, {
+        duration: 1,
+        y: '-15vh',
+        ease: 'none',
+        scrollTrigger: {
+            trigger: DOM.firstProject,
+            start: 'top 80%',
+            endTrigger: DOM.lastProject,
+            end: 'top 20%',
+            id: 'project',
+            scrub: true,
+            onEnter: ()=>{
+                activeProject('first');
+                tlEnter.play();
+            },
+            onLeaveBack: ()=>{
+                desactiveProject();
+                tlEnter.reverse();
+            },
+            onLeave: ()=>{
+                desactiveProject();
+                tlOut.play();
+            },
+            onEnterBack: ()=>{
+                activeProject();
+                tlOut.reverse();
+            }
+        }
+    });
+}
+const setMarqueeWidth = ()=>{
+    DOM.marquees.forEach((marquee)=>_gsapDefault.default.set(marquee, {
+            width: calcMarqueeWidth
+        })
+    );
+};
+const calcMarqueeWidth = ()=>{
+    let pageWidth = document.body.clientWidth;
+    let containerGap = parseInt(getComputedStyle(DOM.container).marginLeft);
+    let sliderLeft = parseInt(getComputedStyle(DOM.slider).left);
+    let sliderWidth = DOM.slider.offsetWidth;
+    if (pageWidth < 1920) return pageWidth - (sliderWidth + 5 + containerGap * 2);
+    else return pageWidth - (sliderWidth + containerGap + sliderLeft + 5);
+};
+const createSliderEnter = ()=>{
+    tlEnter = _gsapDefault.default.timeline({
+        ...tlDefaults
+    }).to(DOM.sliderImg, {
+        y: 0
+    }, 0).to(DOM.sliderImgMask, {
+        y: 0,
+        scale: 1
+    }, 0);
+};
+const createSliderOut = ()=>{
+    tlOut = _gsapDefault.default.timeline({
+        ...tlDefaults
+    }).to(DOM.sliderImg, {
+        yPercent: -100
+    }, 0).to(DOM.sliderImgMask, {
+        yPercent: 100,
+        scale: 1
+    }, 0);
+};
+const activeProject = (first)=>{
+    first ? DOM.firstProject.classList.add('--active') : DOM.lastProject.classList.add('--active');
+    DOM.slider.classList.add('--active');
+    DOM.slider.removeAttribute('style');
+    _projects.toggleActiveSlide(DOM.get('.project.--active').dataset.id);
+};
+const desactiveProject = ()=>{
+    DOM.get('.project.--active').classList.remove('--active');
+    DOM.slider.classList.remove('--active');
+    DOM.slider.removeAttribute('style');
+};
+window.addEventListener('resize', setMarqueeWidth);
+
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","../animations/projects":"2M8Vt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2M8Vt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "toggleActiveSlide", ()=>toggleActiveSlide
+);
+const DOM = {
+    projectTitles: document.querySelectorAll('.project h3'),
+    get: (selector)=>document.querySelector(selector)
+};
+const toggleProjects = (e)=>{
+    let project = e.currentTarget.parentNode.parentNode;
+    let projectId = project.dataset.id;
+    toggleActiveProject(project);
+    toggleActiveSlide(projectId);
+};
+const isActive = (element)=>{
+    return element.classList.contains('--active');
+};
+const toggleActiveProject = (projectContainer)=>{
+    if (!isActive(projectContainer)) {
+        DOM.get('.project.--active').classList.remove('--active');
+        projectContainer.classList.add('--active');
+    }
+};
+function toggleActiveSlide(id) {
+    let slide = DOM.get('#' + id);
+    if (!isActive(slide)) {
+        let lastActiveSlide = DOM.get('.slider__img .--active');
+        if (lastActiveSlide) lastActiveSlide.classList.remove('--active');
+        slide.classList.add('--active');
+    }
+}
+DOM.projectTitles.forEach((title)=>title.addEventListener('click', toggleProjects)
+);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"76Bnr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
@@ -10611,42 +10734,158 @@ var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _scrollTrigger = require("gsap/ScrollTrigger");
 _gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
 const DOM = {
-    firstProject: document.querySelector('.project:first-child'),
-    lastProject: document.querySelector('.project:last-child'),
-    slider: document.querySelector('.slider-desktop'),
-    get: (selector)=>document.querySelector(selector)
-    ,
-    active: undefined
+    scrollIcon: document.querySelector('.scroll-icon'),
+    sectionHero: document.querySelector('.section--hero')
 };
-function activeProjectDesktop() {
-    _scrollTrigger.ScrollTrigger.create({
-        trigger: DOM.firstProject,
-        start: 'top 60%',
-        endTrigger: DOM.lastProject,
-        end: 'top 10%',
-        id: 'project',
-        onEnter: ()=>activeProject()
-        ,
-        onEnterBack: ()=>activeProject()
-        ,
-        onLeave: ()=>desactiveProject()
-        ,
-        onLeaveBack: ()=>desactiveProject()
+function spinScrollIcon() {
+    _gsapDefault.default.to(DOM.scrollIcon, {
+        rotation: 180,
+        y: '-200px',
+        ease: 'none',
+        autoAlpha: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: DOM.sectionHero,
+            start: 'top top',
+            end: 'center top',
+            scrub: true
+        }
     });
 }
-exports.default = activeProjectDesktop;
-const activeProject = ()=>{
-    DOM.firstProject.classList.add('--active');
-    DOM.slider.classList.add('--active');
-    DOM.slider.removeAttribute('style');
-};
-const desactiveProject = ()=>{
-    DOM.get('.project.--active').classList.remove('--active');
-    DOM.slider.classList.remove('--active');
-    DOM.slider.removeAttribute('style');
-};
+exports.default = spinScrollIcon;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8rQdV":[function(require,module,exports) {
+},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lfv1X":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+const DOM = {
+    cursor: document.querySelector('.custom-cursor'),
+    cursorDisabled: true,
+    subtitles: document.querySelectorAll('h2'),
+    menuItems: document.querySelectorAll('.menu__item'),
+    scrolls: document.querySelectorAll('.scroll-icon'),
+    projects: document.querySelectorAll('h3'),
+    contact: document.querySelectorAll('.hello')
+};
+const moveCursor = (e)=>_gsapDefault.default.to(DOM.cursor, {
+        duration: 0.5,
+        x: e.clientX,
+        y: e.clientY
+    })
+;
+const showCursor = ()=>{
+    _gsapDefault.default.to(DOM.cursor, {
+        ease: 'power2.out',
+        duration: 1,
+        opacity: 1,
+        delay: 0.3
+    });
+};
+const activeCursor = ()=>{
+    if (DOM.cursorDisabled) {
+        showCursor();
+        window.removeEventListener('mousemove', activeCursor);
+    }
+};
+function initCursor() {
+    if (DOM.cursor) {
+        window.addEventListener('mousemove', activeCursor);
+        window.addEventListener('mousemove', moveCursor);
+        const smallTriggers = [
+            ...DOM.subtitles,
+            ...DOM.menuItems
+        ];
+        const mediumTriggers = [
+            ...DOM.projects
+        ];
+        const largeTriggers = [
+            ...DOM.scrolls,
+            ...DOM.contact
+        ];
+        smallTriggers.forEach((target)=>{
+            target.addEventListener('mouseenter', ()=>DOM.cursor.classList.add('--active', '--small')
+            );
+        });
+        smallTriggers.forEach((target)=>{
+            target.addEventListener('mouseout', ()=>DOM.cursor.classList.remove('--active', '--small')
+            );
+        });
+        mediumTriggers.forEach((item)=>{
+            item.addEventListener('mouseenter', ()=>DOM.cursor.classList.add('--active', '--medium')
+            );
+        });
+        mediumTriggers.forEach((item)=>{
+            item.addEventListener('mouseout', ()=>DOM.cursor.classList.remove('--active', '--medium')
+            );
+        });
+        largeTriggers.forEach((item)=>{
+            item.addEventListener('mouseenter', ()=>{
+                DOM.cursor.classList.add('--active', '--large');
+            });
+        });
+        largeTriggers.forEach((item)=>{
+            item.addEventListener('mouseout', ()=>DOM.cursor.classList.remove('--active', '--large')
+            );
+        });
+    }
+} // DOM.menuItem.forEach(function (el) {
+ //   el.addEventListener('mouseover', () => {
+ //     gsap.to(DOM.cursor, 0.25, {
+ //       scale: 1,
+ //       autoAlpha: 1,
+ //     })
+ //   })
+ // }
+ // 	el.addEventListener('mouseout', () => {
+ // 		gsap.to(button, 0.25, {
+ // 			scale: 0.5,
+ // 			autoAlpha: 0
+ // 		})
+ // 	})
+ // 	el.addEventListener('mousedown', () => {
+ // 		gsap.to(button, 0.5, {
+ // 			css: { transform: `translate(-50%, -50%) scale(0.75)` }
+ // 		})
+ // 		gsap.to(buttonText, 0.25, {
+ // 			css: { opacity: 1 }
+ // 		})
+ // 	})
+ // 	el.addEventListener('mouseup', () => {
+ // 		gsap.to(button, 1, {
+ // 			css: { background: `transparent` }
+ // 		})
+ // 		gsap.to(button, 0.5, {
+ // 			css: { transform: `translate(-50%, -50%) scale(1)` }
+ // 		})
+ // 		gsap.to(buttonText, 0.25, {
+ // 			css: {
+ // 				opacity: 1
+ // 			}
+ // 		})
+ // 	})
+ // })
+exports.default = initCursor;
+
+},{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e2JgW":[function(require,module,exports) {
+const DOM = {
+    headerTheme: document.querySelector('.header__theme'),
+    body: document.body
+};
+const toggleTheme = ()=>{
+    if (isDarkMode()) {
+        DOM.body.classList.remove('--dark');
+        DOM.body.classList.add('--light');
+    } else {
+        DOM.body.classList.remove('--light');
+        DOM.body.classList.add('--dark');
+    }
+};
+const isDarkMode = ()=>DOM.body.classList.contains('--dark')
+;
+DOM.headerTheme.addEventListener('click', toggleTheme);
+
+},{}],"8rQdV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
@@ -10687,27 +10926,6 @@ DOM.areaAroundTarget.addEventListener('mousemove', (e)=>{
         ease: 'linear'
     });
 });
-
-},{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2M8Vt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _gsap = require("gsap");
-var _gsapDefault = parcelHelpers.interopDefault(_gsap);
-const DOM = {
-    projectTitles: document.querySelectorAll('.project h2'),
-    get: (selector)=>document.querySelector(selector)
-};
-DOM.projectTitles.forEach((title)=>title.addEventListener('click', toggleProject)
-);
-function toggleProject(e) {
-    let project = e.currentTarget.parentNode.parentNode;
-    if (!isActive(project)) {
-        DOM.get('.project.--active').classList.remove('--active');
-        project.classList.add('--active');
-    }
-}
-function isActive(element) {
-    return element.classList.contains('--active');
-}
 
 },{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["l4AUa","ebWYT"], "ebWYT", "parcelRequirea9cf")
 
