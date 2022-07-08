@@ -3,23 +3,24 @@ import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
 
 import initCursor from './cursor'
+import { hideMenu } from './menu'
 
 gsap.registerPlugin(Flip)
 
 const DOM = {
 	body: document.body,
-	scrollbarWrapper: document.querySelector('#scrollbar-wrapper'),
-	dotsWrapper: document.querySelector('.dots'),
-	dotsArr: gsap.utils.toArray('.dot'),
-	headerWrapper: document.querySelector('.header__wrapper'),
-	headerTitlesArr: gsap.utils.toArray('.header__title'),
-	headerLang: document.querySelector('.header__lang'),
-	headerTheme: document.querySelector('.header__theme'),
+	headerTitlesArr: gsap.utils.toArray('.header__titles h2'),
+	headerMenu: document.querySelector('.header__menu'),
+	headerEmail: document.querySelector('.header__menu__item.--email'),
+	headerLang: document.querySelector('.header__menu__item.--lang'),
+	headerTheme: document.querySelector('.header__menu__item.--theme'),
 	headerLine: document.querySelector('.header__line'),
 	heroTitlesArr: gsap.utils.toArray('.section--hero h1'),
 	sectionHero: document.querySelector('.section--hero'),
 	contentArr: gsap.utils.toArray('.--hide-show'),
-	scrollIcon: gsap.utils.toArray('.scroll-icon')
+	scrollIcon: gsap.utils.toArray('.scroll-icon'),
+	dotsWrapper: document.querySelector('.dots'),
+	dotsArr: gsap.utils.toArray('.dot')
 }
 
 function stopLoadingAndInitIntro() {
@@ -46,23 +47,30 @@ function stopLoadingAndInitIntro() {
 }
 
 const initIntro = () => {
-	// setHeaderWrapperSize()
-
 	const introTl = gsap.timeline({
 		defaults: {
-			duration: 0.8
+			duration: 1
 		},
 		ease: 'power2.in',
-		onStart: () => DOM.body.classList.remove('--loading')
+		onStart: () => {
+			DOM.body.classList.remove('--loading')
+			DOM.dotsArr.forEach((dot) => dot.classList.add('theme--background'))
+		},
+		onComplete: () => hideMenu()
 	})
 
 	introTl
 		.to(DOM.headerLine, { x: '0' })
 		.to(
-			[DOM.headerTheme, DOM.headerLang, DOM.headerTitlesArr[0]],
+			[
+				DOM.headerTheme,
+				DOM.headerLang,
+				DOM.headerEmail,
+				DOM.headerTitlesArr[0]
+			],
 			{
 				y: '0',
-				stagger: 0.2
+				stagger: 0.1
 			},
 			'0'
 		)

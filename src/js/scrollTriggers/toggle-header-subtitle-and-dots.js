@@ -21,11 +21,9 @@ export default function toggleHeaderSubtitleAndDots() {
 			end: 'bottom 35%',
 			onEnter: () => {
 				gsap.to(subtitle, { y: '0', ...configs })
-				DOM.headerDots[index].classList.add('theme--background')
 			},
 			onLeaveBack: () => {
 				gsap.to(subtitle, { y: '100%', ...configs })
-				DOM.headerDots[index].classList.remove('theme--background')
 			},
 			onLeave: () => gsap.to(subtitle, { y: '-100%', ...configs }),
 			onEnterBack: () => gsap.to(subtitle, { y: '0', ...configs })

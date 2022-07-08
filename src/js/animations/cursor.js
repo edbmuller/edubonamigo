@@ -4,21 +4,21 @@ const DOM = {
 	cursor: document.querySelector('.custom-cursor'),
 	cursorDisabled: true,
 	subtitles: document.querySelectorAll('h2'),
-	menuItems: document.querySelectorAll('.menu__item'),
+	menuItems: document.querySelectorAll('.header__menu__item'),
 	scrolls: document.querySelectorAll('.scroll-icon'),
 	projects: document.querySelectorAll('h3'),
 	contact: document.querySelectorAll('.hello')
 }
 
 const moveCursor = (e) =>
-	gsap.to(DOM.cursor, { duration: 0.5, x: e.clientX, y: e.clientY })
+	gsap.to(DOM.cursor, { duration: 0.7, x: e.clientX, y: e.clientY })
 
 const showCursor = () => {
 	gsap.to(DOM.cursor, {
 		ease: 'power2.out',
 		duration: 1,
 		opacity: 1,
-		delay: 0.3
+		delay: 0.4
 	})
 }
 
@@ -29,7 +29,7 @@ const activeCursor = () => {
 	}
 }
 
-export default function initCursor () {
+export default function initCursor() {
 	if (DOM.cursor) {
 		window.addEventListener('mousemove', activeCursor)
 		window.addEventListener('mousemove', moveCursor)

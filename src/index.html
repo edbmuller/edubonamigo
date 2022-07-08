@@ -12,22 +12,28 @@
 		<link rel="stylesheet" href="./styles/loading.scss" />
 		<link rel="stylesheet" href="./styles/index.scss" />
 	</head>
+
 	<body class="theme --dark --loading">
 		<header class="header">
-			<div class="header__wrapper">
-				<h2 class="header__title theme--color">edubon.code</h2>
-				<div class="header__subtitles">
-					<h2 class="header__subtitle theme--color">about</h2>
-					<h2 class="header__subtitle theme--color">selected</h2>
-					<h2 class="header__subtitle theme--color">contact</h2>
+			<div class="header__titles">
+				<h2 class="header__title theme--color">edubon.</h2>
+				<ul class="header__subtitles">
+					<li><h2 class="header__subtitle theme--color">about</h2></li>
+					<li><h2 class="header__subtitle theme--color">selected</h2></li>
+					<li><h2 class="header__subtitle theme--color">contact</h2></li>
 				</div>
 			</div>
 
-			<div class="menu">
-				<div class="header__wrapper header__wrapper--menu">
-					<a class="menu__item header__lang theme--color" href="us.html">en</a>
-					<div class="menu__item header__theme theme--background"></div>
-				</div>
+			<div class="header__menu">
+				<ul class="header__menu__list">
+					<li>
+            <a  class="header__menu__item --email theme--color" data-email="oi@edubon.co">email</a>
+          </li>
+					<li>
+            <a class="header__menu__item --lang theme--color" href="pt-br.html">pt-br</a>
+          </li>
+					<li class="header__menu__item --theme theme--background"></li>
+				</ul>
 
 				<div class="header__wrapper--dots">
 					<div class="dots --loading" alt="Link to next section">

@@ -1,7 +1,8 @@
 // TODO: Trigger after imagesLoaded
 import './animations/toggle-theme'
 // import "./animations/custom-cursor"
-import './animations/hero'
+import './animations/loading-intro'
+import './animations/menu'
 import './animations/projects'
 import './animations/magneticElement'
 

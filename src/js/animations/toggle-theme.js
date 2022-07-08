@@ -1,5 +1,5 @@
 const DOM = {
-	headerTheme: document.querySelector('.header__theme'),
+	headerTheme: document.querySelector('.header__menu__item.--theme'),
 	body: document.body
 }
 
