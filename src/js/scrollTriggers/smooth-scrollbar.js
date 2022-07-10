@@ -9,7 +9,8 @@ Scrollbar.use(MobilePlugin)
 
 const DOM = {
 	scroller: document.querySelector('.scroller'),
-	headerTitles: gsap.utils.toArray('.header__wrapper h2'),
+	headerTitles: gsap.utils.toArray('.header__titles h2'),
+	headerContact: document.querySelector('.header__menu__item.--contact'),
 	sections: gsap.utils.toArray('.section'),
 	scrollIcon: gsap.utils.toArray('.scroll-icon')
 }
@@ -44,18 +45,17 @@ const smoothScrollbar = () => {
 
 const listenerAnchorToSection = (target, index) => {
 	target.addEventListener('click', (e) => {
-		e.preventDefault()
 		scrollbar.scrollIntoView(DOM.sections[index], {
-			damping: 0.07,
-			offsetTop: 100
+			damping: 0.07
 		})
 	})
 }
 
-const subtitleAnchors = () => {
+const sectionAnchors = () => {
 	DOM.headerTitles.forEach((element, index) => {
 		listenerAnchorToSection(element, index)
 	})
+	listenerAnchorToSection(DOM.headerContact, 3)
 }
 
 const scrollIconAnchors = () => {
@@ -77,6 +77,6 @@ const fixGsapMarkers = () => {
 
 export default function initSmoothScrollbar() {
 	smoothScrollbar()
-	subtitleAnchors()
+	sectionAnchors()
 	scrollIconAnchors()
 }

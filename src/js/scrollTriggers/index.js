@@ -1,4 +1,4 @@
-import initSmoothScrollbar from './smooth-scrollbar'
+import smoothScrollbar from './smooth-scrollbar'
 import toggleHeaderSubtitleAndDots from './toggle-header-subtitle-and-dots'
 import spinScrollIcon from './spin-scroll-icon'
 import fadeInOut from './fade-in-out'
@@ -7,7 +7,7 @@ import marqueeOnMobile from './marquee-mobile'
 import { activeProjectDesktop } from './project-desktop'
 
 export default function initScrollTriggers() {
-	initSmoothScrollbar()
+	smoothScrollbar()
 	toggleHeaderSubtitleAndDots()
 	spinScrollIcon()
 	fadeInOut()

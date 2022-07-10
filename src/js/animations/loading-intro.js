@@ -3,7 +3,7 @@ import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
 
 import initCursor from './cursor'
-import { hideMenu } from './menu'
+import { hideMenu } from './header-menu'
 
 gsap.registerPlugin(Flip)
 
@@ -11,7 +11,7 @@ const DOM = {
 	body: document.body,
 	headerTitlesArr: gsap.utils.toArray('.header__titles h2'),
 	headerMenu: document.querySelector('.header__menu'),
-	headerEmail: document.querySelector('.header__menu__item.--email'),
+	headerContact: document.querySelector('.header__menu__item.--contact'),
 	headerLang: document.querySelector('.header__menu__item.--lang'),
 	headerTheme: document.querySelector('.header__menu__item.--theme'),
 	headerLine: document.querySelector('.header__line'),
@@ -65,7 +65,7 @@ const initIntro = () => {
 			[
 				DOM.headerTheme,
 				DOM.headerLang,
-				DOM.headerEmail,
+				DOM.headerContact,
 				DOM.headerTitlesArr[0]
 			],
 			{

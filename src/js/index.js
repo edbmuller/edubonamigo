@@ -2,7 +2,7 @@
 import './animations/toggle-theme'
 // import "./animations/custom-cursor"
 import './animations/loading-intro'
-import './animations/menu'
+import './animations/header-menu'
 import './animations/projects'
 import './animations/magneticElement'
 

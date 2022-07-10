@@ -27,7 +27,7 @@
 
 	&__title {
 		display: flex;
-		justify-content: flex-end;
+		justify-content: flex-start;
 
 		@include ultra {
 			justify-content: flex-start;
@@ -37,27 +37,23 @@
 			cursor: pointer;
 			font-family: var(--serif-font-family);
 			width: fit-content;
-
-			@include ultra {
-				margin-left: 55vw;
-			}
 		}
 
 		&.--fade-in h3 {
 			@include landscape {
-				font-size: 8vw;
+				font-size: 5vw;
 				line-height: 1.1;
 				margin-bottom: 0;
 			}
 
 			@include laptop {
 				opacity: 0.2;
-				font-size: 7vw;
+				font-size: 5vw;
 				line-height: 1;
 			}
 
 			@include desktop {
-				font-size: 7vw;
+				font-size: 5vw;
 				line-height: 1;
 			}
 
@@ -75,6 +71,7 @@
 		--move-initial: calc(-25% + var(--offset));
 		--move-final: calc(-50% + var(--offset));
 		margin-bottom: 5vh;
+		margin-top: 1rem;
 
 		@include laptop {
 			width: 34vw;
@@ -82,7 +79,7 @@
 
 		@include laptop {
 			margin-bottom: 4vh;
-			margin-left: auto;
+			margin-right: auto;
 		}
 	}
 
@@ -106,8 +103,13 @@
 		position: relative;
 
 		@include laptop {
-			font-size: 1.6rem;
-			padding: 0 4rem;
+			font-size: 1.3rem;
+			padding: 0 3rem;
+		}
+
+		@include desktop {
+			font-size: 1.3rem;
+			padding: 0 3rem;
 		}
 
 		&::before {
@@ -162,7 +164,7 @@
 	pointer-events: none;
 	position: fixed;
 	bottom: 1vh;
-	left: 3vw;
+	right: 3vw;
 	width: 60vw;
 	height: auto;
 	aspect-ratio: 3/2;
@@ -176,7 +178,7 @@
 
 	@include ultra {
 		width: 40vw;
-		left: 10vw;
+		right: 10vw;
 	}
 
 	&__img--wrapper {

@@ -4,8 +4,8 @@ const DOM = {
 }
 
 const toggleProjects = (e) => {
-	let project = e.currentTarget.parentNode.parentNode
-	let projectId = project.dataset.id
+	const project = e.currentTarget.parentNode.parentNode
+	const projectId = project.dataset.id
 
 	toggleActiveProject(project)
 	toggleActiveSlide(projectId)
@@ -23,10 +23,10 @@ const toggleActiveProject = (projectContainer) => {
 }
 
 export function toggleActiveSlide(id) {
-	let slide = DOM.get('#' + id)
+	const slide = DOM.get('#' + id)
 
 	if (!isActive(slide)) {
-		let lastActiveSlide = DOM.get('.slider__img .--active')
+		const lastActiveSlide = DOM.get('.slider__img .--active')
 		if (lastActiveSlide) {
 			lastActiveSlide.classList.remove('--active')
 		}
