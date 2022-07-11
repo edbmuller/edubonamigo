@@ -7,7 +7,7 @@ const DOM = {
 	elementsFadeOut: [
 		...gsap.utils.toArray('.title-wrapper'),
 		...gsap.utils.toArray('.project'),
-		...gsap.utils.toArray('.text')
+		...gsap.utils.toArray('.about__text')
 	],
 	elementsFadeIn: /Mobi|Android/i.test(navigator.userAgent)
 		? gsap.utils.toArray('.--fade-in')

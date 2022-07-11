@@ -1,31 +1,61 @@
-.section--about {
+.about.section {
 	padding: 10vw 0 10vh 15vw;
 	position: relative;
 
-	@include laptop {
+	@include tablet {
 		padding-bottom: 10vw;
+		padding-left: 40vw;
 	}
 
 	@include laptop {
 		padding-left: 30vw;
 	}
-
-	.text {
-		font-size: 6vw;
-		margin-bottom: 7vw;
-		line-height: 1.5;
-
-		@include tablet() {
-			font-size: 4vw;
-		}
-
-		@include laptop {
-			font-size: 2.3vw;
-			margin-bottom: 2vw;
-		}
-
-		@include ultra {
-			font-size: 1.5vw;
-		}
+	@include desktop {
+		padding-left: 30vw;
 	}
+}
+
+.about__text {
+	font-size: 6vw;
+	margin-bottom: 7vw;
+	line-height: 1.5;
+
+	@include tablet() {
+		font-size: 3vw;
+	}
+
+	@include laptop {
+		font-size: 2.3vw;
+		margin-bottom: 2vw;
+	}
+
+	@include ultra {
+		font-size: 1.5vw;
+	}
+}
+
+.about__image {
+	position: fixed;
+	left: 4vw;
+	height: auto;
+	pointer-events: none;
+	opacity: 0;
+	z-index: -2;
+	display: none;
+
+	@include tablet {
+		display: block;
+		width: 45vw;
+		top: 20vh;
+	}
+
+	@include laptop {
+		width: 32vw;
+		top: 13vh;
+	}
+}
+
+.about__image__of__ed {
+	width: 100%;
+	height: auto;
 }
