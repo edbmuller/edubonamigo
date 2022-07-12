@@ -16,11 +16,13 @@ export default function showAboutImage() {
 
 const fadeIn = () => {
 	gsap.to(DOM.imageWrapper, {
-		css: { opacity: 0.3 },
+		autoAlpha: 0.3,
+		y: '-30%',
+		ease: 'none',
 		scrollTrigger: {
 			trigger: DOM.about,
-			start: 'top 50%',
-			end: 'top 15%',
+			start: 'top 60%',
+			end: 'top 10%',
 			scrub: true,
 			toggleActions: 'play reverse play reverse'
 		}
@@ -29,11 +31,13 @@ const fadeIn = () => {
 
 const fadeOut = () => {
 	gsap.to(DOM.image, {
-		css: { opacity: 0 },
+		autoAlpha: 0,
+		y: '-30%',
+		ease: 'none',
 		scrollTrigger: {
 			trigger: DOM.about,
-			start: 'bottom 70%',
-			end: 'bottom 50%',
+			start: 'top 10%',
+			end: 'top -40%',
 			scrub: true,
 			toggleActions: 'play reverse play reverse'
 		}

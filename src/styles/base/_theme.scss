@@ -1,3 +1,5 @@
+@import '../base/helpers';
+
 @font-face {
 	font-family: 'Italiana';
 	src: url('../fonts/Italiana.ttf');
@@ -19,9 +21,7 @@
 	--serif-font-family: 'Italiana', serif;
 }
 
-$theme-duration: 0.3s;
-$easing: ease-in-out;
-$defaults: $theme-duration $easing;
+$defaults: $duration $easing;
 
 .theme {
 	// switch between dark and light theme

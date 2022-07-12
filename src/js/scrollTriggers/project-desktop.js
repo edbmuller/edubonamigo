@@ -8,16 +8,16 @@ const DOM = {
 	container: document.querySelector('.container'),
 	firstProject: document.querySelector('.project:first-child'),
 	lastProject: document.querySelector('.project:last-child'),
-	marquees: document.querySelectorAll('.marquee'),
-	slider: document.querySelector('.slider'),
-	sliderWrapper: document.querySelector('.slider__img--wrapper'),
-	sliderImg: document.querySelector('.slider__img'),
-	sliderImgMask: document.querySelector('.slider__img--mask'),
+	marquees: document.querySelectorAll('.project__marquee'),
+	slider: document.querySelector('.project__slider'),
+	sliderWrapper: document.querySelector('.project__slider__img--wrapper'),
+	sliderImgMask: document.querySelector('.project__slider__img--mask'),
+	sliderImg: document.querySelector('.project__slider__img'),
 	get: (selector) => document.querySelector(selector)
 }
 
 let tlEnter, tlOut
-let tlDefaults = {
+const tlDefaults = {
 	paused: true,
 	duration: 0.2,
 	ease: 'power2.out'
@@ -30,7 +30,7 @@ export function activeProjectDesktop() {
 
 	gsap.to(DOM.sliderWrapper, {
 		duration: 1,
-		y: '-15vh',
+		y: '-10vh',
 		ease: 'none',
 		scrollTrigger: {
 			trigger: DOM.firstProject,
@@ -66,15 +66,23 @@ const setMarqueeWidth = () => {
 }
 
 const calcMarqueeWidth = () => {
-	let pageWidth = document.body.clientWidth
-	let containerGap = parseInt(getComputedStyle(DOM.container).marginLeft)
-	let sliderLeft = parseInt(getComputedStyle(DOM.slider).left)
-	let sliderWidth = DOM.slider.offsetWidth
+	const pageWidth = document.body.clientWidth
+	const containerGap = parseInt(getComputedStyle(DOM.container).marginLeft)
+	const sliderRight = parseInt(getComputedStyle(DOM.slider).right)
+	const sliderWidth = DOM.slider.offsetWidth
 	if (pageWidth < 1920) {
 		return pageWidth - (sliderWidth + 5 + containerGap * 2)
 	} else {
-		return pageWidth - (sliderWidth + containerGap + sliderLeft + 5)
+		return pageWidth - (sliderWidth + containerGap + sliderRight + 5)
 	}
+}
+
+const toggleMarqueeAnimation = (ev) => {
+	const marquee = ev.target.firstElementChild
+
+	ev.type === 'mouseenter'
+		? marquee.classList.add('--paused')
+		: marquee.classList.remove('--paused')
 }
 
 const createSliderEnter = () => {
@@ -109,3 +117,8 @@ const desactiveProject = () => {
 }
 
 window.addEventListener('resize', setMarqueeWidth)
+
+DOM.marquees.forEach((marquee) => {
+	marquee.addEventListener('mouseenter', toggleMarqueeAnimation)
+	marquee.addEventListener('mouseleave', toggleMarqueeAnimation)
+})

@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const DOM = {
-	marquees: gsap.utils.toArray('.marquee__inner'),
+	marquees: gsap.utils.toArray('.project__marquee__inner'),
 	projects: gsap.utils.toArray('.project')
 }
 
@@ -14,7 +14,6 @@ export default function marqueeOnMobile() {
 			trigger: marquee,
 			start: 'top 80%',
 			end: 'top 10%',
-			id: 'marquee',
 			onEnter: () => activeMarquee(DOM.projects[index]),
 			onLeave: () => desactiveMarquee(DOM.projects[index]),
 			onEnterBack: () => activeMarquee(DOM.projects[index]),

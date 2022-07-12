@@ -2,7 +2,7 @@ import gsap from 'gsap'
 
 const DOM = {
 	target: document.querySelector('.contact__mask'),
-	areaAroundTarget: document.querySelector('.section--contact')
+	areaAroundTarget: document.querySelector('.section.contact')
 }
 
 const targetOffsetTop = DOM.target.offsetTop

@@ -3,10 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"
-		/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0,viewport-fit=cover"/>
 		<title>Eduardo Bonamigo - Desenvolvedor Web</title>
 		<link rel="icon" href="../favicon.svg" sizes="any" type="image/svg+xml" />
 		<link rel="stylesheet" href="./styles/loading.scss" />
@@ -16,10 +13,10 @@
 	<body class="theme --dark --loading">
 		<header class="header">
 			<div class="header__titles">
-				<h2 class="header__title theme--color">edubon.</h2>
+				<h2 class="header__title theme--color">EduBon.</h2>
 				<ul class="header__subtitles">
 					<li><h2 class="header__subtitle theme--color">about</h2></li>
-					<li><h2 class="header__subtitle theme--color">selected</h2></li>
+					<li><h2 class="header__subtitle theme--color">selected <span>work</span></h2></li>
 					<li><h2 class="header__subtitle theme--color">contact</h2></li>
 				</div>
 			</div>
@@ -30,7 +27,7 @@
             <a  class="header__menu__item --contact theme--color">contact</a>
           </li>
 					<li>
-            <a class="header__menu__item --lang theme--color" href="pt-br.html">pt-br</a>
+            <a class="header__menu__item --lang theme--color" href="pt-br.html">pt-BR</a>
           </li>
 					<li class="header__menu__item --theme theme--background"></li>
 				</ul>
@@ -192,13 +189,13 @@
 					</div>
 				</section>
 
-				<section class="section section--projects">
+				<section class="section projects">
 					<div class="project" data-id="tlscp">
 						<div class="project__title --fade-in">
 							<h3>Telescópio</h3>
 						</div>
-						<div class="marquee">
-							<div class="marquee__inner">
+						<div class="project__marquee">
+							<div class="project__marquee__inner">
 								<span>Webpack</span>
 								<span>Wordpress</span>
 								<span>SASS</span>
@@ -226,8 +223,7 @@
 							</div>
 						</div>
 						<img
-							id="slider"
-							class="--fade-in"
+							class="project__image --fade-in"
 							src="./imgs/projects/tlscp1.png"
 							alt=""
 						/>
@@ -237,8 +233,8 @@
 						<div class="project__title --fade-in">
 							<h3>Áudio Porto</h3>
 						</div>
-						<div class="marquee">
-							<div class="marquee__inner">
+						<div class="project__marquee">
+							<div class="project__marquee__inner">
 								<span>Webpack</span>
 								<span>Wordpress</span>
 								<span>SASS</span>
@@ -269,8 +265,7 @@
 							</div>
 						</div>
 						<img
-							id="slider"
-							class="--fade-in"
+							class="project__image --fade-in"
 							src="./imgs/projects/tlscp1.png"
 							alt=""
 						/>
@@ -280,8 +275,8 @@
 						<div class="project__title --fade-in">
 							<h3>GSAP Demos</h3>
 						</div>
-						<div class="marquee">
-							<div class="marquee__inner">
+						<div class="project__marquee">
+							<div class="project__marquee__inner">
 								<span>SASS</span>
 								<span>GSAP</span>
 								<span>Parcel</span>
@@ -313,43 +308,69 @@
 							</div>
 						</div>
 						<img
-							id="slider"
-							class="--fade-in"
+							class="project__image --fade-in"
 							src="./imgs/projects/tlscp1.png"
 							alt=""
 						/>
 					</div>
 				</section>
 
-				<section class="section section--contact">
-					<div class="contact --fade-in">
+				<section class="section contact">
+          <div class="contact__label">
+            <p class="contact__label__text --the">Abailable for work!</p>
+          </div>
+					<div class="contact__link --fade-in">
 						<div class="contact__mask">
 							<a href="mailto:edbmuller@gmail.com" class="hello"
 								>Get in touch!</a
 							>
 						</div>
 					</div>
+
+          <footer class="footer">
+            <ul class="footer__social">
+              <li class="footer__social__item"><a class="footer__social__link theme--color" href="https://github.com/edubonamigo" target="_blank">Github</a></li>
+              <li class="footer__social__item"><a class="footer__social__link theme--color" href="tel:51998592311" target="_blank">Linkedin</a></li>
+              <li class="footer__social__item"><a class="footer__social__link theme--color" href="https://instagram.com/edubonamigo" target="_blank">Instagran</a></li>
+              <li class="footer__social__item"><a class="footer__social__link theme--color" href="https://open.spotify.com/user/12153833937?si=a14dcd625f7d427b" target="_blank">Spotify</a></li>
+            </ul>
+      
+            <div class="footer__line theme--background"></div>
+      
+            <div class="footer__location">
+              <p class="footer__location__text">BR, Porto Alegre</p>
+            </div>
+            <div class="footer__copyright">
+              <p class="footer__copyright__text theme--color">Eduardo B. Müller &copy; 2022</p>
+            </div>
+          </footer>
 				</section>
 			</main>
 		</div>
-    <!-- .scroller -->
+    <!-- scroller -->
+
 		<div class="custom-cursor theme--cursor">
 			<class class="custom-cursor__mask"></class>
 		</div>
+
     <div class="about__image">
       <img class="about__image__of__ed" src="./imgs/myself-de-touca.jpg" alt="A nice picture that my sister took of me :)">
     </div>
-		<div class="slider">
-			<div class="slider__img--wrapper">
-				<div class="slider__img" alt="">
-					<div class="slider__img--mask">
+
+		<div class="project__slider">
+			<div class="project__slider__img--wrapper">
+				<div class="project__slider__img" alt="">
+					<div class="project__slider__img--mask">
+
 						<img id="tlscp" src="./imgs/projects/tlscp1.png" alt="" />
 						<img id="audio-porto" src="./imgs/projects/tlscp1.png" alt="" />
 						<img id="gsap-demos" src="./imgs/projects/gsap.png" alt="" />
+            
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</body>
 	<script type="module" src="js/index.js" defer></script>
 </html>

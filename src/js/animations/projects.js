@@ -26,7 +26,7 @@ export function toggleActiveSlide(id) {
 	const slide = DOM.get('#' + id)
 
 	if (!isActive(slide)) {
-		const lastActiveSlide = DOM.get('.slider__img .--active')
+		const lastActiveSlide = DOM.get('.project__slider__img .--active')
 		if (lastActiveSlide) {
 			lastActiveSlide.classList.remove('--active')
 		}

@@ -3,7 +3,7 @@ import toggleHeaderSubtitleAndDots from './header-toggle-subtitle-and-dots'
 import spinScrollIcon from './spin-scroll-icon'
 import fadeInOut from './fade-in-out'
 // project triggers
-import marqueeOnMobile from './marquee-mobile'
+import marqueeOnMobile from './project-marquee-mobile'
 import { activeProjectDesktop } from './project-desktop'
 import showAboutImage from './about-image'
 

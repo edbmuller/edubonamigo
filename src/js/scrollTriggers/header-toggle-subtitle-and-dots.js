@@ -9,7 +9,7 @@ const DOM = {
 
 export default function toggleHeaderSubtitleAndDots() {
 	const configs = {
-		duration: 0.3,
+		duration: 0.4,
 		ease: 'power2.out'
 	}
 
