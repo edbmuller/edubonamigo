@@ -7,7 +7,7 @@ const DOM = {
 	menuItems: document.querySelectorAll('.header__menu__item'),
 	scrolls: document.querySelectorAll('.scroll-icon'),
 	projects: document.querySelectorAll('h3'),
-	contact: document.querySelectorAll('.hello')
+	contact: document.querySelectorAll('.contact__CTA__link')
 }
 
 const moveCursor = (e) =>

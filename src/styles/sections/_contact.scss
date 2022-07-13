@@ -1,13 +1,13 @@
 .section.contact {
 	height: 100vh;
-	align-items: space-around;
+	justify-content: space-between;
 	position: relative;
 }
 
 .contact__label {
-	position: absolute;
-	top: 20vh;
-	left: 10vw;
+	align-self: flex-start;
+	margin-top: 20vh;
+	margin-left: 5vw;
 }
 
 .contact__label__text {
@@ -29,7 +29,12 @@
 	}
 }
 
-.hello {
+.contact__CTA {
+	margin-bottom: 20vh;
+	align-self: center;
+}
+
+.contact__CTA__link {
 	font-family: var(--serif-font-family);
 	color: var(--text-color);
 	font-size: 15vw;
@@ -43,45 +48,25 @@
 }
 
 .footer {
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
-	align-items: center;
-	align-self: flex-end;
+	margin-bottom: calc(3vh + 0.6rem);
+
+	@include tablet {
+		margin-bottom: calc(3vh + 1.2rem);
+	}
 }
 
 .footer__social {
 	width: 100%;
-	height: 100%;
+	height: fit-content;
 	position: relative;
 	overflow: hidden;
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
-}
-
-.footer__social__link {
-	cursor: pointer;
-	font-family: var(--serif-font-family);
-	white-space: nowrap;
-	text-decoration: none;
-	font-size: 5vw;
-	// transform: translateY(100%);
-	text-decoration: none;
-	line-height: 1.3;
-	display: block;
-
-	@include tablet {
-		font-size: 1.8rem;
-	}
-
-	@include laptop {
-		font-size: 2rem;
-	}
-	@include desktop {
-		font-size: 2.2rem;
-	}
-	display: flex;
 	padding: 0.6rem 0;
 
 	@include tablet {
@@ -89,8 +74,20 @@
 	}
 }
 
-.header__line {
-	position: absolute;
+.footer__social__link {
+	cursor: pointer;
+	font-family: var(--serif-font-family);
+	white-space: nowrap;
+	text-decoration: none;
+	font-size: 3vw;
+	// transform: translateY(100%);
+	text-decoration: none;
+	line-height: 1.3;
+	display: block;
+}
+
+.footer__line {
+	// position: absolute;
 	width: 100%;
 	height: 1px;
 	left: 0;
@@ -100,5 +97,6 @@
 
 .footer__location__text,
 .footer__copyright__text {
-	font-size: 1rem;
+	font-size: 1vw;
+	padding-top: 1rem;
 }

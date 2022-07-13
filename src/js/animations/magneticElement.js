@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 
 const DOM = {
-	target: document.querySelector('.contact__mask'),
+	target: document.querySelector('.contact__CTA__mask'),
 	areaAroundTarget: document.querySelector('.section.contact')
 }
 
@@ -33,12 +33,12 @@ DOM.areaAroundTarget.addEventListener('mousemove', (e) => {
 	gsap.to(DOM.target, {
 		x: `${distanceX}px`,
 		duration: 1,
-		ease: 'linear'
+		ease: 'power2.out'
 	})
 
 	gsap.to(DOM.target, {
 		y: `${distanceY}px`,
 		duration: 1,
-		ease: 'linear'
+		ease: 'power2.out'
 	})
 })
