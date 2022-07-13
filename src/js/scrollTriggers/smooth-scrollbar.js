@@ -64,6 +64,16 @@ const scrollIconAnchors = () => {
 	})
 }
 
+const completeScrollOnContactSection = () => {
+	const contact = DOM.sections.length - 1
+	ScrollTrigger.create({
+		trigger: DOM.sections[contact],
+		start: 'top 50%',
+		onEnter: () =>
+			scrollbar.scrollIntoView(DOM.sections[contact], { damping: 1 })
+	})
+}
+
 const fixGsapMarkers = () => {
 	// Only necessary to correct marker position - not needed in production
 	if (document.querySelector('.gsap-marker-scroller-start')) {
@@ -79,4 +89,5 @@ export default function initSmoothScrollbar() {
 	smoothScrollbar()
 	sectionAnchors()
 	scrollIconAnchors()
+	completeScrollOnContactSection()
 }
