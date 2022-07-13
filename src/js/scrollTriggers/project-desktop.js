@@ -30,7 +30,7 @@ export function activeProjectDesktop() {
 
 	gsap.to(DOM.sliderWrapper, {
 		duration: 1,
-		y: '-10vh',
+		y: '-15vh',
 		ease: 'none',
 		scrollTrigger: {
 			trigger: DOM.firstProject,

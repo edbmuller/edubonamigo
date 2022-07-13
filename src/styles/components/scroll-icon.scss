@@ -11,6 +11,11 @@
 		left: 65vw;
 		top: 75%;
 	}
+	@include desktop {
+		width: 20rem;
+		left: 65vw;
+		top: 75%;
+	}
 
 	@include landscape {
 		width: 15rem;

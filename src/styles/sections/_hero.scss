@@ -13,39 +13,21 @@
 		padding-top: 6vh;
 	}
 
-	.title-wrapper:nth-child(1) h1,
-	.title-wrapper:nth-child(2) h1 {
-		font-size: 21.4vw;
-		line-height: 1.1;
-
-		@include tablet {
-			font-size: 14.5vw;
-		}
-	}
-
-	.title-wrapper:nth-child(2) h1 {
-		margin-bottom: 7vw;
-
-		@include tablet {
-			margin-bottom: 0;
-		}
-	}
-
 	h1 {
-		font-size: 14.5vw;
+		font-size: var(--size-gg);
 		line-height: 1.2;
 		cursor: default;
 		font-family: var(--serif-font-family);
 
 		@include laptop {
-			font-size: 9vw;
 			line-height: 1.1;
 			margin-bottom: 0;
 			margin-left: -0.7%;
 		}
-
-		@include ultra {
-			font-size: 23vh;
+		@include desktop {
+			line-height: 1.1;
+			margin-bottom: 0;
+			margin-left: -0.7%;
 		}
 
 		@include landscape {
@@ -58,20 +40,5 @@
 
 .title-wrapper {
 	overflow: hidden;
-	padding-bottom: 0.5vw;
-
-	&:nth-child(3) {
-		display: none;
-	}
-
-	@include laptop {
-		&:nth-child(1),
-		&:nth-child(2) {
-			display: none;
-		}
-
-		&:nth-child(3) {
-			display: block;
-		}
-	}
+	padding-bottom: var(--size-xpp);
 }

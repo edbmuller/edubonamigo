@@ -7,6 +7,7 @@
 @import './components/header';
 @import './components/scroll-icon';
 @import './components/custom-cursor';
+@import './components/footer';
 
 @import './sections/hero';
 @import './sections/about';
@@ -47,10 +48,14 @@ $easing: cubic-bezier(0.075, 0.82, 0.165, 1);
 	width: 3px !important;
 	opacity: 0.2 !important;
 	background-color: var(--secondary-color) !important;
-}
 
-@include laptop {
-	.scrollbar-thumb {
+	@include laptop {
+		left: 0 !important;
+		right: unset !important;
+		width: 8px !important;
+		opacity: 0.6 !important;
+	}
+	@include desktop {
 		left: 0 !important;
 		right: unset !important;
 		width: 8px !important;

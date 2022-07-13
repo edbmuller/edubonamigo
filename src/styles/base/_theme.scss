@@ -19,6 +19,42 @@
 
 	--default-font-family: 'Century Gothic', sans-serif;
 	--serif-font-family: 'Italiana', serif;
+
+	// 16.18
+	// 6.18
+	// 3.81924
+	// 2.36029032
+	// 1.45865941776
+	// 0.90145152017568
+
+	--size-xgg: 1vw;
+	--size-gg: 10vh;
+	--size-g: 6.18vh;
+	--size-p: 3.81924vh;
+	--size-p: 2.36029032vh;
+
+	--size-pp: 2.36029032vh;
+	--size-xpp: 1.45865941776vh;
+
+	@include laptop {
+		--size-xgg: 13vw;
+		--size-gg: 10vw;
+		--size-g: 10vh;
+		--size-m: 3.81924vw;
+		--size-p: 2.36029032vw;
+		--size-pp: 1.45865941776vw;
+		--size-xpp: 2.36029032vh;
+	}
+
+	@include desktop {
+		--size-xgg: 13vw;
+		--size-gg: 10vw;
+		--size-g: 10vh;
+		--size-m: 3.81924vw;
+		--size-p: 2.36029032vw;
+		--size-pp: 1.45865941776vw;
+		--size-xpp: 2.36029032vh;
+	}
 }
 
 $defaults: $duration $easing;
@@ -36,20 +72,18 @@ $defaults: $duration $easing;
 		--blend-mode: var(--light-blend);
 	}
 
-	::selection {
-		background-color: var(--secondary-color);
-		color: var(--primary-color);
-	}
-
 	background-color: var(--primary-color);
 	color: var(--secondary-color);
 	transition: background-color $defaults, color $defaults;
 
+	::selection {
+		background-color: var(--secondary-color);
+		color: var(--primary-color);
+	}
 	&--border {
 		border-color: var(--secondary-color);
 		transition: border-color $defaults;
 	}
-
 	&--background {
 		background-color: var(--secondary-color);
 		transition: background-color $defaults;
