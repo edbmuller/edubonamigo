@@ -9,10 +9,10 @@ const DOM = {
 	firstProject: document.querySelector('.project:first-child'),
 	lastProject: document.querySelector('.project:last-child'),
 	marquees: document.querySelectorAll('.project__marquee'),
-	slider: document.querySelector('.project__slider'),
-	sliderWrapper: document.querySelector('.project__slider__img--wrapper'),
-	sliderImgMask: document.querySelector('.project__slider__img--mask'),
-	sliderImg: document.querySelector('.project__slider__img'),
+	slider: document.querySelector('.project-slider'),
+	sliderWrapper: document.querySelector('.project-slider__img--wrapper'),
+	sliderImgMask: document.querySelector('.project-slider__img--mask'),
+	sliderImg: document.querySelector('.project-slider__img'),
 	get: (selector) => document.querySelector(selector)
 }
 
@@ -30,7 +30,7 @@ export function activeProjectDesktop() {
 
 	gsap.to(DOM.sliderWrapper, {
 		duration: 1,
-		y: '-15vh',
+		y: '-10vh',
 		ease: 'none',
 		scrollTrigger: {
 			trigger: DOM.firstProject,

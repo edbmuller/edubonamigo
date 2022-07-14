@@ -16,7 +16,7 @@ export default function showAboutImage() {
 
 const fadeIn = () => {
 	gsap.to(DOM.imageWrapper, {
-		autoAlpha: 0.3,
+		autoAlpha: 0.4,
 		y: '-30%',
 		ease: 'none',
 		scrollTrigger: {

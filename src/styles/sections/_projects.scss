@@ -154,11 +154,11 @@
 	}
 }
 
-.project__slider {
+.project-slider {
 	display: none;
 	pointer-events: none;
 	position: fixed;
-	bottom: 1vh;
+	bottom: 5vh;
 	right: 3vw;
 	width: 60vw;
 	height: auto;
@@ -176,8 +176,8 @@
 	}
 
 	@include ultra {
-		bottom: 3vh;
-		width: 50vw;
+		bottom: 1vh;
+		width: 48vw;
 		right: 10vw;
 		padding-bottom: 31.2%;
 	}
@@ -194,7 +194,7 @@
 	}
 }
 
-.project__slider__img--wrapper {
+.project-slider__img--wrapper {
 	height: 100%;
 	width: 100%;
 	overflow: hidden;
@@ -203,7 +203,7 @@
 	top: 0;
 }
 
-.project__slider__img {
+.project-slider__img {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -213,13 +213,13 @@
 	transform: translateY(101%);
 }
 
-.project__slider__img--mask {
+.project-slider__img--mask {
 	height: 100%;
 	overflow: hidden;
 	transform: translateY(-100%) scale(1.3);
 }
 
-.project__slider img {
+.project-slider img {
 	position: absolute;
 	top: 0;
 	left: 0;

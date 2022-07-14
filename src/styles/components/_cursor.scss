@@ -1,0 +1,81 @@
+@import '../base/helpers';
+
+.theme.--light .cursor {
+	mix-blend-mode: exclusion;
+}
+
+.cursor {
+	z-index: 99;
+	pointer-events: none;
+	position: fixed;
+	opacity: 0;
+	width: 5rem;
+	height: 5rem;
+	left: -2.6rem;
+	top: -2.6rem;
+	display: none;
+	transition: transform $duration $easing;
+
+	@include laptop {
+		display: block;
+	}
+	@include desktop {
+		display: block;
+	}
+
+	&__default {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		border-radius: 50%;
+		border: 2px solid var(--secondary-color);
+		transition: transform 0.2s $easing;
+	}
+
+	&.--active &__default {
+		transform: scale(0.8);
+	}
+
+	&__mask {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%);
+		width: 5px;
+		height: 5px;
+		opacity: 0;
+		border-radius: 50%;
+		background-color: var(--secondary-color);
+		transition: transform $duration $easing, opacity $duration $easing;
+	}
+
+	&.--small &__mask,
+	&.--medium &__mask,
+	&.--large &__mask {
+		opacity: 1;
+	}
+
+	&.--small &__mask {
+		transform: translate(-50%) scale(13);
+	}
+	&.--medium &__mask {
+		transform: translate(-50%) scale(25);
+	}
+	&.--large &__mask {
+		transform: translate(-50%) scale(45);
+	}
+
+	&.--small.--active &__mask {
+		transform: translate(-50%) scale(9);
+	}
+	&.--medium.--active &__mask {
+		transform: translate(-50%) scale(17);
+	}
+	&.--large.--active &__mask {
+		transform: translate(-50%) scale(35);
+	}
+}
+
+//

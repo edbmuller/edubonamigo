@@ -1,13 +1,13 @@
 import gsap from 'gsap'
 
 const DOM = {
-	cursor: document.querySelector('.custom-cursor'),
-	cursorDisabled: true,
+	cursor: document.querySelector('.cursor'),
 	subtitles: document.querySelectorAll('h2'),
 	menuItems: document.querySelectorAll('.header__menu__item'),
 	scrolls: document.querySelectorAll('.scroll-icon'),
 	projects: document.querySelectorAll('h3'),
-	contact: document.querySelectorAll('.contact__CTA__link')
+	contact: document.querySelectorAll('.contact__CTA__link'),
+	socialLinks: document.querySelectorAll('.footer__social__link')
 }
 
 const moveCursor = (e) =>
@@ -23,10 +23,34 @@ const showCursor = () => {
 }
 
 const activeCursor = () => {
-	if (DOM.cursorDisabled) {
-		showCursor()
-		window.removeEventListener('mousemove', activeCursor)
-	}
+	showCursor()
+	window.removeEventListener('mousemove', activeCursor)
+}
+
+const cursorMouseenter = (sizeClass) => {
+	DOM.cursor.classList.add(sizeClass)
+}
+
+const cursorMouseout = (sizeClass) => {
+	DOM.cursor.classList.remove(sizeClass)
+}
+
+const cursorMousedown = () => {
+	DOM.cursor.classList.add('--active')
+}
+
+const cursorMouseup = () => {
+	DOM.cursor.classList.remove('--active')
+}
+
+const addListeners = (elements, sizeClass) => {
+	elements.forEach((target) => {
+		target.addEventListener('mouseenter', () => cursorMouseenter(sizeClass))
+	})
+
+	elements.forEach((target) => {
+		target.addEventListener('mouseout', () => cursorMouseout(sizeClass))
+	})
 }
 
 export default function initCursor() {
@@ -34,84 +58,11 @@ export default function initCursor() {
 		window.addEventListener('mousemove', activeCursor)
 		window.addEventListener('mousemove', moveCursor)
 
-		const smallTriggers = [...DOM.subtitles, ...DOM.menuItems]
-		const mediumTriggers = [...DOM.projects]
-		const largeTriggers = [...DOM.scrolls, ...DOM.contact]
+		addListeners([...DOM.subtitles, ...DOM.menuItems], '--small')
+		addListeners([...DOM.projects, ...DOM.socialLinks], '--medium')
+		addListeners([...DOM.scrolls, ...DOM.contact], '--large')
 
-		smallTriggers.forEach((target) => {
-			target.addEventListener('mouseenter', () =>
-				DOM.cursor.classList.add('--active', '--small')
-			)
-		})
-		smallTriggers.forEach((target) => {
-			target.addEventListener('mouseout', () =>
-				DOM.cursor.classList.remove('--active', '--small')
-			)
-		})
-
-		mediumTriggers.forEach((item) => {
-			item.addEventListener('mouseenter', () =>
-				DOM.cursor.classList.add('--active', '--medium')
-			)
-		})
-		mediumTriggers.forEach((item) => {
-			item.addEventListener('mouseout', () =>
-				DOM.cursor.classList.remove('--active', '--medium')
-			)
-		})
-
-		largeTriggers.forEach((item) => {
-			item.addEventListener('mouseenter', () => {
-				DOM.cursor.classList.add('--active', '--large')
-			})
-		})
-		largeTriggers.forEach((item) => {
-			item.addEventListener('mouseout', () =>
-				DOM.cursor.classList.remove('--active', '--large')
-			)
-		})
+		window.addEventListener('mousedown', () => cursorMousedown())
+		window.addEventListener('mouseup', () => cursorMouseup())
 	}
 }
-
-// DOM.menuItem.forEach(function (el) {
-//   el.addEventListener('mouseover', () => {
-//     gsap.to(DOM.cursor, 0.25, {
-//       scale: 1,
-//       autoAlpha: 1,
-//     })
-//   })
-// }
-
-// 	el.addEventListener('mouseout', () => {
-// 		gsap.to(button, 0.25, {
-// 			scale: 0.5,
-// 			autoAlpha: 0
-// 		})
-// 	})
-
-// 	el.addEventListener('mousedown', () => {
-// 		gsap.to(button, 0.5, {
-// 			css: { transform: `translate(-50%, -50%) scale(0.75)` }
-// 		})
-
-// 		gsap.to(buttonText, 0.25, {
-// 			css: { opacity: 1 }
-// 		})
-// 	})
-
-// 	el.addEventListener('mouseup', () => {
-// 		gsap.to(button, 1, {
-// 			css: { background: `transparent` }
-// 		})
-
-// 		gsap.to(button, 0.5, {
-// 			css: { transform: `translate(-50%, -50%) scale(1)` }
-// 		})
-
-// 		gsap.to(buttonText, 0.25, {
-// 			css: {
-// 				opacity: 1
-// 			}
-// 		})
-// 	})
-// })
