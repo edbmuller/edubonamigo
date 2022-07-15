@@ -2,6 +2,7 @@
 
 .footer {
 	width: 96vw;
+	height: 50vh;
 	transform: translateX(-1vw);
 	display: flex;
 	flex-wrap: wrap;
@@ -10,23 +11,41 @@
 
 	@include tablet {
 		margin-bottom: calc(3vh + 1.2rem);
+		height: auto;
 	}
 }
 
 .footer__social {
 	width: 100%;
-	height: fit-content;
+	height: 44vh;
 	position: relative;
 	overflow: hidden;
 	display: flex;
 	justify-content: space-between;
 	align-items: baseline;
+
+	flex-flow: column;
+	justify-content: flex-start;
+
+	@include tablet {
+		height: fit-content;
+		flex-flow: row;
+		justify-content: space-between;
+	}
+}
+
+.footer__social__item {
+	margin: 0 0 2vh 4vw;
+
+	@include tablet {
+		margin: 0;
+	}
 }
 
 .footer__social__link {
 	cursor: pointer;
 	font-family: var(--serif-font-family);
-	font-size: var(--size-m);
+	font-size: calc(var(--size-m));
 	white-space: nowrap;
 	text-decoration: none;
 	// transform: translateY(100%);

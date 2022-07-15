@@ -1,6 +1,6 @@
 // Mobile First Media Query
 @mixin tablet {
-	@media (min-width: 481px) {
+	@media (min-width: 550px) {
 		@content;
 	}
 }

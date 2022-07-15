@@ -6,7 +6,11 @@
 
 .contact__CTA {
 	align-self: center;
-	margin-top: 5vh;
+	margin-top: 15vh;
+
+	@include tablet {
+		margin-top: 5vh;
+	}
 }
 
 .contact__CTA__link {

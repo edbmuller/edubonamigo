@@ -16,9 +16,9 @@ export default function showAboutImage() {
 
 const fadeIn = () => {
 	gsap.to(DOM.imageWrapper, {
-		autoAlpha: 0.4,
+		autoAlpha: 0.34,
 		y: '-30%',
-		ease: 'none',
+		ease: 'power1.out',
 		scrollTrigger: {
 			trigger: DOM.about,
 			start: 'top 60%',
@@ -33,7 +33,7 @@ const fadeOut = () => {
 	gsap.to(DOM.image, {
 		autoAlpha: 0,
 		y: '-30%',
-		ease: 'none',
+		ease: 'power1.in',
 		scrollTrigger: {
 			trigger: DOM.about,
 			start: 'top 10%',
