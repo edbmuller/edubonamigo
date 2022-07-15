@@ -142,13 +142,13 @@
       this[globalName] = mainExports;
     }
   }
-})({"l4AUa":[function(require,module,exports) {
+})({"93ZfG":[function(require,module,exports) {
 "use strict";
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
-module.bundle.HMR_BUNDLE_ID = "ba60c367739bf03c";
+module.bundle.HMR_BUNDLE_ID = "b0ca6cf7d15c0691";
 function _toConsumableArray(arr) {
     return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
@@ -513,91 +513,144 @@ function hmrAcceptRun(bundle, id) {
     acceptedAssets[id] = true;
 }
 
-},{}],"ebWYT":[function(require,module,exports) {
+},{}],"hXGcC":[function(require,module,exports) {
 // TODO: Trigger after imagesLoaded
 var _toggleTheme = require("./animations/toggle-theme");
-// import "./animations/custom-cursor"
-var _hero = require("./animations/hero");
+// import "./animations/cursor"
+var _loadingIntro = require("./animations/loading-intro");
+var _headerMenu = require("./animations/header-menu");
 var _projects = require("./animations/projects");
 var _magneticElement = require("./animations/magneticElement");
 // TODO: ativar algum experimento com webgl quando usar o macete
 console.log('Macete: → ↑ ← ↓ e d !');
 
-},{"./animations/hero":"9Zfg2","./animations/projects":"2M8Vt","./animations/toggle-theme":"e2JgW","./animations/magneticElement":"8rQdV"}],"9Zfg2":[function(require,module,exports) {
+},{"./animations/toggle-theme":"l5UQJ","./animations/projects":"lKLeH","./animations/magneticElement":"fgfvR","./animations/loading-intro":"4s1kJ","./animations/header-menu":"1N2sc"}],"l5UQJ":[function(require,module,exports) {
+const DOM = {
+    headerTheme: document.querySelector('.header__menu__item.--theme'),
+    body: document.body
+};
+const toggleTheme = ()=>{
+    if (isDarkMode()) {
+        DOM.body.classList.remove('--dark');
+        DOM.body.classList.add('--light');
+    } else {
+        DOM.body.classList.remove('--light');
+        DOM.body.classList.add('--dark');
+    }
+};
+const isDarkMode = ()=>DOM.body.classList.contains('--dark')
+;
+DOM.headerTheme.addEventListener('click', toggleTheme);
+
+},{}],"lKLeH":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "toggleActiveSlide", ()=>toggleActiveSlide
+);
+const DOM = {
+    projectTitles: document.querySelectorAll('.project h3'),
+    get: (selector)=>document.querySelector(selector)
+};
+const toggleProjects = (e)=>{
+    const project = e.currentTarget.parentNode.parentNode;
+    const projectId = project.dataset.id;
+    toggleActiveProject(project);
+    toggleActiveSlide(projectId);
+};
+const isActive = (element)=>{
+    return element.classList.contains('--active');
+};
+const toggleActiveProject = (projectContainer)=>{
+    if (!isActive(projectContainer)) {
+        DOM.get('.project.--active').classList.remove('--active');
+        projectContainer.classList.add('--active');
+    }
+};
+function toggleActiveSlide(id) {
+    const slide = DOM.get('#' + id);
+    if (!isActive(slide)) {
+        const lastActiveSlide = DOM.get('.project-slider__img .--active');
+        if (lastActiveSlide) lastActiveSlide.classList.remove('--active');
+        slide.classList.add('--active');
+    }
+}
+DOM.projectTitles.forEach((title)=>title.addEventListener('click', toggleProjects)
+);
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"dYXYl":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"fgfvR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
-var _flip = require("gsap/Flip");
-var _scrollTriggers = require("../scrollTriggers");
-var _scrollTriggersDefault = parcelHelpers.interopDefault(_scrollTriggers);
-var _cursor = require("./cursor");
-var _cursorDefault = parcelHelpers.interopDefault(_cursor);
-_gsapDefault.default.registerPlugin(_flip.Flip);
 const DOM = {
-    body: document.body,
-    scrollbarWrapper: document.querySelector('#scrollbar-wrapper'),
-    dotsWrapper: document.querySelector('.dots'),
-    dotsArr: _gsapDefault.default.utils.toArray('.dot'),
-    headerWrapper: document.querySelector('.header__wrapper'),
-    headerTitlesArr: _gsapDefault.default.utils.toArray('.header__title'),
-    headerLang: document.querySelector('.header__lang'),
-    headerTheme: document.querySelector('.header__theme'),
-    headerLine: document.querySelector('.header__line'),
-    heroTitlesArr: _gsapDefault.default.utils.toArray('.section--hero h1'),
-    sectionHero: document.querySelector('.section--hero'),
-    contentArr: _gsapDefault.default.utils.toArray('.--hide-show'),
-    scrollIcon: _gsapDefault.default.utils.toArray('.scroll-icon')
+    target: document.querySelector('.contact__CTA__mask'),
+    areaAroundTarget: document.querySelector('.section.contact')
 };
-function stopLoadingAndInitIntro() {
-    _scrollTriggersDefault.default();
-    let state = _flip.Flip.getState(DOM.dotsArr);
-    DOM.dotsWrapper.style.animation = 'unset';
-    _flip.Flip.from(state, {
-        ease: 'power3.inOut',
-        scale: true
-    });
-    state = _flip.Flip.getState(DOM.dotsArr);
-    DOM.dotsWrapper.classList.remove('--loading');
-    _flip.Flip.from(state, {
+const targetOffsetTop = DOM.target.offsetTop;
+const targetHeight = DOM.target.clientHeight;
+const targetOffsetLeft = DOM.target.offsetLeft;
+const targetWidth = DOM.target.clientWidth;
+const mouseDistanceFromElementY = (mouseY)=>mouseY - (targetOffsetTop + targetHeight / 2)
+;
+const mouseDistanceFromElementX = (mouseX)=>mouseX - (targetOffsetLeft + targetWidth / 2)
+;
+const getPercentageOfValue = (percentage, valueNumber)=>(percentage / 100 * valueNumber).toFixed(0)
+;
+let started = 0;
+const viewport = DOM.areaAroundTarget.clientWidth;
+// Make an element follow the mouse, based on element position
+DOM.areaAroundTarget.addEventListener('mousemove', (e)=>{
+    const distanceY = getPercentageOfValue(10, mouseDistanceFromElementY(e.pageY));
+    const distanceX = getPercentageOfValue(10, mouseDistanceFromElementX(e.pageX));
+    if (started === 0 && viewport > 1024) {
+        _gsapDefault.default.to(DOM.target, {
+            autoAlpha: 1,
+            duration: 0.6
+        });
+        started = 1;
+    }
+    _gsapDefault.default.to(DOM.target, {
+        x: `${distanceX}px`,
         duration: 1,
-        ease: 'power3.inOut',
-        scale: true,
-        onComplete: ()=>{
-            initIntro();
-            _cursorDefault.default();
-        }
+        ease: 'power2.out'
     });
-}
-const initIntro = ()=>{
-    // setHeaderWrapperSize()
-    const introTl = _gsapDefault.default.timeline({
-        defaults: {
-            duration: 0.8
-        },
-        ease: 'power2.in',
-        onStart: ()=>DOM.body.classList.remove('--loading')
+    _gsapDefault.default.to(DOM.target, {
+        y: `${distanceY}px`,
+        duration: 1,
+        ease: 'power2.out'
     });
-    introTl.to(DOM.headerLine, {
-        x: '0'
-    }).to([
-        DOM.headerTheme,
-        DOM.headerLang,
-        DOM.headerTitlesArr[0]
-    ], {
-        y: '0',
-        stagger: 0.2
-    }, '0').from([
-        DOM.scrollIcon,
-        DOM.heroTitlesArr
-    ], {
-        y: '100%',
-        stagger: 0.06
-    }, '0');
-};
-// TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
-document.addEventListener('DOMContentLoaded', stopLoadingAndInitIntro());
+});
 
-},{"gsap":"fPSuC","gsap/Flip":"iKp6p","../scrollTriggers":"eQCYt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./cursor":"lfv1X"}],"fPSuC":[function(require,module,exports) {
+},{"gsap":"9Q5jN","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"9Q5jN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "gsap", ()=>gsapWithCSS
@@ -655,7 +708,7 @@ var _csspluginJs = require("./CSSPlugin.js");
 var gsapWithCSS = _gsapCoreJs.gsap.registerPlugin(_csspluginJs.CSSPlugin) || _gsapCoreJs.gsap, // to protect from tree shaking
 TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
-},{"./gsap-core.js":"05eeC","./CSSPlugin.js":"l02JQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"05eeC":[function(require,module,exports) {
+},{"./gsap-core.js":"iuUz2","./CSSPlugin.js":"jHiws","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"iuUz2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "GSCache", ()=>GSCache
@@ -3476,37 +3529,7 @@ _coreReady = 1;
 _windowExists() && _wake();
 var Power0 = _easeMap.Power0, Power1 = _easeMap.Power1, Power2 = _easeMap.Power2, Power3 = _easeMap.Power3, Power4 = _easeMap.Power4, Linear = _easeMap.Linear, Quad = _easeMap.Quad, Cubic = _easeMap.Cubic, Quart = _easeMap.Quart, Quint = _easeMap.Quint, Strong = _easeMap.Strong, Elastic = _easeMap.Elastic, Back = _easeMap.Back, SteppedEase = _easeMap.SteppedEase, Bounce = _easeMap.Bounce, Sine = _easeMap.Sine, Expo = _easeMap.Expo, Circ = _easeMap.Circ;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gkKU3":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"l02JQ":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"jHiws":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "CSSPlugin", ()=>CSSPlugin
@@ -4370,7 +4393,87 @@ _gsapCoreJs._forEachName("x,y,z,top,right,bottom,left,width,height,fontSize,padd
 });
 _gsapCoreJs.gsap.registerPlugin(CSSPlugin);
 
-},{"./gsap-core.js":"05eeC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iKp6p":[function(require,module,exports) {
+},{"./gsap-core.js":"iuUz2","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"4s1kJ":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+var _flip = require("gsap/Flip");
+var _scrollTriggers = require("../scrollTriggers");
+var _scrollTriggersDefault = parcelHelpers.interopDefault(_scrollTriggers);
+var _cursor = require("./cursor");
+var _cursorDefault = parcelHelpers.interopDefault(_cursor);
+var _headerMenu = require("./header-menu");
+_gsapDefault.default.registerPlugin(_flip.Flip);
+const DOM = {
+    body: document.body,
+    headerTitlesArr: _gsapDefault.default.utils.toArray('.header__titles h2'),
+    headerMenu: document.querySelector('.header__menu'),
+    headerContact: document.querySelector('.header__menu__item.--contact'),
+    headerLang: document.querySelector('.header__menu__item.--lang'),
+    headerTheme: document.querySelector('.header__menu__item.--theme'),
+    headerLine: document.querySelector('.header__line'),
+    heroTitlesArr: _gsapDefault.default.utils.toArray('.section--hero h1'),
+    sectionHero: document.querySelector('.section--hero'),
+    contentArr: _gsapDefault.default.utils.toArray('.--hide-show'),
+    scrollIcon: _gsapDefault.default.utils.toArray('.scroll-icon'),
+    dotsWrapper: document.querySelector('.dots'),
+    dotsArr: _gsapDefault.default.utils.toArray('.dot')
+};
+function stopLoadingAndInitIntro() {
+    _scrollTriggersDefault.default();
+    let state = _flip.Flip.getState(DOM.dotsArr);
+    DOM.dotsWrapper.style.animation = 'unset';
+    _flip.Flip.from(state, {
+        ease: 'power3.inOut',
+        scale: true
+    });
+    state = _flip.Flip.getState(DOM.dotsArr);
+    DOM.dotsWrapper.classList.remove('--loading');
+    _flip.Flip.from(state, {
+        duration: 1,
+        ease: 'power3.inOut',
+        scale: true,
+        onComplete: ()=>{
+            initIntro();
+            _cursorDefault.default();
+        }
+    });
+}
+const initIntro = ()=>{
+    const introTl = _gsapDefault.default.timeline({
+        defaults: {
+            duration: 1
+        },
+        ease: 'power2.in',
+        onStart: ()=>{
+            DOM.body.classList.remove('--loading');
+            DOM.dotsArr.forEach((dot)=>dot.classList.add('theme--background')
+            );
+        },
+        onComplete: ()=>_headerMenu.hideMenu()
+    });
+    introTl.to(DOM.headerLine, {
+        x: '0'
+    }).to([
+        DOM.headerTheme,
+        DOM.headerLang,
+        DOM.headerContact,
+        DOM.headerTitlesArr[0]
+    ], {
+        y: '0',
+        stagger: 0.1
+    }, '0').from([
+        DOM.scrollIcon,
+        DOM.heroTitlesArr
+    ], {
+        y: '100%',
+        stagger: 0.06
+    }, '0');
+};
+// TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
+document.addEventListener('DOMContentLoaded', stopLoadingAndInitIntro());
+
+},{"gsap":"9Q5jN","gsap/Flip":"6RlnY","../scrollTriggers":"1DeZ4","./cursor":"2RPhj","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl","./header-menu":"1N2sc"}],"6RlnY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Flip", ()=>Flip
@@ -5393,7 +5496,7 @@ Flip.version = "3.10.4"; // function whenImagesLoad(el, func) {
 // }
 typeof window !== "undefined" && window.gsap && window.gsap.registerPlugin(Flip);
 
-},{"./utils/matrix.js":"khPcO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"khPcO":[function(require,module,exports) {
+},{"./utils/matrix.js":"c8LoV","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"c8LoV":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Matrix2D", ()=>Matrix2D
@@ -5660,32 +5763,35 @@ function getGlobalMatrix(element, inverse, adjustGOffset, includeScrollInFixed) 
     return inverse ? m.inverse() : m;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eQCYt":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"1DeZ4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _smoothScrollbar = require("./smooth-scrollbar");
 var _smoothScrollbarDefault = parcelHelpers.interopDefault(_smoothScrollbar);
-var _toggleHeaderSubtitleAndDots = require("./toggle-header-subtitle-and-dots");
-var _toggleHeaderSubtitleAndDotsDefault = parcelHelpers.interopDefault(_toggleHeaderSubtitleAndDots);
+var _headerToggleSubtitleAndDots = require("./header-toggle-subtitle-and-dots");
+var _headerToggleSubtitleAndDotsDefault = parcelHelpers.interopDefault(_headerToggleSubtitleAndDots);
 var _spinScrollIcon = require("./spin-scroll-icon");
 var _spinScrollIconDefault = parcelHelpers.interopDefault(_spinScrollIcon);
 var _fadeInOut = require("./fade-in-out");
 var _fadeInOutDefault = parcelHelpers.interopDefault(_fadeInOut);
 // project triggers
-var _marqueeMobile = require("./marquee-mobile");
-var _marqueeMobileDefault = parcelHelpers.interopDefault(_marqueeMobile);
+var _projectMarqueeMobile = require("./project-marquee-mobile");
+var _projectMarqueeMobileDefault = parcelHelpers.interopDefault(_projectMarqueeMobile);
 var _projectDesktop = require("./project-desktop");
+var _aboutImage = require("./about-image");
+var _aboutImageDefault = parcelHelpers.interopDefault(_aboutImage);
 function initScrollTriggers() {
     _smoothScrollbarDefault.default();
-    _toggleHeaderSubtitleAndDotsDefault.default();
+    _headerToggleSubtitleAndDotsDefault.default();
     _spinScrollIconDefault.default();
     _fadeInOutDefault.default();
-    if (/Mobi|Android/i.test(navigator.userAgent)) _marqueeMobileDefault.default();
+    _aboutImageDefault.default();
+    if (/Mobi|Android/i.test(navigator.userAgent)) _projectMarqueeMobileDefault.default();
     else _projectDesktop.activeProjectDesktop();
 } // TODO: remove fixGsapMarkers for production
 exports.default = initScrollTriggers;
 
-},{"./smooth-scrollbar":"kk1cX","./toggle-header-subtitle-and-dots":"byeT3","./fade-in-out":"7Sl85","./marquee-mobile":"a0dPu","./project-desktop":"3mPRR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./spin-scroll-icon":"76Bnr"}],"kk1cX":[function(require,module,exports) {
+},{"./smooth-scrollbar":"2mQht","./spin-scroll-icon":"bAEjw","./fade-in-out":"hObom","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl","./about-image":"21V6r","./header-toggle-subtitle-and-dots":"gBeoa","./project-marquee-mobile":"bUfWg","./project-desktop":"iisJi"}],"2mQht":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
@@ -5695,11 +5801,13 @@ var _smoothScrollbar = require("smooth-scrollbar");
 var _smoothScrollbarDefault = parcelHelpers.interopDefault(_smoothScrollbar);
 var _fixSpeedMobile = require("./fix-speed-mobile");
 var _fixSpeedMobileDefault = parcelHelpers.interopDefault(_fixSpeedMobile);
+var _headerMenu = require("../animations/header-menu");
 _gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
 _smoothScrollbarDefault.default.use(_fixSpeedMobileDefault.default);
 const DOM = {
     scroller: document.querySelector('.scroller'),
-    headerTitles: _gsapDefault.default.utils.toArray('.header__wrapper h2'),
+    headerTitles: _gsapDefault.default.utils.toArray('.header__titles h2'),
+    headerContact: document.querySelector('.header__menu__item.--contact'),
     sections: _gsapDefault.default.utils.toArray('.section'),
     scrollIcon: _gsapDefault.default.utils.toArray('.scroll-icon')
 };
@@ -5722,6 +5830,8 @@ const smoothScrollbar = ()=>{
     _scrollTrigger.ScrollTrigger.defaults({
         scroller: '.scroller'
     });
+    scrollbar.addListener(()=>_headerMenu.hideMenuOnScroll()
+    );
     fixGsapMarkers();
 };
 // Functions above on this folder
@@ -5729,21 +5839,31 @@ const smoothScrollbar = ()=>{
 // interact with the "scrollbar" object variable
 const listenerAnchorToSection = (target, index)=>{
     target.addEventListener('click', (e)=>{
-        e.preventDefault();
         scrollbar.scrollIntoView(DOM.sections[index], {
             damping: 0.07,
-            offsetTop: 100
+            offsetTop: 50
         });
     });
 };
-const subtitleAnchors = ()=>{
+const sectionAnchors = ()=>{
     DOM.headerTitles.forEach((element, index)=>{
         listenerAnchorToSection(element, index);
     });
+    listenerAnchorToSection(DOM.headerContact, 3);
 };
 const scrollIconAnchors = ()=>{
     DOM.scrollIcon.forEach((element, index)=>{
         listenerAnchorToSection(element, index + 1);
+    });
+};
+const completeScrollOnContactSection = ()=>{
+    const contact = DOM.sections.length - 1;
+    _scrollTrigger.ScrollTrigger.create({
+        trigger: DOM.sections[contact],
+        start: 'top 70%',
+        onEnter: ()=>scrollbar.scrollIntoView(DOM.sections[contact], {
+                damping: 1
+            })
     });
 };
 const fixGsapMarkers = ()=>{
@@ -5759,12 +5879,13 @@ const fixGsapMarkers = ()=>{
 };
 function initSmoothScrollbar() {
     smoothScrollbar();
-    subtitleAnchors();
+    sectionAnchors();
     scrollIconAnchors();
+    completeScrollOnContactSection();
 }
 exports.default = initSmoothScrollbar;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","smooth-scrollbar":"7azJf","./fix-speed-mobile":"iZdF9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7wnFk":[function(require,module,exports) {
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","smooth-scrollbar":"99pD1","./fix-speed-mobile":"5yZiu","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl","../animations/header-menu":"1N2sc"}],"4QMFi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ScrollTrigger", ()=>ScrollTrigger
@@ -7313,7 +7434,7 @@ ScrollTrigger.core = {
 };
 _getGSAP() && gsap.registerPlugin(ScrollTrigger);
 
-},{"./Observer.js":"aAWxM","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aAWxM":[function(require,module,exports) {
+},{"./Observer.js":"9cXqU","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"9cXqU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Observer", ()=>Observer
@@ -7775,7 +7896,7 @@ Observer.getById = function(id) {
 };
 _getGSAP() && gsap.registerPlugin(Observer);
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7azJf":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"99pD1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ScrollbarPlugin", ()=>_plugin.ScrollbarPlugin
@@ -7879,7 +8000,7 @@ var _style = require("./style");
 }(_scrollbar.Scrollbar);
 exports.default = SmoothScrollbar;
 
-},{"tslib":"lRdW5","./polyfills":"jyKyC","./scrollbar":"l2IRH","./plugin":"bSKNu","./style":"7J5rq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lRdW5":[function(require,module,exports) {
+},{"tslib":"4AQ68","./polyfills":"4tq6X","./scrollbar":"k6TT8","./plugin":"fXjk9","./style":"aiqw5","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"4AQ68":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "__extends", ()=>__extends
@@ -8271,9 +8392,9 @@ function __classPrivateFieldSet(receiver, privateMap, value) {
     return value;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jyKyC":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"4tq6X":[function(require,module,exports) {
 
-},{}],"l2IRH":[function(require,module,exports) {
+},{}],"k6TT8":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "scrollbarMap", ()=>scrollbarMap
@@ -8613,7 +8734,7 @@ var Scrollbar = /** @class */ function() {
     return Scrollbar1;
 }();
 
-},{"tslib":"lRdW5","lodash-es/clamp":"zCKrs","./options":"kuzUS","./utils/":"jzGiI","./decorators/":"bvgNp","./track/":"iNFGO","./geometry/":"jBiTP","./scrolling/":"jsAOK","./plugin":"bSKNu","./events/":"cHe8H","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"zCKrs":[function(require,module,exports) {
+},{"tslib":"4AQ68","lodash-es/clamp":"dJuEG","./options":"fSbQN","./utils/":"etBG1","./decorators/":"jI2OB","./track/":"d3njv","./geometry/":"3mzpB","./scrolling/":"dT6EQ","./plugin":"fXjk9","./events/":"i09Ta","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"dJuEG":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _baseClampJs = require("./_baseClamp.js");
@@ -8655,7 +8776,7 @@ var _toNumberJsDefault = parcelHelpers.interopDefault(_toNumberJs);
 }
 exports.default = clamp;
 
-},{"./_baseClamp.js":"3V7wr","./toNumber.js":"4CrK2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3V7wr":[function(require,module,exports) {
+},{"./_baseClamp.js":"fiCoz","./toNumber.js":"l5HcR","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"fiCoz":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -8675,7 +8796,7 @@ parcelHelpers.defineInteropFlag(exports);
 }
 exports.default = baseClamp;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4CrK2":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"l5HcR":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _baseTrimJs = require("./_baseTrim.js");
@@ -8725,7 +8846,7 @@ var _isSymbolJsDefault = parcelHelpers.interopDefault(_isSymbolJs);
 }
 exports.default = toNumber;
 
-},{"./_baseTrim.js":"4X9xl","./isObject.js":"dHhyW","./isSymbol.js":"gCyRJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4X9xl":[function(require,module,exports) {
+},{"./_baseTrim.js":"4GFhk","./isObject.js":"39el7","./isSymbol.js":"hjDR9","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"4GFhk":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _trimmedEndIndexJs = require("./_trimmedEndIndex.js");
@@ -8742,7 +8863,7 @@ var _trimmedEndIndexJsDefault = parcelHelpers.interopDefault(_trimmedEndIndexJs)
 }
 exports.default = baseTrim;
 
-},{"./_trimmedEndIndex.js":"lXShQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lXShQ":[function(require,module,exports) {
+},{"./_trimmedEndIndex.js":"8FgzT","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"8FgzT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /** Used to match a single whitespace character. */ var reWhitespace = /\s/;
@@ -8760,7 +8881,7 @@ parcelHelpers.defineInteropFlag(exports);
 }
 exports.default = trimmedEndIndex;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dHhyW":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"39el7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -8793,7 +8914,7 @@ parcelHelpers.defineInteropFlag(exports);
 }
 exports.default = isObject;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gCyRJ":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"hjDR9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _baseGetTagJs = require("./_baseGetTag.js");
@@ -8822,7 +8943,7 @@ var _isObjectLikeJsDefault = parcelHelpers.interopDefault(_isObjectLikeJs);
 }
 exports.default = isSymbol;
 
-},{"./_baseGetTag.js":"gVDfP","./isObjectLike.js":"iad76","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gVDfP":[function(require,module,exports) {
+},{"./_baseGetTag.js":"jVahn","./isObjectLike.js":"izMGS","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"jVahn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _symbolJs = require("./_Symbol.js");
@@ -8845,7 +8966,7 @@ var _objectToStringJsDefault = parcelHelpers.interopDefault(_objectToStringJs);
 }
 exports.default = baseGetTag;
 
-},{"./_Symbol.js":"jx216","./_getRawTag.js":"ijXom","./_objectToString.js":"fTkTn","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jx216":[function(require,module,exports) {
+},{"./_Symbol.js":"dmyWy","./_getRawTag.js":"kDHwp","./_objectToString.js":"1iRQK","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"dmyWy":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _rootJs = require("./_root.js");
@@ -8853,7 +8974,7 @@ var _rootJsDefault = parcelHelpers.interopDefault(_rootJs);
 /** Built-in value references. */ var Symbol = _rootJsDefault.default.Symbol;
 exports.default = Symbol;
 
-},{"./_root.js":"8yvCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8yvCA":[function(require,module,exports) {
+},{"./_root.js":"hWKnd","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"hWKnd":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _freeGlobalJs = require("./_freeGlobal.js");
@@ -8862,14 +8983,14 @@ var _freeGlobalJsDefault = parcelHelpers.interopDefault(_freeGlobalJs);
 /** Used as a reference to the global object. */ var root = _freeGlobalJsDefault.default || freeSelf || Function('return this')();
 exports.default = root;
 
-},{"./_freeGlobal.js":"98hMd","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"98hMd":[function(require,module,exports) {
+},{"./_freeGlobal.js":"c94on","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"c94on":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var global = arguments[3];
 /** Detect free variable `global` from Node.js. */ var freeGlobal = typeof global == 'object' && global && global.Object === Object && global;
 exports.default = freeGlobal;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ijXom":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"kDHwp":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _symbolJs = require("./_Symbol.js");
@@ -8903,7 +9024,7 @@ var _symbolJsDefault = parcelHelpers.interopDefault(_symbolJs);
 }
 exports.default = getRawTag;
 
-},{"./_Symbol.js":"jx216","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fTkTn":[function(require,module,exports) {
+},{"./_Symbol.js":"dmyWy","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"1iRQK":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /** Used for built-in method references. */ var objectProto = Object.prototype;
@@ -8923,7 +9044,7 @@ parcelHelpers.defineInteropFlag(exports);
 }
 exports.default = objectToString;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iad76":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"izMGS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -8954,7 +9075,7 @@ parcelHelpers.defineInteropFlag(exports);
 }
 exports.default = isObjectLike;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kuzUS":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"fSbQN":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Options", ()=>Options
@@ -9026,7 +9147,7 @@ var Options = /** @class */ function() {
     return Options1;
 }();
 
-},{"tslib":"lRdW5","./decorators/":"bvgNp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bvgNp":[function(require,module,exports) {
+},{"tslib":"4AQ68","./decorators/":"jI2OB","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"jI2OB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _range = require("./range");
@@ -9036,7 +9157,7 @@ parcelHelpers.exportAll(_boolean, exports);
 var _debounce = require("./debounce");
 parcelHelpers.exportAll(_debounce, exports);
 
-},{"./range":"4vMHW","./boolean":"kWgZJ","./debounce":"ccT4N","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4vMHW":[function(require,module,exports) {
+},{"./range":"fGFnC","./boolean":"jyz2i","./debounce":"eqrbS","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"fGFnC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "range", ()=>range
@@ -9066,7 +9187,7 @@ function range(min, max) {
     };
 }
 
-},{"lodash-es/clamp":"zCKrs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kWgZJ":[function(require,module,exports) {
+},{"lodash-es/clamp":"dJuEG","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"jyz2i":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "boolean", ()=>boolean
@@ -9090,7 +9211,7 @@ function boolean(proto, key) {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ccT4N":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"eqrbS":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "debounce", ()=>debounce
@@ -9116,7 +9237,7 @@ function debounce() {
     };
 }
 
-},{"tslib":"lRdW5","lodash-es/debounce":"g26I7","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"g26I7":[function(require,module,exports) {
+},{"tslib":"4AQ68","lodash-es/debounce":"8dr5b","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"8dr5b":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _isObjectJs = require("./isObject.js");
@@ -9261,7 +9382,7 @@ var _toNumberJsDefault = parcelHelpers.interopDefault(_toNumberJs);
 }
 exports.default = debounce;
 
-},{"./isObject.js":"dHhyW","./now.js":"exZwe","./toNumber.js":"4CrK2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"exZwe":[function(require,module,exports) {
+},{"./isObject.js":"39el7","./now.js":"br8Ih","./toNumber.js":"l5HcR","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"br8Ih":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _rootJs = require("./_root.js");
@@ -9286,7 +9407,7 @@ var _rootJsDefault = parcelHelpers.interopDefault(_rootJs);
 };
 exports.default = now;
 
-},{"./_root.js":"8yvCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jzGiI":[function(require,module,exports) {
+},{"./_root.js":"hWKnd","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"etBG1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _eventHub = require("./event-hub");
@@ -9302,7 +9423,7 @@ parcelHelpers.exportAll(_setStyle, exports);
 var _touchRecord = require("./touch-record");
 parcelHelpers.exportAll(_touchRecord, exports);
 
-},{"./event-hub":"3PIA4","./get-pointer-data":"l3sLH","./get-position":"6WLv8","./is-one-of":"8RovI","./set-style":"7lys4","./touch-record":"ezxNx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3PIA4":[function(require,module,exports) {
+},{"./event-hub":"lJvl7","./get-pointer-data":"9xviJ","./get-position":"01xTi","./is-one-of":"law1a","./set-style":"9Dptq","./touch-record":"im4kr","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"lJvl7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "eventScope", ()=>eventScope
@@ -9358,7 +9479,7 @@ function clearEventsOn(scrollbar) {
     eventMap.delete(scrollbar);
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l3sLH":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"9xviJ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -9371,7 +9492,7 @@ function getPointerData(evt) {
     return evt.touches ? evt.touches[evt.touches.length - 1] : evt;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6WLv8":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"01xTi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -9387,7 +9508,7 @@ function getPosition(evt) {
     };
 }
 
-},{"./get-pointer-data":"l3sLH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8RovI":[function(require,module,exports) {
+},{"./get-pointer-data":"9xviJ","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"law1a":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 /**
@@ -9401,7 +9522,7 @@ function isOneOf(a, b) {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7lys4":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"9Dptq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setStyle", ()=>setStyle
@@ -9439,7 +9560,7 @@ function setStyle(elem, styles) {
     });
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ezxNx":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"im4kr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Tracker", ()=>Tracker
@@ -9580,7 +9701,7 @@ var TouchRecord = /** @class */ function() {
     return TouchRecord1;
 }();
 
-},{"tslib":"lRdW5","./get-position":"6WLv8","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iNFGO":[function(require,module,exports) {
+},{"tslib":"4AQ68","./get-position":"01xTi","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"d3njv":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "TrackController", ()=>TrackController
@@ -9622,7 +9743,7 @@ var TrackController = /** @class */ function() {
     return TrackController1;
 }();
 
-},{"tslib":"lRdW5","./track":"6WVpd","./direction":"dYSG8","../decorators/":"bvgNp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6WVpd":[function(require,module,exports) {
+},{"tslib":"4AQ68","./track":"7bU4Q","./direction":"khR8G","../decorators/":"jI2OB","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"7bU4Q":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ScrollbarTrack", ()=>ScrollbarTrack
@@ -9670,7 +9791,7 @@ var ScrollbarTrack = /** @class */ function() {
     return ScrollbarTrack1;
 }();
 
-},{"./thumb":"jszc2","../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jszc2":[function(require,module,exports) {
+},{"./thumb":"lJMwr","../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"lJMwr":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ScrollbarThumb", ()=>ScrollbarThumb
@@ -9732,7 +9853,7 @@ var ScrollbarThumb = /** @class */ function() {
     return ScrollbarThumb1;
 }();
 
-},{"./direction":"dYSG8","../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dYSG8":[function(require,module,exports) {
+},{"./direction":"khR8G","../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"khR8G":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "TrackDirection", ()=>TrackDirection
@@ -9743,7 +9864,7 @@ var TrackDirection;
     TrackDirection1["Y"] = "y";
 })(TrackDirection || (TrackDirection = {}));
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jBiTP":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"3mzpB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _getSize = require("./get-size");
@@ -9753,7 +9874,7 @@ parcelHelpers.exportAll(_isVisible, exports);
 var _update = require("./update");
 parcelHelpers.exportAll(_update, exports);
 
-},{"./get-size":"eohy0","./is-visible":"99mev","./update":"kBOIE","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eohy0":[function(require,module,exports) {
+},{"./get-size":"dPJnT","./is-visible":"40L7A","./update":"7Tz1h","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"dPJnT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "getSize", ()=>getSize
@@ -9785,7 +9906,7 @@ function getSize(scrollbar) {
     };
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"99mev":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"40L7A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "isVisible", ()=>isVisible
@@ -9801,7 +9922,7 @@ function isVisible(scrollbar, elem) {
     return top < bottom && left < right;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kBOIE":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"7Tz1h":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "update", ()=>update
@@ -9830,7 +9951,7 @@ function update(scrollbar) {
     scrollbar.setPosition();
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jsAOK":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"dT6EQ":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _setPosition = require("./set-position");
@@ -9840,7 +9961,7 @@ parcelHelpers.exportAll(_scrollTo, exports);
 var _scrollIntoView = require("./scroll-into-view");
 parcelHelpers.exportAll(_scrollIntoView, exports);
 
-},{"./set-position":"kNGmM","./scroll-to":"6bZgF","./scroll-into-view":"69B3G","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kNGmM":[function(require,module,exports) {
+},{"./set-position":"8SedT","./scroll-to":"dWQLh","./scroll-into-view":"4kGY4","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"8SedT":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "setPosition", ()=>setPosition
@@ -9874,7 +9995,7 @@ function setPosition(scrollbar, x, y) {
     };
 }
 
-},{"tslib":"lRdW5","lodash-es/clamp":"zCKrs","../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6bZgF":[function(require,module,exports) {
+},{"tslib":"4AQ68","lodash-es/clamp":"dJuEG","../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"dWQLh":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "scrollTo", ()=>scrollTo
@@ -9916,7 +10037,7 @@ function scrollTo(scrollbar, x, y, duration, _a) {
     return Math.pow(t - 1, 3) + 1;
 }
 
-},{"lodash-es/clamp":"zCKrs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"69B3G":[function(require,module,exports) {
+},{"lodash-es/clamp":"dJuEG","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"4kGY4":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "scrollIntoView", ()=>scrollIntoView
@@ -9933,7 +10054,7 @@ function scrollIntoView(scrollbar, elem, _a) {
     scrollbar.setMomentum(targetBounding.left - bounding.left - offsetLeft, _clampDefault.default(delta, -offset.y, limit.y - offset.y));
 }
 
-},{"lodash-es/clamp":"zCKrs","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bSKNu":[function(require,module,exports) {
+},{"lodash-es/clamp":"dJuEG","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"fXjk9":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "ScrollbarPlugin", ()=>ScrollbarPlugin
@@ -9989,7 +10110,7 @@ function initPlugins(scrollbar, options) {
     });
 }
 
-},{"tslib":"lRdW5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cHe8H":[function(require,module,exports) {
+},{"tslib":"4AQ68","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"i09Ta":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _keyboard = require("./keyboard");
@@ -10005,7 +10126,7 @@ parcelHelpers.exportAll(_touch, exports);
 var _wheel = require("./wheel");
 parcelHelpers.exportAll(_wheel, exports);
 
-},{"./keyboard":"3O3aj","./mouse":"u2dyQ","./resize":"gCciD","./select":"2fmgh","./touch":"gsvLM","./wheel":"8pCgR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3O3aj":[function(require,module,exports) {
+},{"./keyboard":"45RLU","./mouse":"lHB2k","./resize":"kxHIo","./select":"6ZCs1","./touch":"bjhsW","./wheel":"2wo9J","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"45RLU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "keyboardHandler", ()=>keyboardHandler
@@ -10111,7 +10232,7 @@ function isEditable(elem) {
     return false;
 }
 
-},{"../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"u2dyQ":[function(require,module,exports) {
+},{"../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"lHB2k":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "mouseHandler", ()=>mouseHandler
@@ -10221,7 +10342,7 @@ function mouseHandler(scrollbar) {
     });
 }
 
-},{"lodash-es/clamp":"zCKrs","../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gCciD":[function(require,module,exports) {
+},{"lodash-es/clamp":"dJuEG","../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"kxHIo":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "resizeHandler", ()=>resizeHandler
@@ -10234,7 +10355,7 @@ function resizeHandler(scrollbar) {
     addEvent(window, 'resize', _debounceDefault.default(scrollbar.update.bind(scrollbar), 300));
 }
 
-},{"lodash-es/debounce":"g26I7","../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2fmgh":[function(require,module,exports) {
+},{"lodash-es/debounce":"8dr5b","../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"6ZCs1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "selectHandler", ()=>selectHandler
@@ -10299,7 +10420,7 @@ function calcMomentum(scrollbar, evt) {
     return res;
 }
 
-},{"lodash-es/clamp":"zCKrs","../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gsvLM":[function(require,module,exports) {
+},{"lodash-es/clamp":"dJuEG","../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"bjhsW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "touchHandler", ()=>touchHandler
@@ -10346,7 +10467,7 @@ function touchHandler(scrollbar) {
     });
 }
 
-},{"../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8pCgR":[function(require,module,exports) {
+},{"../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"2wo9J":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "wheelHandler", ()=>wheelHandler
@@ -10395,7 +10516,7 @@ function normalizeDelta(evt) {
     };
 }
 
-},{"../utils/":"jzGiI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7J5rq":[function(require,module,exports) {
+},{"../utils/":"etBG1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"aiqw5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "attachStyle", ()=>attachStyle
@@ -10424,7 +10545,7 @@ function detachStyle() {
     isStyleAttached = false;
 }
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iZdF9":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"5yZiu":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _smoothScrollbar = require("smooth-scrollbar");
@@ -10444,57 +10565,92 @@ class MobilePlugin extends _smoothScrollbar.ScrollbarPlugin {
 }
 exports.default = MobilePlugin;
 
-},{"smooth-scrollbar":"7azJf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"byeT3":[function(require,module,exports) {
+},{"smooth-scrollbar":"99pD1","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"1N2sc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+// Menu funcs
+parcelHelpers.export(exports, "hideMenu", ()=>hideMenu
+);
+parcelHelpers.export(exports, "hideMenuOnScroll", ()=>hideMenuOnScroll
+);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+const DOM = {
+    menuActive: false,
+    menu: document.querySelector('.header__menu'),
+    contact: document.querySelector('.header__menu__item.--contact'),
+    lang: document.querySelector('.header__menu__item.--lang'),
+    theme: document.querySelector('.header__menu__item.--theme'),
+    dots: document.querySelector('.dots'),
+    dotsArr: _gsapDefault.default.utils.toArray('.dot')
+};
+function hideMenu() {
+    _gsapDefault.default.to([
+        DOM.contact,
+        DOM.lang,
+        DOM.theme
+    ], {
+        delay: 0.2,
+        duration: 0.4,
+        stagger: 0.05,
+        y: '150%',
+        onStart: ()=>DOM.dotsArr.forEach((dot)=>dot.classList.remove('theme--background')
+            )
+    });
+    DOM.menuActive = false;
+}
+const showMenu = ()=>{
+    _gsapDefault.default.to([
+        DOM.contact,
+        DOM.lang,
+        DOM.theme
+    ], {
+        duration: 0.4,
+        stagger: 0.05,
+        y: '0',
+        onStart: ()=>{
+            DOM.dotsArr.forEach((dot)=>dot.classList.add('theme--background')
+            );
+        }
+    });
+    DOM.menuActive = true;
+};
+function hideMenuOnScroll() {
+    if (DOM.menuActive) hideMenu();
+}
+// Menu events
+DOM.dots.addEventListener('mouseenter', showMenu);
+DOM.menu.addEventListener('mouseleave', hideMenu);
+
+},{"gsap":"9Q5jN","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"bAEjw":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _scrollTrigger = require("gsap/ScrollTrigger");
+_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
 const DOM = {
-    headerSubtitles: _gsapDefault.default.utils.toArray('.header__subtitle'),
-    sections: _gsapDefault.default.utils.toArray('.section'),
-    headerDots: _gsapDefault.default.utils.toArray('.dot')
+    scrollIcon: document.querySelector('.scroll-icon'),
+    sectionHero: document.querySelector('.section--hero')
 };
-function toggleHeaderSubtitleAndDots() {
-    const configs = {
-        duration: 0.3,
-        ease: 'power2.out'
-    };
-    DOM.headerSubtitles.forEach((subtitle, index)=>{
-        _scrollTrigger.ScrollTrigger.create({
-            // markers: true,
-            trigger: DOM.sections[index + 1],
-            start: 'top 35%',
-            end: 'bottom 35%',
-            onEnter: ()=>{
-                _gsapDefault.default.to(subtitle, {
-                    y: '0',
-                    ...configs
-                });
-                DOM.headerDots[index].classList.add('theme--background');
-            },
-            onLeaveBack: ()=>{
-                _gsapDefault.default.to(subtitle, {
-                    y: '100%',
-                    ...configs
-                });
-                DOM.headerDots[index].classList.remove('theme--background');
-            },
-            onLeave: ()=>_gsapDefault.default.to(subtitle, {
-                    y: '-100%',
-                    ...configs
-                })
-            ,
-            onEnterBack: ()=>_gsapDefault.default.to(subtitle, {
-                    y: '0',
-                    ...configs
-                })
-        });
+function spinScrollIcon() {
+    _gsapDefault.default.to(DOM.scrollIcon, {
+        rotation: 180,
+        y: '-200px',
+        ease: 'none',
+        autoAlpha: 0,
+        duration: 1,
+        scrollTrigger: {
+            trigger: DOM.sectionHero,
+            start: 'top top',
+            end: 'center top',
+            scrub: true
+        }
     });
 }
-exports.default = toggleHeaderSubtitleAndDots;
+exports.default = spinScrollIcon;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7Sl85":[function(require,module,exports) {
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"hObom":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
@@ -10505,7 +10661,7 @@ const DOM = {
     elementsFadeOut: [
         ..._gsapDefault.default.utils.toArray('.title-wrapper'),
         ..._gsapDefault.default.utils.toArray('.project'),
-        ..._gsapDefault.default.utils.toArray('.text')
+        ..._gsapDefault.default.utils.toArray('.about__text')
     ],
     elementsFadeIn: /Mobi|Android/i.test(navigator.userAgent) ? _gsapDefault.default.utils.toArray('.--fade-in') : _gsapDefault.default.utils.toArray('.--fade-in:not(h2)')
 };
@@ -10549,7 +10705,7 @@ function fadeInOut() {
 }
 exports.default = fadeInOut;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a0dPu":[function(require,module,exports) {
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"21V6r":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
@@ -10557,7 +10713,101 @@ var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 var _scrollTrigger = require("gsap/ScrollTrigger");
 _gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
 const DOM = {
-    marquees: _gsapDefault.default.utils.toArray('.marquee__inner'),
+    about: document.querySelector('.about.section'),
+    imageWrapper: document.querySelector('.about__image'),
+    image: document.querySelector('.about__image__of__ed')
+};
+function showAboutImage() {
+    fadeIn();
+    fadeOut();
+}
+exports.default = showAboutImage;
+const fadeIn = ()=>{
+    _gsapDefault.default.to(DOM.imageWrapper, {
+        autoAlpha: 0.34,
+        y: '-30%',
+        ease: 'power1.out',
+        scrollTrigger: {
+            trigger: DOM.about,
+            start: 'top 60%',
+            end: 'top 10%',
+            scrub: true,
+            toggleActions: 'play reverse play reverse'
+        }
+    });
+};
+const fadeOut = ()=>{
+    _gsapDefault.default.to(DOM.image, {
+        autoAlpha: 0,
+        y: '-30%',
+        ease: 'power1.in',
+        scrollTrigger: {
+            trigger: DOM.about,
+            start: 'top 10%',
+            end: 'top -40%',
+            scrub: true,
+            toggleActions: 'play reverse play reverse'
+        }
+    });
+};
+
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"gBeoa":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+var _scrollTrigger = require("gsap/ScrollTrigger");
+const DOM = {
+    headerSubtitles: _gsapDefault.default.utils.toArray('.header__subtitle'),
+    sections: _gsapDefault.default.utils.toArray('.section'),
+    headerDots: _gsapDefault.default.utils.toArray('.dot')
+};
+function toggleHeaderSubtitleAndDots() {
+    const configs = {
+        duration: 0.4,
+        ease: 'power2.out'
+    };
+    DOM.headerSubtitles.forEach((subtitle, index)=>{
+        _scrollTrigger.ScrollTrigger.create({
+            // markers: true,
+            trigger: DOM.sections[index + 1],
+            start: 'top 35%',
+            end: 'bottom 35%',
+            onEnter: ()=>{
+                _gsapDefault.default.to(subtitle, {
+                    y: '0',
+                    ...configs
+                });
+            },
+            onLeaveBack: ()=>{
+                _gsapDefault.default.to(subtitle, {
+                    y: '100%',
+                    ...configs
+                });
+            },
+            onLeave: ()=>_gsapDefault.default.to(subtitle, {
+                    y: '-100%',
+                    ...configs
+                })
+            ,
+            onEnterBack: ()=>_gsapDefault.default.to(subtitle, {
+                    y: '0',
+                    ...configs
+                })
+        });
+    });
+}
+exports.default = toggleHeaderSubtitleAndDots;
+
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"bUfWg":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _gsap = require("gsap");
+var _gsapDefault = parcelHelpers.interopDefault(_gsap);
+var _scrollTrigger = require("gsap/ScrollTrigger");
+_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
+const DOM = {
+    marquees: _gsapDefault.default.utils.toArray('.project__marquee__inner'),
     projects: _gsapDefault.default.utils.toArray('.project')
 };
 function marqueeOnMobile() {
@@ -10566,7 +10816,6 @@ function marqueeOnMobile() {
             trigger: marquee,
             start: 'top 80%',
             end: 'top 10%',
-            id: 'marquee',
             onEnter: ()=>activeMarquee(DOM.projects[index])
             ,
             onLeave: ()=>desactiveMarquee(DOM.projects[index])
@@ -10583,7 +10832,7 @@ const activeMarquee = (project)=>project.classList.add('--active')
 const desactiveMarquee = (project)=>project.classList.remove('--active')
 ;
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3mPRR":[function(require,module,exports) {
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"iisJi":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "activeProjectDesktop", ()=>activeProjectDesktop
@@ -10597,15 +10846,15 @@ const DOM = {
     container: document.querySelector('.container'),
     firstProject: document.querySelector('.project:first-child'),
     lastProject: document.querySelector('.project:last-child'),
-    marquees: document.querySelectorAll('.marquee'),
-    slider: document.querySelector('.slider'),
-    sliderWrapper: document.querySelector('.slider__img--wrapper'),
-    sliderImg: document.querySelector('.slider__img'),
-    sliderImgMask: document.querySelector('.slider__img--mask'),
+    marquees: document.querySelectorAll('.project__marquee'),
+    slider: document.querySelector('.project-slider'),
+    sliderWrapper: document.querySelector('.project-slider__img--wrapper'),
+    sliderImgMask: document.querySelector('.project-slider__img--mask'),
+    sliderImg: document.querySelector('.project-slider__img'),
     get: (selector)=>document.querySelector(selector)
 };
 let tlEnter, tlOut;
-let tlDefaults = {
+const tlDefaults = {
     paused: true,
     duration: 0.2,
     ease: 'power2.out'
@@ -10616,7 +10865,7 @@ function activeProjectDesktop() {
     createSliderOut();
     _gsapDefault.default.to(DOM.sliderWrapper, {
         duration: 1,
-        y: '-15vh',
+        y: '-10vh',
         ease: 'none',
         scrollTrigger: {
             trigger: DOM.firstProject,
@@ -10651,12 +10900,16 @@ const setMarqueeWidth = ()=>{
     );
 };
 const calcMarqueeWidth = ()=>{
-    let pageWidth = document.body.clientWidth;
-    let containerGap = parseInt(getComputedStyle(DOM.container).marginLeft);
-    let sliderLeft = parseInt(getComputedStyle(DOM.slider).left);
-    let sliderWidth = DOM.slider.offsetWidth;
+    const pageWidth = document.body.clientWidth;
+    const containerGap = parseInt(getComputedStyle(DOM.container).marginLeft);
+    const sliderRight = parseInt(getComputedStyle(DOM.slider).right);
+    const sliderWidth = DOM.slider.offsetWidth;
     if (pageWidth < 1920) return pageWidth - (sliderWidth + 5 + containerGap * 2);
-    else return pageWidth - (sliderWidth + containerGap + sliderLeft + 5);
+    else return pageWidth - (sliderWidth + containerGap + sliderRight + 5);
+};
+const toggleMarqueeAnimation = (ev)=>{
+    const marquee = ev.target.firstElementChild;
+    ev.type === 'mouseenter' ? marquee.classList.add('--paused') : marquee.classList.remove('--paused');
 };
 const createSliderEnter = ()=>{
     tlEnter = _gsapDefault.default.timeline({
@@ -10690,83 +10943,24 @@ const desactiveProject = ()=>{
     DOM.slider.removeAttribute('style');
 };
 window.addEventListener('resize', setMarqueeWidth);
+DOM.marquees.forEach((marquee)=>{
+    marquee.addEventListener('mouseenter', toggleMarqueeAnimation);
+    marquee.addEventListener('mouseleave', toggleMarqueeAnimation);
+});
 
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","../animations/projects":"2M8Vt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2M8Vt":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "toggleActiveSlide", ()=>toggleActiveSlide
-);
-const DOM = {
-    projectTitles: document.querySelectorAll('.project h3'),
-    get: (selector)=>document.querySelector(selector)
-};
-const toggleProjects = (e)=>{
-    let project = e.currentTarget.parentNode.parentNode;
-    let projectId = project.dataset.id;
-    toggleActiveProject(project);
-    toggleActiveSlide(projectId);
-};
-const isActive = (element)=>{
-    return element.classList.contains('--active');
-};
-const toggleActiveProject = (projectContainer)=>{
-    if (!isActive(projectContainer)) {
-        DOM.get('.project.--active').classList.remove('--active');
-        projectContainer.classList.add('--active');
-    }
-};
-function toggleActiveSlide(id) {
-    let slide = DOM.get('#' + id);
-    if (!isActive(slide)) {
-        let lastActiveSlide = DOM.get('.slider__img .--active');
-        if (lastActiveSlide) lastActiveSlide.classList.remove('--active');
-        slide.classList.add('--active');
-    }
-}
-DOM.projectTitles.forEach((title)=>title.addEventListener('click', toggleProjects)
-);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"76Bnr":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _gsap = require("gsap");
-var _gsapDefault = parcelHelpers.interopDefault(_gsap);
-var _scrollTrigger = require("gsap/ScrollTrigger");
-_gsapDefault.default.registerPlugin(_scrollTrigger.ScrollTrigger);
-const DOM = {
-    scrollIcon: document.querySelector('.scroll-icon'),
-    sectionHero: document.querySelector('.section--hero')
-};
-function spinScrollIcon() {
-    _gsapDefault.default.to(DOM.scrollIcon, {
-        rotation: 180,
-        y: '-200px',
-        ease: 'none',
-        autoAlpha: 0,
-        duration: 1,
-        scrollTrigger: {
-            trigger: DOM.sectionHero,
-            start: 'top top',
-            end: 'center top',
-            scrub: true
-        }
-    });
-}
-exports.default = spinScrollIcon;
-
-},{"gsap":"fPSuC","gsap/ScrollTrigger":"7wnFk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lfv1X":[function(require,module,exports) {
+},{"gsap":"9Q5jN","gsap/ScrollTrigger":"4QMFi","../animations/projects":"lKLeH","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}],"2RPhj":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _gsap = require("gsap");
 var _gsapDefault = parcelHelpers.interopDefault(_gsap);
 const DOM = {
-    cursor: document.querySelector('.custom-cursor'),
-    cursorDisabled: true,
+    cursor: document.querySelector('.cursor'),
     subtitles: document.querySelectorAll('h2'),
-    menuItems: document.querySelectorAll('.menu__item'),
+    menuItems: document.querySelectorAll('.header__menu__item'),
     scrolls: document.querySelectorAll('.scroll-icon'),
     projects: document.querySelectorAll('h3'),
-    contact: document.querySelectorAll('.hello')
+    contact: document.querySelectorAll('.contact__CTA__link'),
+    socialLinks: document.querySelectorAll('.footer__social__link')
 };
 const moveCursor = (e)=>_gsapDefault.default.to(DOM.cursor, {
         duration: 0.5,
@@ -10779,154 +10973,59 @@ const showCursor = ()=>{
         ease: 'power2.out',
         duration: 1,
         opacity: 1,
-        delay: 0.3
+        delay: 0.4
     });
 };
 const activeCursor = ()=>{
-    if (DOM.cursorDisabled) {
-        showCursor();
-        window.removeEventListener('mousemove', activeCursor);
-    }
+    showCursor();
+    window.removeEventListener('mousemove', activeCursor);
+};
+const cursorMouseenter = (sizeClass)=>{
+    DOM.cursor.classList.add(sizeClass);
+};
+const cursorMouseout = (sizeClass)=>{
+    DOM.cursor.classList.remove(sizeClass);
+};
+const cursorMousedown = ()=>{
+    DOM.cursor.classList.add('--active');
+};
+const cursorMouseup = ()=>{
+    DOM.cursor.classList.remove('--active');
+};
+const addListeners = (elements, sizeClass)=>{
+    elements.forEach((target)=>{
+        target.addEventListener('mouseenter', ()=>cursorMouseenter(sizeClass)
+        );
+    });
+    elements.forEach((target)=>{
+        target.addEventListener('mouseout', ()=>cursorMouseout(sizeClass)
+        );
+    });
 };
 function initCursor() {
     if (DOM.cursor) {
         window.addEventListener('mousemove', activeCursor);
         window.addEventListener('mousemove', moveCursor);
-        const smallTriggers = [
+        addListeners([
             ...DOM.subtitles,
             ...DOM.menuItems
-        ];
-        const mediumTriggers = [
-            ...DOM.projects
-        ];
-        const largeTriggers = [
+        ], '--small');
+        addListeners([
+            ...DOM.projects,
+            ...DOM.socialLinks
+        ], '--medium');
+        addListeners([
             ...DOM.scrolls,
             ...DOM.contact
-        ];
-        smallTriggers.forEach((target)=>{
-            target.addEventListener('mouseenter', ()=>DOM.cursor.classList.add('--active', '--small')
-            );
-        });
-        smallTriggers.forEach((target)=>{
-            target.addEventListener('mouseout', ()=>DOM.cursor.classList.remove('--active', '--small')
-            );
-        });
-        mediumTriggers.forEach((item)=>{
-            item.addEventListener('mouseenter', ()=>DOM.cursor.classList.add('--active', '--medium')
-            );
-        });
-        mediumTriggers.forEach((item)=>{
-            item.addEventListener('mouseout', ()=>DOM.cursor.classList.remove('--active', '--medium')
-            );
-        });
-        largeTriggers.forEach((item)=>{
-            item.addEventListener('mouseenter', ()=>{
-                DOM.cursor.classList.add('--active', '--large');
-            });
-        });
-        largeTriggers.forEach((item)=>{
-            item.addEventListener('mouseout', ()=>DOM.cursor.classList.remove('--active', '--large')
-            );
-        });
+        ], '--large');
+        window.addEventListener('mousedown', ()=>cursorMousedown()
+        );
+        window.addEventListener('mouseup', ()=>cursorMouseup()
+        );
     }
-} // DOM.menuItem.forEach(function (el) {
- //   el.addEventListener('mouseover', () => {
- //     gsap.to(DOM.cursor, 0.25, {
- //       scale: 1,
- //       autoAlpha: 1,
- //     })
- //   })
- // }
- // 	el.addEventListener('mouseout', () => {
- // 		gsap.to(button, 0.25, {
- // 			scale: 0.5,
- // 			autoAlpha: 0
- // 		})
- // 	})
- // 	el.addEventListener('mousedown', () => {
- // 		gsap.to(button, 0.5, {
- // 			css: { transform: `translate(-50%, -50%) scale(0.75)` }
- // 		})
- // 		gsap.to(buttonText, 0.25, {
- // 			css: { opacity: 1 }
- // 		})
- // 	})
- // 	el.addEventListener('mouseup', () => {
- // 		gsap.to(button, 1, {
- // 			css: { background: `transparent` }
- // 		})
- // 		gsap.to(button, 0.5, {
- // 			css: { transform: `translate(-50%, -50%) scale(1)` }
- // 		})
- // 		gsap.to(buttonText, 0.25, {
- // 			css: {
- // 				opacity: 1
- // 			}
- // 		})
- // 	})
- // })
+}
 exports.default = initCursor;
 
-},{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"e2JgW":[function(require,module,exports) {
-const DOM = {
-    headerTheme: document.querySelector('.header__theme'),
-    body: document.body
-};
-const toggleTheme = ()=>{
-    if (isDarkMode()) {
-        DOM.body.classList.remove('--dark');
-        DOM.body.classList.add('--light');
-    } else {
-        DOM.body.classList.remove('--light');
-        DOM.body.classList.add('--dark');
-    }
-};
-const isDarkMode = ()=>DOM.body.classList.contains('--dark')
-;
-DOM.headerTheme.addEventListener('click', toggleTheme);
+},{"gsap":"9Q5jN","@parcel/transformer-js/src/esmodule-helpers.js":"dYXYl"}]},["93ZfG","hXGcC"], "hXGcC", "parcelRequire94c2")
 
-},{}],"8rQdV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _gsap = require("gsap");
-var _gsapDefault = parcelHelpers.interopDefault(_gsap);
-const DOM = {
-    target: document.querySelector('.hello'),
-    areaAroundTarget: document.querySelector('.section--contact')
-};
-const targetOffsetTop = DOM.target.offsetTop;
-const targetHeight = DOM.target.clientHeight;
-const targetOffsetLeft = DOM.target.offsetLeft;
-const targetWidth = DOM.target.clientWidth;
-const mouseDistanceFromElementY = (mouseY)=>mouseY - (targetOffsetTop + targetHeight / 2)
-;
-const mouseDistanceFromElementX = (mouseX)=>mouseX - (targetOffsetLeft + targetWidth / 2)
-;
-const getPercentageOfValue = (percentage, valueNumber)=>(percentage / 100 * valueNumber).toFixed(0)
-;
-let started = 0;
-// Make an element follow the mouse, based on element position
-DOM.areaAroundTarget.addEventListener('mousemove', (e)=>{
-    let distanceY = getPercentageOfValue(20, mouseDistanceFromElementY(e.pageY));
-    let distanceX = getPercentageOfValue(20, mouseDistanceFromElementX(e.pageX));
-    if (started === 0) {
-        _gsapDefault.default.to(DOM.target, {
-            autoAlpha: 1,
-            duration: 0.7
-        });
-        started = 1;
-    }
-    _gsapDefault.default.to(DOM.target, {
-        x: `${distanceX}px`,
-        duration: 1,
-        ease: 'linear'
-    });
-    _gsapDefault.default.to(DOM.target, {
-        y: `${distanceY}px`,
-        duration: 1,
-        ease: 'linear'
-    });
-});
-
-},{"gsap":"fPSuC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["l4AUa","ebWYT"], "ebWYT", "parcelRequirea9cf")
-
-//# sourceMappingURL=index.739bf03c.js.map
+//# sourceMappingURL=index.d15c0691.js.map

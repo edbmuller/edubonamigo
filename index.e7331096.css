@@ -35,12 +35,12 @@ table {
 
 @font-face {
   font-family: Italiana;
-  src: url("Italiana.07249b82.ttf");
+  src: url("Italiana.e88e96dd.ttf");
 }
 
 @font-face {
   font-family: Century Gothic;
-  src: url("century-gothic.488ef15c.ttf");
+  src: url("century-gothic.206e7a07.ttf");
 }
 
 :root {
@@ -50,12 +50,46 @@ table {
   --light-blend: exclusion;
   --default-font-family: "Century Gothic", sans-serif;
   --serif-font-family: "Italiana", serif;
+  --size-xgg: 15vw;
+  --size-gg: 17.798vw;
+  --size-g: calc(6.18vh + 1.45866vh);
+  --size-m: 3.81924vh;
+  --size-p: 2.36029vh;
+  --size-xp: 1.2rem;
+}
+
+@media (min-width: 550px) {
+  :root {
+    --size-xp: 1.45866vh;
+  }
+}
+
+@media (min-width: 1024px) and (max-height: 1300px) {
+  :root {
+    --size-xgg: 13vw;
+    --size-gg: 10vw;
+    --size-g: 10vh;
+    --size-m: 3.81924vw;
+    --size-p: 2.36029vw;
+    --size-xp: 2.36029vh;
+  }
+}
+
+@media (min-width: 1300px) {
+  :root {
+    --size-xgg: 13vw;
+    --size-gg: 10vw;
+    --size-g: 10vh;
+    --size-m: 3.81924vw;
+    --size-p: 2.36029vw;
+    --size-xp: 2.36029vh;
+  }
 }
 
 .theme {
   background-color: var(--primary-color);
   color: var(--secondary-color);
-  transition: background-color .3s ease-in-out, color .3s ease-in-out;
+  transition: background-color .4s cubic-bezier(.3, 1, .7, 1), color .4s cubic-bezier(.3, 1, .7, 1);
 }
 
 .theme.--dark {
@@ -77,22 +111,22 @@ table {
 
 .theme--border {
   border-color: var(--secondary-color);
-  transition: border-color .3s ease-in-out;
+  transition: border-color .4s cubic-bezier(.3, 1, .7, 1);
 }
 
 .theme--background {
   background-color: var(--secondary-color);
-  transition: background-color .3s ease-in-out;
+  transition: background-color .4s cubic-bezier(.3, 1, .7, 1);
 }
 
 .theme--color {
   color: var(--secondary-color);
-  transition: color .3s ease-in-out;
+  transition: color .4s cubic-bezier(.3, 1, .7, 1);
 }
 
 .theme--fill path {
   fill: var(--secondary-color);
-  transition: fill .3s ease-in-out;
+  transition: fill .4s cubic-bezier(.3, 1, .7, 1);
 }
 
 .theme--cursor {
@@ -103,6 +137,8 @@ table {
   box-sizing: border-box;
   text-rendering: optimizelegibility;
   -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 html {
@@ -126,10 +162,10 @@ body:before {
   will-change: background-image;
   content: "";
   height: 300%;
-  opacity: .5;
+  opacity: .4;
   width: 300%;
   z-index: -1;
-  background-image: url("noise.8cf68581.png");
+  background-image: url("noise.60409427.png");
   animation: grain 10s steps(10, end) infinite;
   position: fixed;
   top: -100%;
@@ -200,4 +236,4 @@ body:before {
   opacity: 0;
 }
 
-/*# sourceMappingURL=index.d7b8d19f.css.map */
+/*# sourceMappingURL=index.e7331096.css.map */
