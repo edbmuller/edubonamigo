@@ -1,6 +1,7 @@
 import gsap from 'gsap'
 
 const DOM = {
+	menuActive: false,
 	menu: document.querySelector('.header__menu'),
 	contact: document.querySelector('.header__menu__item.--contact'),
 	lang: document.querySelector('.header__menu__item.--lang'),
@@ -19,6 +20,7 @@ export function hideMenu() {
 		onStart: () =>
 			DOM.dotsArr.forEach((dot) => dot.classList.remove('theme--background'))
 	})
+	DOM.menuActive = false
 }
 
 const showMenu = () => {
@@ -30,6 +32,13 @@ const showMenu = () => {
 			DOM.dotsArr.forEach((dot) => dot.classList.add('theme--background'))
 		}
 	})
+	DOM.menuActive = true
+}
+
+export function hideMenuOnScroll() {
+	if (DOM.menuActive) {
+		hideMenu()
+	}
 }
 
 // Menu events

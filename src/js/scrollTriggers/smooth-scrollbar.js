@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Scrollbar from 'smooth-scrollbar'
 import MobilePlugin from './fix-speed-mobile'
+import { hideMenuOnScroll } from '../animations/header-menu'
 
 gsap.registerPlugin(ScrollTrigger)
 Scrollbar.use(MobilePlugin)
@@ -32,9 +33,11 @@ const smoothScrollbar = () => {
 			return scrollbar.scrollTop // getter
 		}
 	})
-	scrollbar.addListener(ScrollTrigger.update)
 
+	scrollbar.addListener(ScrollTrigger.update)
 	ScrollTrigger.defaults({ scroller: '.scroller' })
+
+	scrollbar.addListener(() => hideMenuOnScroll())
 
 	fixGsapMarkers()
 }
@@ -46,7 +49,8 @@ const smoothScrollbar = () => {
 const listenerAnchorToSection = (target, index) => {
 	target.addEventListener('click', (e) => {
 		scrollbar.scrollIntoView(DOM.sections[index], {
-			damping: 0.07
+			damping: 0.07,
+			offsetTop: 50
 		})
 	})
 }
@@ -68,7 +72,7 @@ const completeScrollOnContactSection = () => {
 	const contact = DOM.sections.length - 1
 	ScrollTrigger.create({
 		trigger: DOM.sections[contact],
-		start: 'top 50%',
+		start: 'top 70%',
 		onEnter: () =>
 			scrollbar.scrollIntoView(DOM.sections[contact], { damping: 1 })
 	})
