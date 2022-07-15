@@ -11,7 +11,7 @@ const DOM = {
 }
 
 const moveCursor = (e) =>
-	gsap.to(DOM.cursor, { duration: 0.7, x: e.clientX, y: e.clientY })
+	gsap.to(DOM.cursor, { duration: 0.5, x: e.clientX, y: e.clientY })
 
 const showCursor = () => {
 	gsap.to(DOM.cursor, {

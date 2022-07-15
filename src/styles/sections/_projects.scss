@@ -15,10 +15,10 @@
 	margin-bottom: 15vh;
 
 	@include laptop {
-		margin-bottom: var(--size-pp);
+		margin-bottom: var(--size-p);
 	}
 	@include desktop {
-		margin-bottom: var(--size-pp);
+		margin-bottom: var(--size-p);
 	}
 
 	&__title {

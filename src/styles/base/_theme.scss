@@ -27,14 +27,16 @@
 	// 1.45865941776
 	// 0.90145152017568
 
-	--size-xgg: 1vw;
+	--size-xgg: 10vh;
 	--size-gg: 10vh;
-	--size-g: 6.18vh;
-	--size-p: 3.81924vh;
+	--size-g: calc(6.18vh + 1.45865941776vh);
+	--size-m: 3.81924vh;
 	--size-p: 2.36029032vh;
+	--size-xp: 1.2rem;
 
-	--size-pp: 2.36029032vh;
-	--size-xpp: 1.45865941776vh;
+	@include tablet {
+		--size-xp: 1.45865941776vh;
+	}
 
 	@include laptop {
 		--size-xgg: 13vw;
@@ -42,8 +44,7 @@
 		--size-g: 10vh;
 		--size-m: 3.81924vw;
 		--size-p: 2.36029032vw;
-		--size-pp: 1.45865941776vw;
-		--size-xpp: 2.36029032vh;
+		--size-xp: 2.36029032vh;
 	}
 	@include desktop {
 		--size-xgg: 13vw;
@@ -51,8 +52,7 @@
 		--size-g: 10vh;
 		--size-m: 3.81924vw;
 		--size-p: 2.36029032vw;
-		--size-pp: 1.45865941776vw;
-		--size-xpp: 2.36029032vh;
+		--size-xp: 2.36029032vh;
 	}
 }
 

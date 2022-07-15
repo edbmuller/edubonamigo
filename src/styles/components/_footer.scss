@@ -44,5 +44,9 @@
 
 .footer__location__text,
 .footer__copyright__text {
-	font-size: 1.6rem;
+	font-size: var(--size-xp);
+
+	@include tablet {
+		font-size: 1.6rem;
+	}
 }
