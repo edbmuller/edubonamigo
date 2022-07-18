@@ -11,7 +11,7 @@
 	"source": "src/index.html",
 	"scripts": {
 		"start": "parcel",
-		"build": "parcel build --public-url ./portfolio/"
+		"build": "parcel build --public-url ./portfolio"
 	},
 	"devDependencies": {
 		"@parcel/config-default": "^2.4.1",
