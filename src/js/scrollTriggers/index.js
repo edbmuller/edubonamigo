@@ -6,6 +6,7 @@ import fadeInOut from './fade-in-out'
 import marqueeOnMobile from './project-marquee-mobile'
 import { activeProjectDesktop } from './project-desktop'
 import showAboutImage from './about-image'
+import footerTimeline from './footer-timeline'
 
 export default function initScrollTriggers() {
 	smoothScrollbar()
@@ -13,6 +14,7 @@ export default function initScrollTriggers() {
 	spinScrollIcon()
 	fadeInOut()
 	showAboutImage()
+	footerTimeline()
 
 	if (/Mobi|Android/i.test(navigator.userAgent)) {
 		marqueeOnMobile()

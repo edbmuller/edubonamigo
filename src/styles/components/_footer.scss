@@ -36,6 +36,7 @@
 
 .footer__social__item {
 	margin: 0 0 2vh 4vw;
+	overflow: hidden;
 
 	@include tablet {
 		margin: 0;
@@ -61,9 +62,16 @@
 	// transform: translateX(110%);
 }
 
+.footer__location,
+.footer__copyright {
+	overflow: hidden;
+}
+
 .footer__location__text,
 .footer__copyright__text {
 	font-size: var(--size-xp);
+	display: block;
+	height: 100%;
 
 	@include tablet {
 		font-size: 1.6rem;

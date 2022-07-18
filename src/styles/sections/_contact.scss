@@ -13,7 +13,12 @@
 	}
 }
 
+.contact__CTA__mask {
+	overflow: hidden;
+}
+
 .contact__CTA__link {
+	display: block;
 	font-family: var(--serif-font-family);
 	color: var(--text-color);
 	font-size: var(--size-xgg);

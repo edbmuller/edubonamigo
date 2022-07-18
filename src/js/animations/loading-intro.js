@@ -2,7 +2,7 @@ import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
 
-import initCursor from './cursor'
+import customCursor from './cursor'
 import { hideMenu } from './header-menu'
 
 gsap.registerPlugin(Flip)
@@ -40,18 +40,18 @@ function stopLoadingAndInitIntro() {
 		ease: 'power3.inOut',
 		scale: true,
 		onComplete: () => {
-			initIntro()
-			initCursor()
+			introTimeline()
+			customCursor()
 		}
 	})
 }
 
-const initIntro = () => {
+const introTimeline = () => {
 	const introTl = gsap.timeline({
 		defaults: {
-			duration: 1
+			duration: 1.2,
+			ease: 'power2.out'
 		},
-		ease: 'power2.in',
 		onStart: () => {
 			DOM.body.classList.remove('--loading')
 			DOM.dotsArr.forEach((dot) => dot.classList.add('theme--background'))
@@ -70,7 +70,7 @@ const initIntro = () => {
 			],
 			{
 				y: '0',
-				stagger: 0.1
+				stagger: 0.15
 			},
 			'0'
 		)

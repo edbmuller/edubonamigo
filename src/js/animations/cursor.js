@@ -53,7 +53,7 @@ const addListeners = (elements, sizeClass) => {
 	})
 }
 
-export default function initCursor() {
+export default function customCursor() {
 	if (DOM.cursor) {
 		window.addEventListener('mousemove', activeCursor)
 		window.addEventListener('mousemove', moveCursor)
