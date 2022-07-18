@@ -88,7 +88,7 @@
 	mix-blend-mode: exclusion;
 
 	@include tablet {
-		mix-blend-mode: normal;
+		mix-blend-mode: exclusion;
 	}
 }
 
@@ -96,6 +96,6 @@
 	mix-blend-mode: luminosity;
 
 	@include tablet {
-		mix-blend-mode: luminosity;
+		mix-blend-mode: normal;
 	}
 }
