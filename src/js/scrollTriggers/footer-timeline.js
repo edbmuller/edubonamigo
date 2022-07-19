@@ -29,6 +29,6 @@ export default function footerTimeline() {
 		trigger: DOM.sectionContact,
 		start: '90% bottom',
 		onEnter: () => tl.play(),
-		onLeaveBack: () => tl.revert()
+		onLeaveBack: () => tl.reverse()
 	})
 }
