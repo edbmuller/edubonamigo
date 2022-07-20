@@ -88,8 +88,8 @@ const toggleMarqueeAnimation = (ev) => {
 const createSliderEnter = () => {
 	tlEnter = gsap
 		.timeline({ ...tlDefaults })
-		.to(DOM.sliderImg, { y: 0 }, 0)
-		.to(DOM.sliderImgMask, { y: 0, scale: 1 }, 0)
+		.from(DOM.sliderImg, { yPercent: 101 }, 0)
+		.from(DOM.sliderImgMask, { yPercent: -100, scale: 1.3 }, 0)
 }
 
 const createSliderOut = () => {

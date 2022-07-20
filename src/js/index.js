@@ -1,4 +1,4 @@
-import './initialSetup'
+import './checkMobileRefreshOnResize'
 
 // TODO: Trigger after imagesLoaded
 import './animations/toggle-theme'

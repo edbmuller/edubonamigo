@@ -1,3 +1,4 @@
+import mobile from 'is-mobile'
 import smoothScrollbar from './smooth-scrollbar'
 import toggleHeaderSubtitleAndDots from './header-toggle-subtitle-and-dots'
 import spinScrollIcon from './spin-scroll-icon'
@@ -16,10 +17,11 @@ export default function initScrollTriggers() {
 	showAboutImage()
 	footerTimeline()
 
-	if (/Mobi|Android/i.test(navigator.userAgent)) {
+	if (mobile({ tablet: true })) {
 		marqueeOnMobile()
 	} else {
 		activeProjectDesktop()
+		console.log('desktop')
 	}
 }
 

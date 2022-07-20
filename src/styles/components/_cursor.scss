@@ -4,6 +4,10 @@
 	mix-blend-mode: exclusion;
 }
 
+.--mobile .cursor {
+	display: none !important;
+}
+
 .cursor {
 	z-index: 99;
 	pointer-events: none;
@@ -13,15 +17,7 @@
 	height: 5rem;
 	left: -2.6rem;
 	top: -2.6rem;
-	display: none;
 	transition: transform $duration $easing;
-
-	@include laptop {
-		display: block;
-	}
-	@include desktop {
-		display: block;
-	}
 
 	&__default {
 		position: absolute;
