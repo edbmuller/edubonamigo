@@ -1,3 +1,5 @@
+import './initialSetup'
+
 // TODO: Trigger after imagesLoaded
 import './animations/toggle-theme'
 // import "./animations/cursor"
