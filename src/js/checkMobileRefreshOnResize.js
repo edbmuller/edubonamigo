@@ -9,7 +9,12 @@ const applyMobileClass = () => {
 }
 
 const refreshPage = () => {
-	setTimeout(() => location.reload(), 500)
+	const width = window.innerWidth
+	setTimeout(() => {
+		if (width !== window.innerWidth) {
+			window.location.reload()
+		}
+	}, 500)
 }
 
 window.addEventListener('load', applyMobileClass)
