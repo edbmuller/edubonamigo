@@ -18,15 +18,15 @@ $easing: cubic-bezier(0.3, 1, 0.7, 1);
 	// 1.45865941776
 	// 0.90145152017568
 
-	--size-xgg: 15vw;
-	--size-gg: 17.798vw;
-	--size-g: calc(6.18vh + 1.45865941776vh);
-	--size-m: 3.81924vh;
-	--size-p: 2.36029032vh;
-	--size-xp: 1.2rem;
+	--size-xgg: calc(0.5rem + 15vw);
+	--size-gg: calc(0.5rem + 17.798vw);
+	--size-g: calc(0.5rem + 6.18vh + 1.45865941776vh);
+	--size-m: calc(0.5rem + 3.81924vh);
+	--size-p: calc(0.5rem + 2.36029032vh);
+	--size-xp: calc(1.2rem);
 
 	@include tablet {
-		--size-xp: 1.45865941776vh;
+		--size-xp: calc(0.5rem + 1.45865941776vh);
 	}
 
 	@include laptop {

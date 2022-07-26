@@ -38,6 +38,12 @@
 	margin-left: var(--size-xp);
 
 	@include tablet {
+		margin-left: var(--size-m);
+	}
+	@include laptop {
+		margin-left: var(--size-g);
+	}
+	@include desktop {
 		margin-left: var(--size-g);
 	}
 }
