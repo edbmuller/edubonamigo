@@ -1,5 +1,3 @@
-@import '../base/helpers';
-
 .theme.--light .cursor {
 	mix-blend-mode: exclusion;
 }
@@ -25,7 +23,7 @@
 		top: 0;
 		height: 100%;
 		width: 100%;
-		border-radius: 50%;
+		border-radius: 100%;
 		border: 2px solid var(--secondary-color);
 		transition: transform 0.2s $easing;
 	}
@@ -42,7 +40,7 @@
 		width: 5px;
 		height: 5px;
 		opacity: 0;
-		border-radius: 50%;
+		border-radius: 100%;
 		background-color: var(--secondary-color);
 		transition: transform $duration $easing, opacity $duration $easing;
 	}

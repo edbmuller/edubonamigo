@@ -1,0 +1,44 @@
+.theme {
+	// switch between dark and light theme
+	&.--dark {
+		--primary-color: var(--dark);
+		--secondary-color: var(--light);
+		--blend-mode: var(--dark-blend);
+	}
+	&.--light {
+		--primary-color: var(--light);
+		--secondary-color: var(--dark);
+		--blend-mode: var(--light-blend);
+	}
+
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+	transition: background-color $defaults, color $defaults;
+
+	::selection {
+		background-color: var(--secondary-color);
+		color: var(--primary-color);
+	}
+	&--border {
+		border-color: var(--secondary-color);
+		transition: border-color $defaults;
+	}
+	&--background {
+		background-color: var(--secondary-color);
+		transition: background-color $defaults;
+	}
+
+	&--color {
+		color: var(--secondary-color);
+		transition: color $defaults;
+	}
+
+	&--fill path {
+		fill: var(--secondary-color);
+		transition: fill $defaults;
+	}
+
+	&--cursor {
+		mix-blend-mode: var(--blend-mode);
+	}
+}

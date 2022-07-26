@@ -2,7 +2,8 @@
 // TODO: No arquivo base deixar apenas as configurações da animação inicial e first content paint
 // TODO: menu gsap animation add filter:blur(15px) to sections
 
-@import './base/helpers';
+@import './utils/responsive';
+@import './utils/variables';
 
 @import './components/header';
 @import './components/scroll-icon';
@@ -13,8 +14,6 @@
 @import './sections/about';
 @import './sections/projects';
 @import './sections/contact';
-
-$easing: cubic-bezier(0.075, 0.82, 0.165, 1);
 
 .section {
 	display: flex;
