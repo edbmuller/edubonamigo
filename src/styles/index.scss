@@ -5,10 +5,11 @@
 @import './utils/responsive';
 @import './utils/variables';
 
-@import './components/header';
-@import './components/scroll-icon';
-@import './components/cursor';
-@import './components/footer';
+@import './layout/scrollbar';
+@import './layout/header';
+@import './layout/scroll-icon';
+@import './layout/cursor';
+@import './layout/footer';
 
 @import './sections/hero';
 @import './sections/about';
@@ -19,45 +20,4 @@
 	display: flex;
 	flex-flow: column;
 	justify-content: center;
-}
-
-.scrollbar-track {
-	background-color: transparent !important;
-	position: absolute;
-	z-index: 1;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.scrollbar-track-y {
-	top: 0;
-	right: 0;
-	width: 8px;
-	height: 100%;
-}
-
-.scrollbar-thumb {
-	position: absolute;
-	top: 0;
-	min-height: 8px;
-	right: 0 !important;
-	left: unset !important;
-	width: 3px !important;
-	opacity: 0.2 !important;
-	background-color: var(--secondary-color) !important;
-
-	@include laptop {
-		left: 0 !important;
-		right: unset !important;
-		width: 8px !important;
-		opacity: 0.6 !important;
-	}
-	@include desktop {
-		left: 0 !important;
-		right: unset !important;
-		width: 8px !important;
-		opacity: 0.6 !important;
-	}
 }
