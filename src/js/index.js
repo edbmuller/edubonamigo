@@ -1,5 +1,6 @@
 import mobile from 'is-mobile'
-import './checkMobileRefreshOnResize'
+import './utils/checkMobileRefreshOnResize'
+import { lazyLoadImages } from './utils/lazyLoad'
 
 // TODO: Trigger after imagesLoaded
 import './animations/loading-intro'
@@ -9,6 +10,8 @@ import './animations/header-menu'
 import './animations/projects'
 
 import magneticElement from './animations/magneticElement'
+
+lazyLoadImages()
 
 if (!mobile({ tablet: true })) {
 	magneticElement()
