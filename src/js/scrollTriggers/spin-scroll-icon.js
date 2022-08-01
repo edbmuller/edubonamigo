@@ -14,7 +14,6 @@ export default function spinScrollIcon() {
 		y: '-200px',
 		ease: 'none',
 		autoAlpha: 0,
-		duration: 1,
 		scrollTrigger: {
 			trigger: DOM.sectionHero,
 			start: 'top top',

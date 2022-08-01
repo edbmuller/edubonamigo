@@ -17,11 +17,6 @@ const DOM = {
 }
 
 let tlEnter, tlOut
-const tlDefaults = {
-	paused: true,
-	duration: 0.2,
-	ease: 'power2.out'
-}
 
 export function activeProjectDesktop() {
 	setMarqueeWidth()
@@ -87,14 +82,14 @@ const toggleMarqueeAnimation = (ev) => {
 
 const createSliderEnter = () => {
 	tlEnter = gsap
-		.timeline({ ...tlDefaults })
+		.timeline({ paused: true })
 		.from(DOM.sliderImg, { yPercent: 101 }, 0)
-		.from(DOM.sliderImgMask, { yPercent: -100, scale: 1.3 }, 0)
+		.from(DOM.sliderImgMask, { yPercent: -100 }, 0)
 }
 
 const createSliderOut = () => {
 	tlOut = gsap
-		.timeline({ ...tlDefaults })
+		.timeline({ paused: true })
 		.to(DOM.sliderImg, { yPercent: -100 }, 0)
 		.to(DOM.sliderImgMask, { yPercent: 100, scale: 1 }, 0)
 }
