@@ -8,7 +8,7 @@ const toggleProjects = (e) => {
 	const projectId = project.dataset.id
 
 	toggleActiveProject(project)
-	toggleActiveSlide(projectId)
+	toggleActiveVideo(projectId)
 }
 
 const isActive = (element) => {
@@ -22,15 +22,18 @@ const toggleActiveProject = (projectContainer) => {
 	}
 }
 
-export function toggleActiveSlide(id) {
-	const slide = DOM.get('#' + id)
+export function toggleActiveVideo(id) {
+	const video = DOM.get('#' + id)
 
-	if (!isActive(slide)) {
-		const lastActiveSlide = DOM.get('.project-slider__img .--active')
-		if (lastActiveSlide) {
-			lastActiveSlide.classList.remove('--active')
+	if (!isActive(video)) {
+		const lastActiveVideo = DOM.get('.project-slider__img .--active')
+		if (lastActiveVideo) {
+			lastActiveVideo.currentTime = 0
+			lastActiveVideo.pause()
+			lastActiveVideo.classList.remove('--active')
 		}
-		slide.classList.add('--active')
+		video.classList.add('--active')
+		video.play()
 	}
 }
 

@@ -1,6 +1,6 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { toggleActiveSlide } from '../animations/projects'
+import { toggleActiveVideo } from '../animations/projects'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -102,7 +102,7 @@ const activeProject = (first) => {
 	DOM.slider.classList.add('--active')
 	DOM.slider.removeAttribute('style')
 
-	toggleActiveSlide(DOM.get('.project.--active').dataset.id)
+	toggleActiveVideo(DOM.get('.project.--active').dataset.id)
 }
 
 const desactiveProject = () => {
