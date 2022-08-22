@@ -38,5 +38,5 @@ export function toggleActiveVideo(id) {
 }
 
 DOM.projectTitles.forEach((title) =>
-	title.addEventListener('click', toggleProjects)
+	title.addEventListener('mouseenter', toggleProjects)
 )
