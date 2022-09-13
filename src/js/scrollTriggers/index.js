@@ -1,8 +1,8 @@
 import mobile from 'is-mobile'
 import smoothScrollbar from './smooth-scrollbar'
-import toggleHeaderSubtitleAndDots from './header-toggle-subtitle-and-dots'
 import fadeInOut from './fade-in-out'
 // hero
+import toggleHeaderSubtitleAndLine from './header-subtitle-line'
 import spinScrollIcon from './spin-scroll-icon'
 // about
 import showAboutImage from './about-image'
@@ -14,8 +14,8 @@ import footerTimeline from './footer-timeline'
 
 export default function initScrollTriggers() {
 	smoothScrollbar()
-	toggleHeaderSubtitleAndDots()
 	fadeInOut()
+	toggleHeaderSubtitleAndLine()
 	spinScrollIcon()
 	showAboutImage()
 	footerTimeline()

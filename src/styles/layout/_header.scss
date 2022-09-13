@@ -54,10 +54,10 @@
 	bottom: 0;
 
 	&.--last {
-		visibility: hidden;
+		display: none;
 
 		@include tablet {
-			visibility: visible;
+			display: unset;
 		}
 	}
 }

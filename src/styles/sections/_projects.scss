@@ -42,11 +42,11 @@
 		}
 
 		@include laptop {
-			opacity: 0.2;
+			opacity: 0.4;
 			line-height: 1;
 		}
 		@include desktop {
-			opacity: 0.2;
+			opacity: 0.4;
 			line-height: 1;
 		}
 	}
