@@ -8,7 +8,7 @@ const DOM = {
 	sections: gsap.utils.toArray('.section')
 }
 
-function getSubtitleRightDistance(element) {
+function subtitleOffsetRight(element) {
 	const pageWidth = document.body.clientWidth
 	const containerGap = parseInt(getComputedStyle(DOM.container).marginLeft)
 	const display = getComputedStyle(element).display
@@ -18,7 +18,9 @@ function getSubtitleRightDistance(element) {
 	if (display === 'none') {
 		return 0
 	} else {
-		return pageWidth - distanceFromWindowLeftToElementsRightSide - containerGap
+		return (
+			pageWidth - distanceFromWindowLeftToElementsRightSide - containerGap - 25
+		)
 	}
 }
 
@@ -29,7 +31,7 @@ export default function toggleHeaderSubtitleAndLine() {
 	}
 
 	DOM.headerSubtitles.forEach((subtitle, index) => {
-		const xDistance = getSubtitleRightDistance(subtitle)
+		const xDistance = subtitleOffsetRight(subtitle)
 
 		ScrollTrigger.create({
 			// markers: true,

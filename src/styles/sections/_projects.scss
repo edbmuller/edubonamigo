@@ -29,7 +29,7 @@
 	}
 
 	h3 {
-		font-size: var(--size-g);
+		font-size: var(--size-m);
 		font-family: var(--serif-font-family);
 		width: fit-content;
 		transition: opacity $duration $easing;
@@ -156,16 +156,15 @@
 
 .project-slider {
 	display: none;
-	pointer-events: none;
 	position: fixed;
 	bottom: 5vh;
 	right: 3vw;
 	width: 60vw;
-	height: auto;
-	// aspect-ratio: 16/10; - Not supported on IE11
-	padding-bottom: 37.5%;
+	height: 0;
+	padding-bottom: 33.6%;
 	z-index: -1;
 	opacity: 0;
+	pointer-events: none;
 	transition: opacity $duration $easing;
 
 	@include laptop {
@@ -177,9 +176,9 @@
 
 	@include ultra {
 		bottom: 1vh;
-		width: 48vw;
+		width: 55vw;
 		right: 10vw;
-		padding-bottom: 31.2%;
+		padding-bottom: 30%;
 	}
 
 	&.--active {
@@ -224,7 +223,7 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	object-fit: cover;
+	object-fit: contain;
 	object-position: top left;
 	opacity: 0;
 	transition: opacity $duration $easing;
