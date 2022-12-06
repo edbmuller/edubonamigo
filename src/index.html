@@ -223,7 +223,10 @@
 								<span>Lottie</span>
 							</div>
 						</div>
-            <video class="project__image --fade-in" src="./imgs/projects/tlscp-1.webm" alt="Vídeo demonstração website Telescópio" autoplay loop muted></video>
+            <video class="project__image --fade-in" poster="./imgs/projects/placeholder.png" alt="Demonstrative video of Telescópio's Website" autoplay muted loop playsinline>
+              <source src="./imgs/projects/tlscp-1.webm" type="video/webm">
+              <source src="./imgs/projects/tlscp-1.mp4" type="video/mp4">
+            </video>
 					</div>
 
 					<div class="project" data-id="audio-porto">
@@ -261,7 +264,10 @@
 								<span>LottieFiles</span>
 							</div>
 						</div>
-            <video class="project__image --fade-in" src="./imgs/projects/ap-1.webm" alt="Vídeo demonstração website Áudio Porto" autoplay loop muted></video>
+            <video class="project__image --fade-in lazy" poster="./imgs/projects/placeholder.png" alt="Demonstrative video of Telescópio's Website" autoplay muted loop playsinline>
+              <source src="./imgs/projects/ap-1.webm" type="video/webm">
+              <source src="./imgs/projects/ap-1.mp4" type="video/mp4">
+            </video>
 					</div>
 
 					<div class="project" data-id="gsap-demos">
@@ -300,7 +306,10 @@
 								<!--  -->
 							</div>
 						</div>
-            <video class="project__image --fade-in" src="./imgs/projects/gsap-1.webm" alt="Vídeo demonstração website Gsap Demonstrasions" autoplay loop muted></video>
+            <video class="project__image --fade-in lazy" poster="./imgs/projects/placeholder.png" alt="Demonstrative video of Telescópio's Website" autoplay muted loop playsinline>
+              <source src="./imgs/projects/gsap-1.webm" type="video/webm">
+              <source src="./imgs/projects/gsap-1.mp4" type="video/mp4">
+            </video>
 					</div>
 				</section>
 
@@ -344,11 +353,21 @@
 
 		<div class="project-slider">
 			<div class="project-slider__img--wrapper">
-				<div class="project-slider__img" alt="">
-				<div class="project-slider__img--mask">
-            <video id="tlscp" src="./imgs/projects/tlscp-1.webm" alt="" loop muted></video>
-            <video id="audio-porto" src="./imgs/projects/ap-1.webm" alt="" loop muted></video>
-            <video id="gsap-demos" src="./imgs/projects/gsap-1.webm" alt="" loop muted></video>
+				<div class="project-slider__img">
+          <div class="project-slider__img--mask">
+            <!-- https://web.dev/lazy-loading-video/ -->
+            <video id="tlscp" class="lazy" poster="./imgs/projects/placeholder.png" alt="Demonstrative video of Telescópio's Website" autoplay muted loop playsinline>
+              <source src="./imgs/projects/tlscp-1.webm" type="video/webm">
+              <source src="./imgs/projects/tlscp-1.mp4" type="video/mp4">
+            </video>
+            <video id="audio-porto" class="lazy" poster="./imgs/projects/placeholder.png" alt="Demonstrative video of Telescópio's Website" autoplay muted loop playsinline>
+              <source src="./imgs/projects/ap-1.webm" type="video/webm">
+              <source src="./imgs/projects/ap-1.mp4" type="video/mp4">
+            </video>
+            <video id="gsap-demos" class="lazy" poster="./imgs/projects/placeholder.png" alt="Demonstrative video of Telescópio's Website" autoplay muted loop playsinline>
+              <source src="./imgs/projects/gsap-1.webm" type="video/webm">
+              <source src="./imgs/projects/gsap-1.mp4" type="video/mp4">
+            </video>
 					</div>
 				</div>
 			</div>
