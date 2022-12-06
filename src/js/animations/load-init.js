@@ -1,6 +1,7 @@
 import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
+// import { lazyLoadContent } from '../utils/lazyLoadContent'
 
 import customCursor from './cursor'
 import { hideMenu } from './header-menu'
@@ -23,7 +24,7 @@ const DOM = {
 	dotsArr: gsap.utils.toArray('.dot')
 }
 
-function stopLoadingAndInitIntro() {
+function stopLoadAndInit() {
 	initScrollTriggers()
 
 	let state = Flip.getState(DOM.dotsArr)
@@ -85,4 +86,5 @@ const introTimeline = () => {
 }
 
 // TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
-document.addEventListener('DOMContentLoaded', stopLoadingAndInitIntro())
+// document.addEventListener('DOMContentLoaded', lazyLoadContent())
+document.addEventListener('load', stopLoadAndInit())

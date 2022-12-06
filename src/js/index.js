@@ -3,7 +3,7 @@ import './utils/checkMobileRefreshOnResize'
 // import { lazyLoadImages } from './utils/lazyLoad'
 
 // TODO: Trigger after imagesLoaded
-import './animations/loading-intro'
+import './animations/load-init'
 
 import './animations/toggle-theme'
 import './animations/header-menu'
