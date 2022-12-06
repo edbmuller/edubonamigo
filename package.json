@@ -11,7 +11,7 @@
 	"source": "src/index.html",
 	"scripts": {
 		"start": "parcel --no-source-maps",
-		"build": "parcel build --no-source-maps --public-url /portfolio"
+		"build": "parcel build --no-source-maps"
 	},
 	"devDependencies": {
 		"@parcel/config-default": "^2.4.1",
