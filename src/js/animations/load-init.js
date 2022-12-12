@@ -1,7 +1,6 @@
 import gsap from 'gsap'
 import { Flip } from 'gsap/Flip'
 import initScrollTriggers from '../scrollTriggers'
-// import { lazyLoadContent } from '../utils/lazyLoadContent'
 
 import customCursor from './cursor'
 import { hideMenu } from './header-menu'
@@ -22,29 +21,6 @@ const DOM = {
 	scrollIcon: gsap.utils.toArray('.scroll-icon'),
 	dotsWrapper: document.querySelector('.dots'),
 	dotsArr: gsap.utils.toArray('.dot')
-}
-
-function stopLoadAndInit() {
-	initScrollTriggers()
-
-	let state = Flip.getState(DOM.dotsArr)
-	DOM.dotsWrapper.style.animation = 'unset'
-	Flip.from(state, {
-		ease: 'power3.inOut',
-		scale: true
-	})
-	state = Flip.getState(DOM.dotsArr)
-	DOM.dotsWrapper.classList.remove('--loading')
-
-	Flip.from(state, {
-		duration: 1,
-		ease: 'power3.inOut',
-		scale: true,
-		onComplete: () => {
-			introTimeline()
-			customCursor()
-		}
-	})
 }
 
 const introTimeline = () => {
@@ -85,6 +61,25 @@ const introTimeline = () => {
 		)
 }
 
-// TODO: Trigger when imagesLoaded is loaded (ref: gsap-demos)
-// document.addEventListener('DOMContentLoaded', lazyLoadContent())
-document.addEventListener('load', stopLoadAndInit())
+export const stopLoadAndInit = () => {
+	initScrollTriggers()
+
+	let state = Flip.getState(DOM.dotsArr)
+	DOM.dotsWrapper.style.animation = 'unset'
+	Flip.from(state, {
+		ease: 'power3.inOut',
+		scale: true
+	})
+	state = Flip.getState(DOM.dotsArr)
+	DOM.dotsWrapper.classList.remove('--loading')
+
+	Flip.from(state, {
+		duration: 1,
+		ease: 'power3.inOut',
+		scale: true,
+		onComplete: () => {
+			introTimeline()
+			customCursor()
+		}
+	})
+}
