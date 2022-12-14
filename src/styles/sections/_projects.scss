@@ -127,6 +127,14 @@
 		width: auto;
 		margin-right: auto;
 	}
+
+	@include laptop {
+		display: none;
+	}
+
+	@include desktop {
+		display: none;
+	}
 }
 
 .project.--active {
