@@ -1,14 +1,14 @@
 .theme {
 	// switch between dark and light theme
 	&.--dark {
-		--primary-color: var(--dark);
-		--secondary-color: var(--light);
-		--blend-mode: var(--dark-blend);
+		--primary-color: #0f1c13;
+		--secondary-color: #fcfaf9;
+		--blend-mode: soft-light;
 	}
 	&.--light {
-		--primary-color: var(--light);
-		--secondary-color: var(--dark);
-		--blend-mode: var(--light-blend);
+		--primary-color: #fcfaf9;
+		--secondary-color: #0f1c13;
+		--blend-mode: exclusion;
 	}
 
 	background-color: var(--primary-color);

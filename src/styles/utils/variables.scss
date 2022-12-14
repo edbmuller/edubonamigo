@@ -1,13 +1,8 @@
 $duration: 0.4s;
 $easing: cubic-bezier(0.3, 1, 0.7, 1);
+$defaults: $duration $easing;
 
 :root {
-	--dark: #0f1c13;
-	--light: #fcfaf9;
-
-	--dark-blend: soft-light;
-	--light-blend: exclusion;
-
 	--default-font-family: 'Century Gothic', sans-serif;
 	--serif-font-family: 'Italiana', serif;
 
@@ -46,5 +41,3 @@ $easing: cubic-bezier(0.3, 1, 0.7, 1);
 		--size-xp: 2.36029032vh;
 	}
 }
-
-$defaults: $duration $easing;
