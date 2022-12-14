@@ -6,7 +6,7 @@ const DOM = {
 	menuItems: document.querySelectorAll('.header__menu__item'),
 	scrolls: document.querySelectorAll('.scroll-icon'),
 	projects: document.querySelectorAll('h3'),
-	contact: document.querySelectorAll('.contact__CTA__link'),
+	contact: document.querySelectorAll('.contact__CTA-mask'),
 	socialLinks: document.querySelectorAll('.footer__social__link')
 }
 

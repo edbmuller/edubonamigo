@@ -13,12 +13,29 @@
 	}
 }
 
-.contact__CTA__mask {
+.contact__CTA-mask {
 	overflow: hidden;
 }
 
-.contact__CTA__link {
+.contact__CTA-buttom {
 	display: block;
+	font-family: var(--serif-font-family);
+	color: var(--text-color);
+	font-size: var(--size-xgg);
+	text-decoration: none;
+	will-change: transform;
+
+	span {
+		margin-left: var(--size-xp);
+		font-size: var(--size-xp);
+		pointer-events: none;
+	}
+}
+
+.contact__CTA-buttom {
+	display: inline-block;
+	background: none;
+	border: none;
 	font-family: var(--serif-font-family);
 	color: var(--text-color);
 	font-size: var(--size-xgg);
