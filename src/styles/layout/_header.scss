@@ -91,7 +91,6 @@
 	cursor: pointer;
 	border-radius: 50%;
 	padding: 0.8rem;
-	background-color: var(--secondary-color);
 	align-self: center;
 	transform: translateY(200%);
 
@@ -108,6 +107,13 @@
 	left: 0;
 	bottom: -0.2rem;
 	transform: translateX(110%);
+}
+
+.--dark .dot {
+	border: 1px solid $sec-color;
+}
+.--light .dot {
+	border: 1px solid $main-color;
 }
 
 .header__wrapper--dots {
@@ -139,7 +145,6 @@
 		height: 0.6rem;
 		margin-left: 0.6rem;
 		border-radius: 100%;
-		border: 1px solid var(--secondary-color);
 		transition: background-color 0.4s ease-out;
 
 		&:first-child {

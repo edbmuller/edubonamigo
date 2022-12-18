@@ -79,6 +79,18 @@
 	}
 }
 
+.--dark .project__marquee span {
+	&::before {
+		background-color: $sec-color;
+	}
+}
+
+.--dark .project__marquee span {
+	&::before {
+		background-color: $main-color;
+	}
+}
+
 .project__marquee span {
 	font-family: var(--sans-font-family);
 	text-transform: uppercase;
@@ -103,7 +115,6 @@
 		transform: translateX(50%);
 		width: 5px;
 		height: 1px;
-		background-color: var(--secondary-color);
 	}
 }
 

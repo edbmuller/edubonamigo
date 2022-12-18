@@ -27,29 +27,29 @@ const activeCursor = () => {
 	window.removeEventListener('mousemove', activeCursor)
 }
 
-const cursorMouseenter = (sizeClass) => {
+const hoverState = (sizeClass) => {
 	DOM.cursor.classList.add(sizeClass)
 }
 
-const cursorMouseout = (sizeClass) => {
+const defaultState = (sizeClass) => {
 	DOM.cursor.classList.remove(sizeClass)
 }
 
-const cursorMousedown = () => {
+const clickAtive = () => {
 	DOM.cursor.classList.add('--active')
 }
 
-const cursorMouseup = () => {
+const clickMouseUp = () => {
 	DOM.cursor.classList.remove('--active')
 }
 
 const addListeners = (elements, sizeClass) => {
 	elements.forEach((target) => {
-		target.addEventListener('mouseenter', () => cursorMouseenter(sizeClass))
+		target.addEventListener('mouseenter', () => hoverState(sizeClass))
 	})
 
 	elements.forEach((target) => {
-		target.addEventListener('mouseout', () => cursorMouseout(sizeClass))
+		target.addEventListener('mouseout', () => defaultState(sizeClass))
 	})
 }
 
@@ -62,7 +62,7 @@ export default function customCursor() {
 		addListeners([...DOM.projects, ...DOM.socialLinks], '--medium')
 		addListeners([...DOM.scrolls, ...DOM.contact], '--large')
 
-		window.addEventListener('mousedown', () => cursorMousedown())
-		window.addEventListener('mouseup', () => cursorMouseup())
+		window.addEventListener('mousedown', () => clickAtive())
+		window.addEventListener('mouseup', () => clickMouseUp())
 	}
 }

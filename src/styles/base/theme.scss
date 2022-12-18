@@ -1,44 +1,75 @@
-.theme {
-	// switch between dark and light theme
-	&.--dark {
-		--primary-color: #0f1c13;
-		--secondary-color: #fcfaf9;
-		--blend-mode: soft-light;
-	}
-	&.--light {
-		--primary-color: #fcfaf9;
-		--secondary-color: #0f1c13;
-		--blend-mode: exclusion;
-	}
-
-	background-color: var(--primary-color);
-	color: var(--secondary-color);
+.theme.--dark {
+	background-color: $main-color;
+	color: $sec-color;
 	transition: background-color $defaults, color $defaults;
 
 	::selection {
-		background-color: var(--secondary-color);
-		color: var(--primary-color);
+		background-color: $sec-color;
+		color: $main-color;
 	}
-	&--border {
-		border-color: var(--secondary-color);
+
+	.scrollbar-thumb {
+		background-color: $sec-color;
+	}
+
+	.theme--border {
+		border-color: $sec-color;
 		transition: border-color $defaults;
 	}
-	&--background {
-		background-color: var(--secondary-color);
+	.theme--background {
+		background-color: $sec-color;
 		transition: background-color $defaults;
 	}
 
-	&--color {
-		color: var(--secondary-color);
+	.theme--color {
+		color: $sec-color;
 		transition: color $defaults;
 	}
 
-	&--fill path {
-		fill: var(--secondary-color);
+	.theme--fill path {
+		fill: $sec-color;
 		transition: fill $defaults;
 	}
 
-	&--cursor {
-		mix-blend-mode: var(--blend-mode);
+	.theme--cursor {
+		mix-blend-mode: $main-blend;
+	}
+}
+
+.theme.--light {
+	background-color: $sec-color;
+	color: $main-color;
+	transition: background-color $defaults, color $defaults;
+
+	::selection {
+		background-color: $main-color;
+		color: $sec-color;
+	}
+
+	.scrollbar-thumb {
+		background-color: $main-color;
+	}
+
+	.theme--border {
+		border-color: $main-color;
+		transition: border-color $defaults;
+	}
+	.theme--background {
+		background-color: $main-color;
+		transition: background-color $defaults;
+	}
+
+	.theme--color {
+		color: $main-color;
+		transition: color $defaults;
+	}
+
+	.theme--fill path {
+		fill: $main-color;
+		transition: fill $defaults;
+	}
+
+	.theme--cursor {
+		mix-blend-mode: $sec-blend;
 	}
 }
