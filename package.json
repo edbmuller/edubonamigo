@@ -10,7 +10,7 @@
 	"homepage": "edubonamigo.dev",
 	"source": "src/index.html",
 	"scripts": {
-		"start": "parcel --no-source-maps",
+		"start": "parcel --no-source-maps --no-cache",
 		"build": "parcel build --no-source-maps"
 	},
 	"devDependencies": {
