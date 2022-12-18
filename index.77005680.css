@@ -364,14 +364,6 @@
   border: 2px solid #0f1c13;
 }
 
-.--dark .--active .cursor__mask {
-  border: 1px solid #fcfaf9;
-}
-
-.--light .--active .cursor__mask {
-  border: 1px solid #0f1c13;
-}
-
 .cursor {
   z-index: 99;
   pointer-events: none;
@@ -399,33 +391,38 @@
 }
 
 .cursor.--small .cursor__mask {
-  background-color: #0f1c13;
   border: none;
   transform: scale(1.5);
 }
 
 .cursor.--medium .cursor__mask {
-  background-color: #0f1c13;
   border: none;
   transform: scale(3);
 }
 
 .cursor.--large .cursor__mask {
-  background-color: #0f1c13;
   border: none;
   transform: scale(6);
 }
 
 .cursor.--small.--active .cursor__mask {
-  transform: scale(2);
+  transform: scale(1.25);
 }
 
 .cursor.--medium.--active .cursor__mask {
-  transform: scale(3.5);
+  transform: scale(2.5);
 }
 
 .cursor.--large.--active .cursor__mask {
-  transform: scale(7);
+  transform: scale(5.5);
+}
+
+.--dark .cursor.--small .cursor__mask, .--dark .cursor.--medium .cursor__mask, .--dark .cursor.--large .cursor__mask {
+  background-color: #fcfaf9;
+}
+
+.--light .cursor.--small .cursor__mask, .--light .cursor.--medium .cursor__mask, .--light .cursor.--large .cursor__mask {
+  background-color: #0f1c13;
 }
 
 .footer {

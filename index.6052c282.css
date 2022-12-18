@@ -123,7 +123,7 @@ table {
   transition: fill .4s cubic-bezier(.3, 1, .7, 1);
 }
 
-.theme.--dark .theme--cursor {
+.theme.--dark .theme--cursor, .theme.--dark .theme--cursor .cursor__mask {
   mix-blend-mode: soft-light;
 }
 
@@ -162,7 +162,7 @@ table {
   transition: fill .4s cubic-bezier(.3, 1, .7, 1);
 }
 
-.theme.--light .theme--cursor {
+.theme.--light .theme--cursor, .theme.--light .theme--cursor .cursor__mask {
   mix-blend-mode: exclusion;
 }
 
