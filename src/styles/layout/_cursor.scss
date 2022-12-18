@@ -12,12 +12,6 @@
 .--light .cursor__mask {
 	border: 2px solid $main-color;
 }
-.--dark .--active .cursor__mask {
-	border: 1px solid $sec-color;
-}
-.--light .--active .cursor__mask {
-	border: 1px solid $main-color;
-}
 
 .cursor {
 	z-index: 99;
@@ -46,29 +40,46 @@
 
 	&.--small &__mask {
 		transform: scale(1.5);
-		background-color: $main-color;
 		border: none;
 	}
 
 	&.--medium &__mask {
 		transform: scale(3);
-		background-color: $main-color;
 		border: none;
 	}
 
 	&.--large &__mask {
 		transform: scale(6);
-		background-color: $main-color;
 		border: none;
 	}
 
 	&.--small.--active &__mask {
-		transform: scale(2);
+		transform: scale(1.25);
 	}
 	&.--medium.--active &__mask {
-		transform: scale(3.5);
+		transform: scale(2.5);
 	}
 	&.--large.--active &__mask {
-		transform: scale(7);
+		transform: scale(5.5);
 	}
+}
+
+.--dark .cursor.--small .cursor__mask {
+	background-color: $sec-color;
+}
+.--dark .cursor.--medium .cursor__mask {
+	background-color: $sec-color;
+}
+.--dark .cursor.--large .cursor__mask {
+	background-color: $sec-color;
+}
+
+.--light .cursor.--small .cursor__mask {
+	background-color: $main-color;
+}
+.--light .cursor.--medium .cursor__mask {
+	background-color: $main-color;
+}
+.--light .cursor.--large .cursor__mask {
+	background-color: $main-color;
 }

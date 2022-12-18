@@ -33,6 +33,10 @@
 
 	.theme--cursor {
 		mix-blend-mode: $main-blend;
+
+		.cursor__mask {
+			mix-blend-mode: $main-blend;
+		}
 	}
 }
 
@@ -71,5 +75,9 @@
 
 	.theme--cursor {
 		mix-blend-mode: $sec-blend;
+
+		.cursor__mask {
+			mix-blend-mode: $sec-blend;
+		}
 	}
 }
