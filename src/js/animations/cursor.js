@@ -6,7 +6,7 @@ const DOM = {
 	menuItems: document.querySelectorAll('.header__menu__item'),
 	scrolls: document.querySelectorAll('.scroll-icon'),
 	projects: document.querySelectorAll('h3'),
-	contact: document.querySelectorAll('.contact__CTA-mask'),
+	contact: document.querySelectorAll('.contact__CTA__link'),
 	socialLinks: document.querySelectorAll('.footer__social__link')
 }
 
@@ -43,7 +43,7 @@ const clickMouseUp = () => {
 	DOM.cursor.classList.remove('--active')
 }
 
-const addListeners = (elements, sizeClass) => {
+const listenersForStates = (elements, sizeClass) => {
 	elements.forEach((target) => {
 		target.addEventListener('mouseenter', () => hoverState(sizeClass))
 	})
@@ -58,9 +58,9 @@ export default function customCursor() {
 		window.addEventListener('mousemove', activeCursor)
 		window.addEventListener('mousemove', moveCursor)
 
-		addListeners([...DOM.subtitles, ...DOM.menuItems], '--small')
-		addListeners([...DOM.projects, ...DOM.socialLinks], '--medium')
-		addListeners([...DOM.scrolls, ...DOM.contact], '--large')
+		listenersForStates([...DOM.subtitles, ...DOM.menuItems], '--small')
+		listenersForStates([...DOM.projects, ...DOM.socialLinks], '--medium')
+		listenersForStates([...DOM.scrolls, ...DOM.contact], '--large')
 
 		window.addEventListener('mousedown', () => clickAtive())
 		window.addEventListener('mouseup', () => clickMouseUp())

@@ -1,7 +1,7 @@
 import gsap from 'gsap'
 
 const DOM = {
-	target: document.querySelector('.contact__CTA-mask'),
+	target: document.querySelector('.contact__CTA__mask'),
 	areaAroundTarget: document.querySelector('.section.contact')
 }
 
