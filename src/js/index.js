@@ -12,7 +12,13 @@ if (!mobile({ tablet: true })) {
 	magneticElement()
 }
 
-document.addEventListener('load', stopLoadAndInit())
+const initApp = () => {
+	setTimeout(() => {
+		stopLoadAndInit()
+	}, 3000)
+}
+
+document.addEventListener('load', initApp())
 
 // TODO: ativar algum experimento com webgl quando usar o macete
 // console.log('Macete: → ↑ ← ↓ e d !')
