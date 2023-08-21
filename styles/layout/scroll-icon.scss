@@ -1,0 +1,36 @@
+.scroll-icon {
+	height: fit-content;
+	position: absolute;
+	cursor: pointer;
+
+	@include laptop {
+		width: 20rem;
+		left: 65vw;
+		top: 75%;
+	}
+
+	@include desktop {
+		width: 28rem;
+		left: 68vw;
+		top: 65%;
+	}
+
+	@include landscape {
+		width: 15rem;
+		left: 65vw;
+		top: 75%;
+	}
+
+	img {
+		animation: spin 35s infinite linear;
+		width: 100%;
+		height: auto;
+		pointer-events: none;
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(-360deg);
+	}
+}

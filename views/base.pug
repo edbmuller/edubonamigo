@@ -1,0 +1,41 @@
+block variables
+doctype html 
+
+html(lang="pt-br" class="--preloader")
+	head 
+		meta(charset="UTF-8")
+		link(rel="preconnect" href="https://fonts.googleapis.com")
+		link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
+		
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		meta(name="apple-mobile-web-app-capable" content="yes")
+		meta(name="apple-mobile-web-app-status-bar-style" content="#0f1c13")
+		meta(name="description" content=meta.data.description)
+		//- TODO: meta(name="keywords" content=meta.data.keywords)
+		
+		base(href="/")
+		link(rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml")
+		link(href="https://fonts.googleapis.com/css2?family=Italiana&display=swap" rel="stylesheet")
+		
+		include ../styles/base/reset
+		include ../styles/base/critical
+		link(rel="stylesheet" href="main.css")
+	
+		title=meta.data.title
+
+	body(class="theme --dark --loading")
+
+		include ./components/header
+		
+		div(class="scroller")
+			main(class="container")
+				include ./layouts/hero
+				include ./layouts/about
+				include ./layouts/projects
+				include ./layouts/contact
+
+		include ./components/cursor
+		include ./components/about-image
+		include ./components/projects-slider
+
+	script(src="./bundle.js") 

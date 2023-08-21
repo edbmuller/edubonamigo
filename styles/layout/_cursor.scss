@@ -1,0 +1,87 @@
+.theme.--light .cursor {
+	mix-blend-mode: exclusion;
+}
+
+.--mobile .cursor {
+	display: none !important;
+}
+
+.--dark .cursor__mask {
+	border: 2px solid var(--sec-color);
+}
+.--light .cursor__mask {
+	border: 2px solid var(--main-color);
+}
+
+.cursor {
+	z-index: 99;
+	pointer-events: none;
+	position: fixed;
+	opacity: 0;
+	width: 5rem;
+	height: 5rem;
+	left: -2.6rem;
+	top: -2.6rem;
+	transition: transform var(--duration) var(--easing);
+
+	&__mask {
+		position: absolute;
+		left: 0;
+		top: 0;
+		height: 100%;
+		width: 100%;
+		border-radius: 100%;
+		transition:
+			transform 0.2s var(--easing),
+			background-color var(--duration) var(--easing);
+	}
+
+	&.--active &__mask {
+		transform: scale(0.8);
+	}
+
+	&.--small &__mask {
+		transform: scale(1.5);
+		border: none;
+	}
+
+	&.--medium &__mask {
+		transform: scale(3);
+		border: none;
+	}
+
+	&.--large &__mask {
+		transform: scale(6);
+		border: none;
+	}
+
+	&.--small.--active &__mask {
+		transform: scale(1.25);
+	}
+	&.--medium.--active &__mask {
+		transform: scale(2.5);
+	}
+	&.--large.--active &__mask {
+		transform: scale(5.5);
+	}
+}
+
+.--dark .cursor.--small .cursor__mask {
+	background-color: var(--sec-color);
+}
+.--dark .cursor.--medium .cursor__mask {
+	background-color: var(--sec-color);
+}
+.--dark .cursor.--large .cursor__mask {
+	background-color: var(--sec-color);
+}
+
+.--light .cursor.--small .cursor__mask {
+	background-color: var(--main-color);
+}
+.--light .cursor.--medium .cursor__mask {
+	background-color: var(--main-color);
+}
+.--light .cursor.--large .cursor__mask {
+	background-color: var(--main-color);
+}

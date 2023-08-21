@@ -1,0 +1,15 @@
+// TODO: No arquivo base deixar apenas as configurações da animação inicial e first content paint
+// TODO: menu gsap animation add filter:blur(15px) to sections
+
+@import './base/responsive';
+
+@import './layout/scrollbar';
+@import './layout/header';
+@import './layout/scroll-icon';
+@import './layout/cursor';
+@import './layout/footer';
+
+@import './sections/hero';
+@import './sections/about';
+@import './sections/projects';
+@import './sections/contact';
