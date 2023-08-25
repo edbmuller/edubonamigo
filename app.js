@@ -12,15 +12,6 @@ app.use(async (req, res, next) => {
 })
 
 app.get('/', async (req, res) => {
-	// const niches = await client.getAllByType('niche', {
-	// 	fetchLinks: 'photoshoot.title',
-	// })
-
-	// niches.forEach((niche) => {
-	// 	niche.data.photoshoots.forEach((photoshoot) => {
-	// 		photoshoot.title = photoshoot?.photoshoot?.data?.title
-	// 	})
-	// })
 	res.render('base.pug', { ...res.locals.defaults })
 })
 
