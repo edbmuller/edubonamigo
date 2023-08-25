@@ -19,7 +19,7 @@ function subtitleOffsetRight(element) {
 		return 0
 	} else {
 		return (
-			pageWidth - distanceFromWindowLeftToElementsRightSide - containerGap - 25
+			pageWidth - distanceFromWindowLeftToElementsRightSide - containerGap - 100
 		)
 	}
 }

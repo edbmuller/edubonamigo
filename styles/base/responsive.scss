@@ -31,31 +31,31 @@
 
 // Typography sizes
 :root {
-	--size-xgg: calc(0.5rem + 15vw);
-	--size-gg: calc(0.5rem + 16.18vw);
-	--size-g: calc(0.5rem + 6.18vh);
-	--size-m: calc(0.5rem + 3.81924vh);
-	--size-p: calc(0.5rem + 1.45865941776vh);
-	--size-xp: calc(1.2rem);
+	--xgg: calc(0.5rem + 15vw);
+	--gg: calc(0.5rem + 16.18vw);
+	--g: calc(0.5rem + 6.18vh);
+	--m: calc(0.5rem + 3.81924vh);
+	--p: calc(0.5rem + 1.45865941776vh);
+	--xp: calc(1.2rem);
 
 	@include tablet {
-		--size-xp: calc(0.5rem + 1.45865941776vh);
+		--xp: calc(0.5rem + 1.45865941776vh);
 	}
 
 	@include laptop {
-		--size-xgg: 13vw;
-		--size-gg: 10vw;
-		--size-g: 10vh;
-		--size-m: 3.81924vw;
-		--size-p: 2.36029032vw;
-		--size-xp: 2.36029032vh;
+		--xgg: 13vw;
+		--gg: 10vw;
+		--g: 10vh;
+		--m: 3.81924vw;
+		--p: 2.36029032vw;
+		--xp: 2.36029032vh;
 	}
 	@include desktop {
-		--size-xgg: 13vw;
-		--size-gg: 10vw;
-		--size-g: 10vh;
-		--size-m: 3.81924vw;
-		--size-p: 2.36029032vw;
-		--size-xp: 2.36029032vh;
+		--xgg: 13vw;
+		--gg: 10vw;
+		--g: 10vh;
+		--m: 3.81924vw;
+		--p: 2.36029032vw;
+		--xp: 2.36029032vh;
 	}
 }

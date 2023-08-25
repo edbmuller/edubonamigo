@@ -2,7 +2,7 @@
 	min-height: 100vh;
 	position: relative;
 	padding-bottom: 10vh;
-
+	
 	@include laptop {
 		padding-bottom: 0;
 	}
@@ -12,16 +12,21 @@
 	}
 
 	h1 {
-		font-size: var(--size-gg);
+		font-size: 22vw;
 		line-height: 1.2;
 		cursor: default;
 		font-family: var(--serif-font-family);
+
+		@include tablet {
+			font-size: var(--gg);
+		}
 
 		@include laptop {
 			line-height: 1.1;
 			margin-bottom: 0;
 			margin-left: -0.7%;
 		}
+
 		@include desktop {
 			line-height: 1.1;
 			margin-bottom: 0;
@@ -38,5 +43,5 @@
 
 .title-wrapper {
 	overflow: hidden;
-	padding-bottom: var(--size-xp);
+	padding-bottom: var(--xp);
 }

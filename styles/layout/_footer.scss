@@ -44,7 +44,7 @@
 .footer__social__link {
 	cursor: pointer;
 	font-family: var(--serif-font-family);
-	font-size: var(--size-m);
+	font-size: var(--m);
 	white-space: nowrap;
 	text-decoration: none;
 	// transform: translateY(100%);
@@ -67,7 +67,7 @@
 
 .footer__location__text,
 .footer__copyright__text {
-	font-size: var(--size-xp);
+	font-size: var(--xp);
 	display: block;
 	height: 100%;
 

@@ -1,5 +1,4 @@
 .section.projects {
-	padding-top: 15vh;
 
 	@include laptop {
 		padding: 20vh 0;
@@ -13,10 +12,10 @@
 	margin-bottom: 15vh;
 
 	@include laptop {
-		margin-bottom: var(--size-p);
+		margin-bottom: var(--p);
 	}
 	@include desktop {
-		margin-bottom: var(--size-p);
+		margin-bottom: var(--p);
 	}
 }
 
@@ -29,10 +28,14 @@
 	}
 
 	h3 {
-		font-size: var(--size-m);
+		font-size: var(--m);
 		font-family: var(--serif-font-family);
 		width: fit-content;
 		transition: opacity var(--duration) var(--easing);
+
+		@include laptop {
+			font-size: var(--g);
+		}
 	}
 
 	&.--fade-in h3 {
@@ -100,14 +103,10 @@
 	white-space: nowrap;
 
 	@include laptop {
-		font-size: 0.9vw;
-		padding: 0 3rem;
+		font-size: var(--xp);
+		padding: 0 2rem;
 	}
-	@include desktop {
-		font-size: 0.9vw;
-		padding: 0 3rem;
-	}
-
+	
 	&::before {
 		content: '';
 		position: absolute;

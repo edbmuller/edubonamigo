@@ -21,13 +21,13 @@
 	display: block;
 	font-family: var(--serif-font-family);
 	color: var(--text-color);
-	font-size: var(--size-xgg);
+	font-size: var(--xgg);
 	text-decoration: none;
 	will-change: transform;
 
 	span {
-		margin-left: var(--size-xp);
-		font-size: var(--size-xp);
+		margin-left: var(--xp);
+		font-size: var(--xp);
 		pointer-events: none;
 	}
 }

@@ -2,21 +2,26 @@
 	padding-left: 10vw;
 	position: relative;
 	min-height: 100vh;
-
+	padding-top: 28vh;
+	
 	@include tablet {
 		padding-left: 40vw;
+		padding-top: 0;
+		min-height: 80vh;
 	}
-
+	
 	@include laptop {
 		padding: 10vw 0 10vw 30vw;
+		min-height: 100vh;
 	}
 	@include desktop {
 		padding: 10vw 0 10vw 30vw;
+		min-height: 100vh;
 	}
 }
 
 .about__text {
-	font-size: var(--size-p);
+	font-size: var(--p);
 	margin-bottom: 7vw;
 	line-height: 1.5;
 
@@ -28,7 +33,7 @@
 	}
 
 	@include ultra {
-		font-size: calc(var(--size-xp) * 2);
+		font-size: calc(var(--xp) * 2);
 	}
 }
 
@@ -46,7 +51,7 @@
 	@include tablet {
 		display: block;
 		width: 45vw;
-		top: 25vh;
+		top: 32vh;
 		left: 4vw;
 	}
 
@@ -66,7 +71,7 @@
 
 .theme.--light .about__image {
 	@include tablet {
-		width: 26vw;
+		width: 36vw;
 		top: 30vh;
 	}
 	@include laptop {
@@ -74,6 +79,10 @@
 	}
 	@include desktop {
 		top: 40vh;
+	}
+	@include ultra {
+		width: 26vw;
+		top: 45vh;
 	}
 }
 
@@ -93,6 +102,20 @@
 .theme.--light .about__image {
 	mix-blend-mode: luminosity;
 
+	&::after {
+    content: "";
+    position: absolute;
+    height: 50%;
+    width: 100%;
+		background: linear-gradient(transparent, var(--main-color) 68%);
+    top: 48%;
+    left: 0;
+
+		@include tablet {
+			content: none;
+		}
+	}
+	
 	@include tablet {
 		mix-blend-mode: normal;
 	}

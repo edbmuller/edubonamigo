@@ -2,11 +2,20 @@
 	height: fit-content;
 	position: absolute;
 	cursor: pointer;
+	width: 18rem;
+	left: 38vw;
+	top: 78%;
+
+	@include tablet {
+    width: 20rem;
+    left: 54vw;
+    top: 78%;
+	}
 
 	@include laptop {
-		width: 20rem;
-		left: 65vw;
-		top: 75%;
+		width: 28rem;
+		left: 68vw;
+		top: 60%;
 	}
 
 	@include desktop {
@@ -26,8 +35,18 @@
 		width: 100%;
 		height: auto;
 		pointer-events: none;
+
+		display: none;
 	}
 }
+
+.theme.--dark .scroll-icon .--dark {
+	display: block;	
+}
+.theme.--light .scroll-icon .--light {
+	display: block;
+}
+
 
 @keyframes spin {
 	100% {
