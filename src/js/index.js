@@ -1,3 +1,4 @@
+import { inject } from '@vercel/analytics';
 import mobile from 'is-mobile'
 import './utils/checkMobileRefreshOnResize'
 
@@ -8,14 +9,16 @@ import './animations/projects'
 
 import magneticElement from './animations/magneticElement'
 
+inject();
+
 if (!mobile({ tablet: true })) {
-	magneticElement()
+  magneticElement()
 }
 
 const initApp = () => {
-	setTimeout(() => {
-		stopLoadAndInit()
-	}, 3000)
+  setTimeout(() => {
+    stopLoadAndInit()
+  }, 3000)
 }
 
 document.addEventListener('load', initApp())
