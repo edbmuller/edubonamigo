@@ -24,15 +24,14 @@
     "eslint-plugin-n": "^15.2.3",
     "eslint-plugin-promise": "^6.0.0",
     "parcel": "^2.4.1",
-    "parcel-validator-stylelint": "^1.0.1",
-    "stylelint": "^14.7.1",
-    "stylelint-prettier": "^2.0.0"
+    "stylelint": "^14.7.1"
   },
   "dependencies": {
     "@vercel/analytics": "^1.1.1",
     "browserslist": "^4.21.4",
     "gsap": "^3.10.4",
     "is-mobile": "^3.1.1",
-    "smooth-scrollbar": "^8.7.4"
+    "smooth-scrollbar": "^8.7.4",
+    "yarn": "1.22.22"
   }
 }
