@@ -1,6 +1,7 @@
 import { inject } from '@vercel/analytics';
 import mobile from 'is-mobile'
 import './utils/checkMobileRefreshOnResize'
+import './utils/updateMonthAndYear'
 
 import { stopLoadAndInit } from './animations/load-init'
 import './animations/toggle-theme'

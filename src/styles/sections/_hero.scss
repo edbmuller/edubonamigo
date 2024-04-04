@@ -1,42 +1,39 @@
 .section--hero {
-	min-height: 100vh;
-	position: relative;
-	padding-bottom: 10vh;
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 10vh;
 
-	@include laptop {
-		padding-bottom: 0;
-	}
+  @include laptop {
+    padding-bottom: 0;
+  }
 
-	@include ultra {
-		padding-top: 6vh;
-	}
+  h1 {
+    font-size: var(--size-gg);
+    line-height: 1.2;
+    cursor: default;
+    font-family: var(--serif-font-family);
 
-	h1 {
-		font-size: var(--size-gg);
-		line-height: 1.2;
-		cursor: default;
-		font-family: var(--serif-font-family);
+    @include laptop {
+      line-height: 1.1;
+      margin-bottom: 0;
+      margin-left: -0.7%;
+    }
 
-		@include laptop {
-			line-height: 1.1;
-			margin-bottom: 0;
-			margin-left: -0.7%;
-		}
-		@include desktop {
-			line-height: 1.1;
-			margin-bottom: 0;
-			margin-left: -0.7%;
-		}
+    @include desktop {
+      line-height: 1.1;
+      margin-bottom: 0;
+      margin-left: -0.7%;
+    }
 
-		@include landscape {
-			font-size: 9vw;
-			line-height: 1.1;
-			margin-bottom: 0;
-		}
-	}
+    @include landscape {
+      font-size: 9vw;
+      line-height: 1.1;
+      margin-bottom: 0;
+    }
+  }
 }
 
 .title-wrapper {
-	overflow: hidden;
-	padding-bottom: var(--size-xp);
+  overflow: hidden;
+  padding-bottom: var(--size-xp);
 }
