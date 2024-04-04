@@ -1,33 +1,33 @@
 .section.contact {
-	height: 100vh;
-	justify-content: space-between;
-	position: relative;
+  height: 90vh;
+  justify-content: space-between;
+  position: relative;
 }
 
 .contact__CTA {
-	align-self: center;
-	margin-top: 15vh;
+  align-self: center;
+  margin-top: 15vh;
 
-	@include tablet {
-		margin-top: 5vh;
-	}
+  @include tablet {
+    margin-top: 5vh;
+  }
 }
 
 .contact__CTA__mask {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .contact__CTA__link {
-	display: block;
-	font-family: var(--serif-font-family);
-	color: var(--text-color);
-	font-size: var(--size-xgg);
-	text-decoration: none;
-	will-change: transform;
+  display: block;
+  font-family: var(--serif-font-family);
+  color: var(--text-color);
+  font-size: var(--size-xgg);
+  text-decoration: none;
+  will-change: transform;
 
-	span {
-		margin-left: var(--size-xp);
-		font-size: var(--size-xp);
-		pointer-events: none;
-	}
+  span {
+    margin-left: var(--size-xp);
+    font-size: var(--size-xp);
+    pointer-events: none;
+  }
 }
