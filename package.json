@@ -8,7 +8,7 @@
     "url": "git+https://github.com/edbmuller/edubonamigo.git"
   },
   "homepage": "edubonamigo.dev",
-  "source": "src/index.html",
+  "source": "src/en-US.html",
   "scripts": {
     "start": "parcel --no-source-maps --no-cache",
     "build": "parcel build --no-source-maps"
