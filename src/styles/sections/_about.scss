@@ -63,7 +63,7 @@
   }
 
   @include ultra {
-    top: 38vh;
+    top: 40vh;
   }
 }
 
@@ -85,6 +85,10 @@
 .about__image__of__ed {
   width: 100%;
   height: auto;
+
+  @include ultra {
+    transform: translateY(-2vw);
+  }
 }
 
 .theme.--dark .about__image {
