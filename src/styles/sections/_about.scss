@@ -1,99 +1,104 @@
 .about.section {
-	padding-left: 10vw;
-	position: relative;
-	min-height: 100vh;
+  padding-left: 10vw;
+  position: relative;
+  min-height: 100vh;
 
-	@include tablet {
-		padding-left: 40vw;
-	}
+  @include tablet {
+    padding-left: 40vw;
+  }
 
-	@include laptop {
-		padding: 10vw 0 10vw 30vw;
-	}
-	@include desktop {
-		padding: 10vw 0 10vw 30vw;
-	}
+  @include laptop {
+    padding: 10vw 0 10vw 30vw;
+  }
+
+  @include desktop {
+    padding: 10vw 0 10vw 30vw;
+  }
 }
 
 .about__text {
-	font-size: var(--size-p);
-	margin-bottom: 7vw;
-	line-height: 1.5;
+  font-size: var(--size-p);
+  margin-bottom: 7vw;
+  line-height: 1.5;
 
-	@include laptop {
-		margin-bottom: 2vw;
-	}
-	@include desktop {
-		margin-bottom: 2vw;
-	}
+  @include laptop {
+    margin-bottom: 2vw;
+  }
 
-	@include ultra {
-		font-size: calc(var(--size-xp) * 2);
-	}
+  @include desktop {
+    margin-bottom: 2vw;
+  }
+
+  @include ultra {
+    font-size: calc(var(--size-xp) * 2);
+  }
 }
 
 .about__image {
-	position: fixed;
-	top: 15vh;
-	left: 0;
-	width: 100vw;
-	pointer-events: none;
-	z-index: -2;
-	opacity: 0;
-	overflow: hidden;
-	transition: width $duration $easing;
+  position: fixed;
+  top: 15vh;
+  left: 0;
+  width: 100vw;
+  pointer-events: none;
+  z-index: -2;
+  opacity: 0;
+  overflow: hidden;
+  transition: width $duration $easing;
 
-	@include tablet {
-		display: block;
-		width: 45vw;
-		top: 25vh;
-		left: 4vw;
-	}
+  @include tablet {
+    display: block;
+    width: 45vw;
+    top: 25vh;
+    left: 4vw;
+  }
 
-	@include laptop {
-		width: 32vw;
-		top: 40vh;
-	}
-	@include desktop {
-		width: 32vw;
-		top: 40vh;
-	}
+  @include laptop {
+    width: 32vw;
+    top: 38vh;
+  }
 
-	@include ultra {
-		top: 50vh;
-	}
+  @include desktop {
+    width: 32vw;
+    top: 38vh;
+  }
+
+  @include ultra {
+    top: 38vh;
+  }
 }
 
 .theme.--light .about__image {
-	@include tablet {
-		width: 26vw;
-		top: 30vh;
-	}
-	@include laptop {
-		top: 40vh;
-	}
-	@include desktop {
-		top: 40vh;
-	}
+  @include tablet {
+    width: 26vw;
+    top: 30vh;
+  }
+
+  @include laptop {
+    top: 40vh;
+  }
+
+  @include desktop {
+    top: 40vh;
+  }
 }
 
 .about__image__of__ed {
-	width: 100%;
-	height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .theme.--dark .about__image {
-	mix-blend-mode: exclusion;
+  mix-blend-mode: exclusion;
 
-	@include tablet {
-		mix-blend-mode: exclusion;
-	}
+  @include tablet {
+    mix-blend-mode: exclusion;
+  }
 }
 
 .theme.--light .about__image {
-	mix-blend-mode: luminosity;
+  mix-blend-mode: luminosity;
 
-	@include tablet {
-		mix-blend-mode: normal;
-	}
+  @include tablet {
+    mix-blend-mode: normal;
+  }
 }
