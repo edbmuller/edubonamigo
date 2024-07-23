@@ -19,6 +19,12 @@
 	padding: 0.6rem 0;
 	align-items: center;
 
+  display: none;
+
+  @include desktop {
+    display: flex;
+  }
+
 	@include tablet {
 		padding: 1rem 0;
 	}
@@ -31,6 +37,12 @@
 	width: fit-content;
 	display: flex;
 	overflow: hidden;
+
+  display: none;
+
+  @include desktop {
+    display: flex;
+  }
 }
 
 .header__subtitles {

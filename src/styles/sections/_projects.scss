@@ -1,11 +1,15 @@
 .section.projects {
-  padding-top: 10vh;
+
+  @include tablet {
+    padding-top: 10vh;
+  }
 }
 
 .project {
-  margin-bottom: 15vh;
-
+  margin-bottom: 10vh;
+  
   @include laptop {
+    margin-bottom: 15vh;
     margin-bottom: var(--size-p);
   }
 
@@ -127,13 +131,14 @@
 
 .project__image {
   width: 100%;
-  margin-top: 5vh;
+  margin-top: 2vh;
 
   @include laptop {
     display: block;
     height: 60vh;
     width: auto;
     margin-right: auto;
+    margin-top: 5vh;
   }
 
   @include laptop {

@@ -28,6 +28,7 @@ export default function footerTimeline() {
 	ScrollTrigger.create({
 		trigger: DOM.sectionContact,
 		start: '90% bottom',
+    markers: true,
 		onEnter: () => tl.play(),
 		onLeaveBack: () => tl.reverse()
 	})

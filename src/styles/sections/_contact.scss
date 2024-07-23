@@ -2,6 +2,12 @@
   height: 90vh;
   justify-content: space-between;
   position: relative;
+
+  display: none;
+
+  @include desktop {
+    display: flex;
+  }
 }
 
 .contact__CTA {
