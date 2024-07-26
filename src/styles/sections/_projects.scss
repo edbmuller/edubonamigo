@@ -7,7 +7,7 @@
 
 .project {
   margin-bottom: 10vh;
-  
+
   @include laptop {
     margin-bottom: 15vh;
     margin-bottom: var(--size-p);
@@ -241,7 +241,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: fit-content;
   height: 100%;
   object-fit: contain;
   object-position: top left;
