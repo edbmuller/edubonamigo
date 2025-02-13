@@ -13,5 +13,5 @@ const date = new Date();
 const month = date.toLocaleString(langCode, { month: 'long' });
 const year = date.getFullYear()
 
-document.getElementById('month').innerText = month
+// document.getElementById('month').innerText = month
 document.getElementById('year').innerText = year
